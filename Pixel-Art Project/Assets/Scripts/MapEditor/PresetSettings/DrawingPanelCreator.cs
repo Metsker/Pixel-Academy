@@ -1,62 +1,64 @@
+using System;
 using Gameplay;
 using UnityEngine;
 using AnimPlaying;
+using GameLogic;
 
 namespace MapEditor.PresetSettings
 {
-    public class DrawingPanelCreator : MonoBehaviour, ICreator
+    public class DrawingPanelCreatorEditor : MonoBehaviour, ICreator
     {
         [SerializeField] private GameObject panel;
         [SerializeField] private GameObject gridPreset;
-        [SerializeField] private GameObject createClipUI;
-        public static DrawingSizeField DrawingSizeField;
+        [Tooltip("In GameMod")]
+        [SerializeField] private int sideSize;
+        public static SizeFieldHandler sizeFieldHandler;
         private int _cashSize;
-        private bool _panelState;
+        public static event Action ToggleUI;
 
         private void Awake()
         {
-            DrawingSizeField = FindObjectOfType<DrawingSizeField>();
+            sizeFieldHandler = FindObjectOfType<SizeFieldHandler>();
         }
 
         public void Create()
         {
-            if (FindObjectOfType<ClickOnPixel>())
+            int count = 0;
+            switch (GameModManager.CurrentGameMod)
             {
-                if (_cashSize == DrawingSizeField.size)
-                {
-                    Debug.LogWarning("Уже выбран");
-                    return;
-                }
-                foreach (var pixel in FindObjectsOfType<ClickOnPixel>())
-                {
-                    Destroy(pixel.gameObject);
-                }
+                case GameModManager.GameMod.Gameplay:
+                    count = sideSize * sideSize;
+                    break;
+                case GameModManager.GameMod.Editor:
+                    count = sizeFieldHandler.size * sizeFieldHandler.size;
+                    break;
             }
             
-            var count = DrawingSizeField.size * DrawingSizeField.size;
-            if(count == 0) return;
-
+            if(count == 0 || CheckForExist(count)) return;
             for (var i = 0; i < count; i++)
             {     
-                var a = Instantiate(gridPreset, panel.transform);
-                 a.name = "Px " + i;
+                var p = Instantiate(gridPreset, panel.transform);
+                 p.name = "Px " + "(" + i + ")";
             }
-
-            _cashSize = DrawingSizeField.size;
-            LevelListManager.CreateList();
+            _cashSize = count;
             
-            if (AnimClipLoader.AnimationClips.Count == 0)
-            {
-                createClipUI.SetActive(true);
-            }
-            DisablePanel();
-            
+            LevelTemplateCreator.CreateList();
+            if(GameModManager.CurrentGameMod == GameModManager.GameMod.Editor) ToggleUI?.Invoke();
         }
 
-        public void DisablePanel()
+        private bool CheckForExist(int count)
         {
-            transform.parent.gameObject.SetActive(_panelState);
-            _panelState = !_panelState;
+            if (_cashSize == count)
+            {
+                Debug.LogWarning("Уже выбран");
+                return true;
+            }
+            
+            foreach (var pixel in FindObjectsOfType<ClickOnPixel>())
+            {
+                Destroy(pixel.gameObject);
+            }
+            return false;
         }
     }
 }
