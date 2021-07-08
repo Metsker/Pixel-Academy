@@ -1,32 +1,39 @@
 using System;
 using GameLogic;
+using Gameplay;
 using HSVPicker;
 using UnityEngine;
 
 namespace MapEditor.ColorPresets
 {
-    public class ColorPresetCreateButton : MonoBehaviour, ICreator
+    public class ColorPresetInstanceButton : MonoBehaviour, ICreator
     {
         [SerializeField] private GameObject panel;
         [SerializeField] private GameObject preset;
-        public ColorPicker picker;
-        private int _i;
+        private int i;
         public static event Action UpdateRecorder;
 
         private void Start()
         {
-            _i = FindObjectsOfType<ColorPreset>().Length;
+            i = FindObjectsOfType<ColorPreset>().Length;
         }
 
         public void Create()
         {
-            var c = Instantiate(preset, panel.transform);
-            c.name = "Preset Color " + "(" + _i + ")";
-            _i++;
+            var g = Instantiate(preset, panel.transform);
+            g.name = "Preset Color " + "(" + i + ")";
+            i++;
             if (GameStateManager.CurrentGameState == GameStateManager.GameState.Recording)
             {
                 UpdateRecorder?.Invoke();
             }
+        }
+
+        public void Delete()
+        {
+            if (i <= 0) return;
+            i--;
+            Destroy(GameObject.Find("Preset Color " + "(" + i + ")"));
         }
     }
 }

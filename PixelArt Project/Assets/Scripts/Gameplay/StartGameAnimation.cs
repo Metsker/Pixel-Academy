@@ -20,7 +20,7 @@ namespace Gameplay
 
         private void Start()
         {
-            StartCoroutine(ButtonAnim());
+            gameObject.transform.DOScale(new Vector3(1.15f, 1.15f, 1), 1f/3.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         }
 
         public void StartAnim()
@@ -28,24 +28,9 @@ namespace Gameplay
             _drawingPanelCreator.Create();
             GameStateManager.CurrentGameState = GameStateManager.GameState.Animating;
             animator.Rebind();
-            StopAllCoroutines();
-            Invoke(nameof(AnimDelay),1);
-            gameObject.SetActive(false);
-        }
-
-        private IEnumerator ButtonAnim()
-        {
-            while (animator.enabled == false)
-            {
-                gameObject.transform.DOScale(new Vector3(1.15f, 1.15f, 1), 1f/3).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-                yield return new WaitForSeconds(100);
-            }
-        }
-
-        private void AnimDelay()
-        {
-            //gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0);
             animator.enabled = true;
+            gameObject.SetActive(false);
+            gameObject.transform.DOKill();
         }
     }
 }

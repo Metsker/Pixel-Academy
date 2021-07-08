@@ -4,6 +4,7 @@ using System.Linq;
 using GameLogic;
 using Gameplay;
 using MapEditor.Recording;
+using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,6 +61,7 @@ namespace AnimPlaying
                     animator.enabled = false;
                     progress.value = 0;
                     LoadState();
+                    FindObjectOfType<PencilTool>().SetColor(GameModManager.GameMod.Editor);
                     break;
                 case false :
                     if (ClipListLoader.AnimationClips.Count == 0)

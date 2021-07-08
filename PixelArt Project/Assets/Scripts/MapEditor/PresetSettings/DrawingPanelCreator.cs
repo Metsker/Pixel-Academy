@@ -35,7 +35,7 @@ namespace MapEditor.PresetSettings
             }
             if(count == 0 || CheckForExist(count)) return;
             Build(count);
-            LevelTemplateCreator.CreateList();
+            LevelTemplateCreator.CreatePixelList();
             if(GameModManager.CurrentGameMod == GameModManager.GameMod.Editor) ToggleUI?.Invoke();
         }
 

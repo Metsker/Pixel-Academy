@@ -29,7 +29,7 @@ namespace MapEditor.Recording
             ColorPreset.TakeSnapshot += Snapshot;
             PencilTool.TakeSnapshot += Snapshot;
             EraserTool.TakeSnapshot += Snapshot;
-            ColorPresetCreateButton.UpdateRecorder += CreateColorPresetRecorder;
+            ColorPresetInstanceButton.UpdateRecorder += CreateColorPresetRecorder;
             CreateRecorder();
             Snapshot(SnapshotDelay);
         }
@@ -39,7 +39,8 @@ namespace MapEditor.Recording
             ColorPreset.TakeSnapshot -= Snapshot;
             PencilTool.TakeSnapshot -= Snapshot;
             EraserTool.TakeSnapshot -= Snapshot;
-            ColorPresetCreateButton.UpdateRecorder -= CreateColorPresetRecorder;
+            ColorPresetInstanceButton.UpdateRecorder -= CreateColorPresetRecorder;
+            ResetPresetColors();
             _recorder.SaveToClip(Clip);
             LevelAssetSaver.CreateMyAsset(ExportPixels(), ExportColorPresets());
         }
@@ -80,6 +81,14 @@ namespace MapEditor.Recording
                 _colorPresetList.Add(pt.PresetStruct);
             }
             return _colorPresetList;
+        }
+
+        private void ResetPresetColors()
+        {
+            foreach (var ps in FindObjectsOfType<ColorPreset>())
+            {
+                ps.changed = false;
+            }
         }
     }
 }

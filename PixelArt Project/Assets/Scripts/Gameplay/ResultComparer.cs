@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using GameLogic;
@@ -9,11 +10,11 @@ namespace Gameplay
 {
     public class ResultComparer : MonoBehaviour
     {
-        [SerializeField] private LevelScriptableObject scriptableObject;
+        public LevelScriptableObject scriptableObject;
         [SerializeField] private TextMeshProUGUI resultText;
         private List<Color> _colorsToCheck;
         private int _compareCount;
-        
+
         public void Compare()
         {
             _compareCount = 0;

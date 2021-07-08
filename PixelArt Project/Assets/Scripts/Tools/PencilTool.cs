@@ -1,5 +1,6 @@
 ﻿using System;
 using GameLogic;
+using Gameplay;
 using MapEditor.ColorPresets;
 using MapEditor.Recording;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Tools
 
         private void Start()
         {
-            currentColorImg.color = FindObjectOfType<ColorPreset>().GetComponent<Image>().color;
+            SetColor(GameModManager.CurrentGameMod);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -38,6 +39,19 @@ namespace Tools
         public void SetColor(Color c)
         {
             currentColorImg.color = c;
+        }
+        
+        public void SetColor(GameModManager.GameMod mod)
+        {
+            switch (mod)
+            {
+                case GameModManager.GameMod.Editor:
+                    currentColorImg.color = FindObjectOfType<ColorPreset>().GetComponent<Image>().color;
+                    break;
+                case GameModManager.GameMod.Gameplay:
+                    currentColorImg.color = FindObjectOfType<ResultComparer>().scriptableObject.firstColor;
+                    break;
+            }
         }
         
         public Color GetColor()

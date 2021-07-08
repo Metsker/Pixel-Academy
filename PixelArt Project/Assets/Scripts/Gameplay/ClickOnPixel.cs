@@ -17,6 +17,7 @@ namespace Gameplay
         public static bool firstSnapshotBool { get; set; }
         public static Color firstPixelColor { get; private set; }
         public static event Action<float> TakeSnapshot;
+        public static event Func<bool> CheckPicker;
         private void Awake()
         {
             _image = GetComponent<Image>();
@@ -39,6 +40,7 @@ namespace Gameplay
 
         private void OnPointer(Color c)
         {
+            if (GameModManager.CurrentGameMod == GameModManager.GameMod.Editor && (bool)CheckPicker?.Invoke()) return;
             if (_image.color == c)
             {
                 Debug.LogWarning("Цвета совпадают");
