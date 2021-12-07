@@ -3,22 +3,29 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
-      <Path>Library/PackageCache/com.unity.2d.animation@5.0.5</Path>
-      <Path>Library/PackageCache/com.unity.2d.common@4.0.3</Path>
-      <Path>Library/PackageCache/com.unity.2d.path@4.0.1</Path>
-      <Path>Library/PackageCache/com.unity.2d.pixel-perfect@4.0.1</Path>
-      <Path>Library/PackageCache/com.unity.2d.psdimporter@4.0.2</Path>
-      <Path>Library/PackageCache/com.unity.2d.spriteshape@5.1.2</Path>
-      <Path>Library/PackageCache/com.unity.collab-proxy@1.5.7</Path>
+      <Path>Library/PackageCache/com.unity.2d.animation@7.0.1</Path>
+      <Path>Library/PackageCache/com.unity.2d.common@6.0.0</Path>
+      <Path>Library/PackageCache/com.unity.2d.path@5.0.1</Path>
+      <Path>Library/PackageCache/com.unity.2d.pixel-perfect@5.0.1</Path>
+      <Path>Library/PackageCache/com.unity.2d.psdimporter@6.0.1</Path>
+      <Path>Library/PackageCache/com.unity.2d.spriteshape@7.0.2</Path>
+      <Path>Library/PackageCache/com.unity.addressables@1.19.11</Path>
+      <Path>Library/PackageCache/com.unity.burst@1.6.0</Path>
+      <Path>Library/PackageCache/com.unity.collab-proxy@1.15.1</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.6</Path>
-      <Path>Library/PackageCache/com.unity.ide.rider@2.0.7</Path>
-      <Path>Library/PackageCache/com.unity.ide.visualstudio@2.0.8</Path>
-      <Path>Library/PackageCache/com.unity.ide.vscode@1.2.3</Path>
-      <Path>Library/PackageCache/com.unity.mathematics@1.1.0</Path>
+      <Path>Library/PackageCache/com.unity.ide.rider@3.0.7</Path>
+      <Path>Library/PackageCache/com.unity.ide.visualstudio@2.0.11</Path>
+      <Path>Library/PackageCache/com.unity.ide.vscode@1.2.4</Path>
+      <Path>Library/PackageCache/com.unity.localization@1.0.5</Path>
+      <Path>Library/PackageCache/com.unity.mathematics@1.2.4</Path>
       <Path>Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0</Path>
-      <Path>Library/PackageCache/com.unity.test-framework@1.1.24</Path>
+      <Path>Library/PackageCache/com.unity.postprocessing@3.1.1</Path>
+      <Path>Library/PackageCache/com.unity.scriptablebuildpipeline@1.19.3</Path>
+      <Path>Library/PackageCache/com.unity.searcher@4.9.1</Path>
+      <Path>Library/PackageCache/com.unity.services.core@1.0.1</Path>
+      <Path>Library/PackageCache/com.unity.test-framework@1.1.29</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@3.0.6</Path>
-      <Path>Library/PackageCache/com.unity.timeline@1.4.8</Path>
+      <Path>Library/PackageCache/com.unity.timeline@1.6.2</Path>
       <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
@@ -26,7 +33,7 @@
       <Path>.idea</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
-      <Path>Snapshots</Path>
+      <Path>Temp</Path>
       <Path>UserSettings</Path>
       <Path>obj</Path>
     </explicitExcludes>

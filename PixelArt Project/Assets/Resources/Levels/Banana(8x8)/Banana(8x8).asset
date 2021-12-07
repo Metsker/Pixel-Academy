@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Banana(8x8)
+  m_EditorClassIdentifier: 
+  xLenght: 8
+  yLenght: 8
+  stars: 0
+  isLocked: 0
+  groupType: 1
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 5739d7e644fbbc646806a029c2e95c3c, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 8ca94834739d3084b8d09ba1a66f9920, type: 2}
+  - {fileID: 11400000, guid: a4382aa32ee636341b8a50b7a5b05bac, type: 2}
+  - {fileID: 11400000, guid: 4a29d25137db82144945d2dac71600de, type: 2}
+  - {fileID: 11400000, guid: 99ab375af4c106f4482f68bfd74bbb90, type: 2}
+  - {fileID: 11400000, guid: b3ca3f45c1f6c554395456ab036df4ed, type: 2}
+  - {fileID: 11400000, guid: 8ded09db86c0e4a4c8bc5eb18d644754, type: 2}
+  - {fileID: 11400000, guid: 1eccde694273d634a9318273d26bca52, type: 2}
+  - {fileID: 11400000, guid: 329932f4d0eecd44fa486f644855bf5c, type: 2}
+  - {fileID: 11400000, guid: 0e6c782ded500d1468b0b73d081ec38d, type: 2}
+  - {fileID: 11400000, guid: b971341fcaad7214980189829a33f8b4, type: 2}
+  - {fileID: 11400000, guid: 7d06e813e9a46f4488aeb5acea04071b, type: 2}

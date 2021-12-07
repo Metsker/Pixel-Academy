@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Apple(14x14)
+  m_EditorClassIdentifier: 
+  xLenght: 14
+  yLenght: 14
+  stars: 0
+  isLocked: 1
+  groupType: 1
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: f57d4092cf8032e44aab950e8e412951, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 8a9e10b7e9ca08c41803e98774d30bb0, type: 2}
+  - {fileID: 11400000, guid: c35bb6929fc700740ad0ae0d7447b483, type: 2}
+  - {fileID: 11400000, guid: bc942305a675f1947a1bf94992c6a464, type: 2}
+  - {fileID: 11400000, guid: c63fe4334dcc5a14dba241ad7a6cb9b6, type: 2}
+  - {fileID: 11400000, guid: 6b1524e85bb707f4c8f1b21b6587fb4e, type: 2}
+  - {fileID: 11400000, guid: 1b19812b2342cd0499afea988fcdaf04, type: 2}
+  - {fileID: 11400000, guid: 1ed5313dd12001f43961c0197142cea3, type: 2}
+  - {fileID: 11400000, guid: 917769f48a4c66240bef5e9c853ccb62, type: 2}
+  - {fileID: 11400000, guid: 3a2a0d2dbc0b34d439913dc42738356f, type: 2}
+  - {fileID: 11400000, guid: 844fbcf673641a343921e6ee1d6b036b, type: 2}
+  - {fileID: 11400000, guid: 536ea19f8fc1b404da8921fdfb3bcdff, type: 2}
+  - {fileID: 11400000, guid: a255a62b04f6cf746857c4f8c0f860d6, type: 2}
+  - {fileID: 11400000, guid: e30684f2c479ab14f97465f6afb0e9a9, type: 2}
+  - {fileID: 11400000, guid: b31ac9549164ff14c8e1e56c635ecb8e, type: 2}
+  - {fileID: 11400000, guid: 948ee131f88d7eb47a91fc461e7e0d7a, type: 2}
+  - {fileID: 11400000, guid: 4ef85cc9b796a6e40bd322e003b93d46, type: 2}
+  - {fileID: 11400000, guid: 16a0a891651201142922a199ae310810, type: 2}

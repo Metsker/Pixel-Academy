@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Main Screen Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Main Screen Table
+  m_TableCollectionNameGuidString: df5de541a018faa4d9b33d905423d5f3
+  m_Entries:
+  - m_Id: 1206012309504
+    m_Key: Difficulty label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1522325745664
+    m_Key: Easy Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2621493440512
+    m_Key: Medium Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2712597917696
+    m_Key: Hard Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2754633232384
+    m_Key: New's label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2985898766336
+    m_Key: View all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44273629097984
+    m_Key: Animals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44341820092416
+    m_Key: Crops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44457461248000
+    m_Key: Food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44527799726080
+    m_Key: Decor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44590466822144
+    m_Key: Minecraft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44620246380544
+    m_Key: Pokemons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3414717333729280
+    m_Key: Categories
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 6814653627639791654
+  references:
+    version: 2
+    RefIds:
+    - rid: 6814653627639791654
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1636370994447

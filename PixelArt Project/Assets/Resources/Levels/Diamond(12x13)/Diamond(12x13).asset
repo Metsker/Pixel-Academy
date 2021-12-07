@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Diamond(12x13)
+  m_EditorClassIdentifier: 
+  xLenght: 12
+  yLenght: 13
+  stars: 0
+  isLocked: 0
+  groupType: 4
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 59a1c22bb7fc47b4da0e698c7d9f1b99, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 52bfc3768f20e2e4fa40f7cfaef3ce26, type: 2}
+  - {fileID: 11400000, guid: 4e910333efae64c4c984574701f662a8, type: 2}
+  - {fileID: 11400000, guid: 9661641c6e88aa945a0892216608b362, type: 2}
+  - {fileID: 11400000, guid: 9a6e2f2532706834aafecfcdeee6aa7b, type: 2}
+  - {fileID: 11400000, guid: 8fd04a8f7b3480d46ac55e9ebe6d5cbe, type: 2}
+  - {fileID: 11400000, guid: 50cd2e577377618448f87962a3ab2f04, type: 2}
+  - {fileID: 11400000, guid: 2bd2dfecad5e3ad46891aeca984b6bff, type: 2}
+  - {fileID: 11400000, guid: b66b56762bfba5746b4e60f704be0347, type: 2}
+  - {fileID: 11400000, guid: fb17bb318511dd047ae5f1ae0911a9c1, type: 2}
+  - {fileID: 11400000, guid: b8ab41cf4428018429aa53fe71789b45, type: 2}
+  - {fileID: 11400000, guid: 124edf2231fab294f925cc699bb09d2e, type: 2}
+  - {fileID: 11400000, guid: b1297d9650b9d3d4d847328e32c65359, type: 2}
+  - {fileID: 11400000, guid: 36f950923ee202b4c82b0110f77a4f8a, type: 2}
+  - {fileID: 11400000, guid: 2758bae68fc1ec4459e56051c7cf05ed, type: 2}
+  - {fileID: 11400000, guid: ba10f265246e87043a7d097f6aedb555, type: 2}
+  - {fileID: 11400000, guid: b68e28216cb52584890545e96cb9d88a, type: 2}
+  - {fileID: 11400000, guid: 06ee26a11af56b942a7ec638a2cc5225, type: 2}
+  - {fileID: 11400000, guid: 48fa7011dacab49458b060a6c209e2ec, type: 2}

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c6040f29f361a6f4bab743b7e299de5f
+  m_SerializeEntries:
+  - m_GUID: df5de541a018faa4d9b33d905423d5f3
+    m_Address: Assets/Resources/Localization/Tables/Main Screen Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 67628621fc5e8b2439a8a9f040c8309c
+    m_Address: Assets/Resources/Localization/Tables/Stats Screen Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 83fb04b8e04a9d94492ff5e5b64c28be
+    m_Address: Assets/Resources/Localization/Tables/Editor Screen Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 9adbe46aa5aa8a1479f984b36ad48f02
+    m_Address: Assets/Resources/Localization/Tables/Gameplay Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 57789216a859bbd4f8438305dd98f07b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cf774acbd9569fc4eae6da0bdb57e895, type: 2}
+    - {fileID: 11400000, guid: f5b326e0c6bfc3849acaeb3e3c4d4bc4, type: 2}

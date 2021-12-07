@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Lion(8x8)
+  m_EditorClassIdentifier: 
+  xLenght: 8
+  yLenght: 8
+  stars: 0
+  isLocked: 0
+  groupType: 0
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 1edc878a336e6254f9329110d6a651e3, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: f86ddeebfb3b530449fcd5d36c01f4a9, type: 2}
+  - {fileID: 11400000, guid: 3f69b5d4ae05a3a4a870d0886e3c7d5c, type: 2}
+  - {fileID: 11400000, guid: b988635171aae24428f646e01c0fdf5c, type: 2}
+  - {fileID: 11400000, guid: 2f4f87e19cdb7bb48a1cefc8c3c27958, type: 2}
+  - {fileID: 11400000, guid: 5af4de1bda6944542987d3dd43152ed1, type: 2}
+  - {fileID: 11400000, guid: 6c944a0487cd9ae4a82520d97bcddf15, type: 2}
+  - {fileID: 11400000, guid: e85e1f418c2c18d45888689a6f0deb3d, type: 2}
+  - {fileID: 11400000, guid: a8edff9250569a947b78a7575e577fbe, type: 2}
+  - {fileID: 11400000, guid: 702245fce4a6853498b7385e8873d792, type: 2}
+  - {fileID: 11400000, guid: 9ae75423626d7b24995794ca16b47672, type: 2}
+  - {fileID: 11400000, guid: 33333b2c0afe71d4fa4050cac6338729, type: 2}
+  - {fileID: 11400000, guid: 95bfe9f7d21d0514386076c87fddc33d, type: 2}

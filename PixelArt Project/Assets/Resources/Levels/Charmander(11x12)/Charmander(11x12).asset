@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Charmander(11x12)
+  m_EditorClassIdentifier: 
+  xLenght: 11
+  yLenght: 12
+  stars: 0
+  isLocked: 0
+  groupType: 5
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: c182ad1fb5bade042b984344272a296a, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 9631e01ac88eb01499cfaf7a650d0e6a, type: 2}
+  - {fileID: 11400000, guid: a74d0f8a7a36d3e4493a0a37db2bded4, type: 2}
+  - {fileID: 11400000, guid: 77edc3331c9abb541992075a951e44ee, type: 2}
+  - {fileID: 11400000, guid: 01706346682c8144298b3b28d900d0e6, type: 2}
+  - {fileID: 11400000, guid: 031c7a62ff76da9498679b549cd6e4b2, type: 2}
+  - {fileID: 11400000, guid: de23e840f8797a14e8c3fa0c16f2ba64, type: 2}
+  - {fileID: 11400000, guid: 513e85df160dc204d967bc3d7eae26be, type: 2}
+  - {fileID: 11400000, guid: 4d600f69664908547b04db3f6385c9c3, type: 2}
+  - {fileID: 11400000, guid: 4b0ccb8605887ee4ab2f53f88e279828, type: 2}
+  - {fileID: 11400000, guid: e7a3a177af745284d90b6ff6be54ddb0, type: 2}
+  - {fileID: 11400000, guid: 75b1fde60900e5e468dc0ec2f730360d, type: 2}

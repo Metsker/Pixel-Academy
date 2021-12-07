@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Background
+  - Pooled
+  - Released
+  - MainCanvas
+  - Fade Image
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Focused
   - 
   - 
   - 

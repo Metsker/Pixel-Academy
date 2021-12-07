@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Charmeleon(12x12)
+  m_EditorClassIdentifier: 
+  xLenght: 12
+  yLenght: 12
+  stars: 0
+  isLocked: 0
+  groupType: 5
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 98b2cd490c932004c802ee9aa588f326, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 1fd3d8fd4fa384b49812809d3565d26a, type: 2}
+  - {fileID: 11400000, guid: bd3a7c0c2d126c34dbbcd28ba770b21a, type: 2}
+  - {fileID: 11400000, guid: e74e646a9bd2375459acb2e09093549f, type: 2}
+  - {fileID: 11400000, guid: 4eddf6c5ccab84f46a5c01bd6822bfa5, type: 2}
+  - {fileID: 11400000, guid: b8edd97af4f2a1642a8476ada47043fa, type: 2}
+  - {fileID: 11400000, guid: 7222a489e6614764aaf8afd072d8d589, type: 2}
+  - {fileID: 11400000, guid: a33160c73bb622d42a411c2294925261, type: 2}
+  - {fileID: 11400000, guid: a24304cc5912f6844926f9055db15b55, type: 2}
+  - {fileID: 11400000, guid: 3142cdbeecb60fe4c818c0ad1b0d5500, type: 2}
+  - {fileID: 11400000, guid: f4b00a39fa0d55849b918424edf7d619, type: 2}
+  - {fileID: 11400000, guid: 133d1fbe849c4034195b7529bac79081, type: 2}
+  - {fileID: 11400000, guid: 74c1186cd5827b34387ddc7c1fdae535, type: 2}
+  - {fileID: 11400000, guid: d50d4fe7f5020674dbacb1b2753102e3, type: 2}
+  - {fileID: 11400000, guid: 8e78ca8b1c1e8ea4da22b8ffdeae7a6a, type: 2}
+  - {fileID: 11400000, guid: 8f5dd349ee31f3c43b8b32d02e5f56eb, type: 2}
