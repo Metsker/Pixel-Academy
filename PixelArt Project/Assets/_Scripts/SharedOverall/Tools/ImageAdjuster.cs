@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Tools
+namespace _Scripts.SharedOverall.Tools
 {
     public static class ImageAdjuster
     {

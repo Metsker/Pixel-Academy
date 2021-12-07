@@ -1,17 +1,17 @@
 #if (UNITY_EDITOR)
 using System.Collections.Generic;
-using _Scripts.EditorMod.Animating;
-using _Scripts.EditorMod.DrawingPanel;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.DrawingPanel;
-using _Scripts.GeneralLogic.Tools.Instruments;
-using _Scripts.GeneralLogic.Tools.Logic;
-using _Scripts.GeneralLogic.Tools.Palette;
+using _Scripts.Gameplay.Recording.Animating;
+using _Scripts.Gameplay.Recording.DrawingPanel;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.DrawingPanel;
+using _Scripts.SharedOverall.Tools.Instruments;
+using _Scripts.SharedOverall.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.EditorMod.Recording
+namespace _Scripts.Gameplay.Recording.Recording
 {
     public class RecorderSwitcher : MonoBehaviour
     {

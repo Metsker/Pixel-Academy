@@ -1,9 +1,9 @@
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Resulting;
+using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GeneralLogic.Tools.Logic
+namespace _Scripts.Gameplay.Release.Playing.Animating
 {
     public class DirectionHelper : MonoBehaviour
     {

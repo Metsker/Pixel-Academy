@@ -1,10 +1,10 @@
 ﻿using System;
-using _Scripts.GameplayMod.Creating;
+using _Scripts.Gameplay.Release.Playing.Creating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-namespace _Scripts.GeneralLogic.Audio
+namespace _Scripts.SharedOverall.Audio
 {
     public class AudioClickEvent : MonoBehaviour, IPointerClickHandler
     {

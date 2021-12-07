@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Audio;
-using _Scripts.GeneralLogic.Data;
-using _Scripts.GeneralLogic.Saving;
-using _Scripts.GeneralLogic.Tools.Logic;
-using DG.Tweening;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Audio;
+using _Scripts.SharedOverall.Data;
+using _Scripts.SharedOverall.Saving;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.Resulting
+namespace _Scripts.Gameplay.Release.Playing.Resulting
 {
     public abstract class RewardCalculator : AchievementsHandler
     {
@@ -75,10 +72,12 @@ namespace _Scripts.GameplayMod.Resulting
             }
             
             CalculateReward(mark);
-            
-            await Task.Delay((int)(AudioEffects.GetPassedSoundLength(_result)*1000));
-            
-            
+
+            if (AudioSettings.IsMusicEnabled())
+            {
+                await Task.Delay((int)(AudioEffects.GetPassedSoundLength(_result)*1000));
+            }
+
             for (var i = 0; i < mark; i++)
             {
                 await Task.Delay(150);
@@ -113,7 +112,8 @@ namespace _Scripts.GameplayMod.Resulting
             _result = result;
             CompleteLevel?.Invoke(_result, lastStageMistake);
         }
-        protected void AddTokens(int value)
+        
+        private void AddTokens(int value)
         {
             PlayerPrefs.SetInt("HintTokens", PlayerPrefs.GetInt("HintTokens", 3) + value);
             PlayerPrefs.Save();

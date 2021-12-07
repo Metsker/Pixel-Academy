@@ -1,11 +1,9 @@
-﻿using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Creating;
-using DG.Tweening;
+﻿using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Release.Shared.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.UI
+namespace _Scripts.Gameplay.Release.Playing.UI
 {
     public class NextLevelButton : MonoBehaviour
     {

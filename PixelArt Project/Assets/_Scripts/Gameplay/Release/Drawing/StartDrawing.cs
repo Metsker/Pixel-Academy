@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.DrawingPanel;
-using _Scripts.GeneralLogic.Menu.Logic;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Menu.Logic;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.DrawingPanel;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.Drawing
+namespace _Scripts.Gameplay.Release.Drawing
 {
     public class StartDrawing : MonoBehaviour
     {

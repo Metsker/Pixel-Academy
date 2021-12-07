@@ -1,9 +1,9 @@
-﻿using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.Tools.Logic;
+﻿using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GeneralLogic.Tools.Palette
+namespace _Scripts.SharedOverall.Tools.Palette
 {
     public class EraserTool: SelectableTool, IPointerClickHandler
     {

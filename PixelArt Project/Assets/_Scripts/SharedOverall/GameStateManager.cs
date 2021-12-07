@@ -1,4 +1,4 @@
-﻿namespace _Scripts.GeneralLogic
+﻿namespace _Scripts.SharedOverall
 {
     public static class GameStateManager
     {

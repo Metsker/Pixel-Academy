@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.DrawingPanel;
-using _Scripts.GeneralLogic.Tools.Instruments;
+using _Scripts.Gameplay.Release.Playing.Animating;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.DrawingPanel;
+using _Scripts.SharedOverall.Tools.Instruments;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace _Scripts.GeneralLogic.Animating
+namespace _Scripts.SharedOverall.Animating
 {
     public abstract class ClipPlaying : MonoBehaviour
     {

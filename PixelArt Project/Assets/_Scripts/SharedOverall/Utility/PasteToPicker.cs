@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using _Scripts.GeneralLogic.ColorPresets;
 using TMPro;
 using UnityEngine;
 
-public class PasteToPicker : MonoBehaviour
+namespace _Scripts.SharedOverall.Utility
 {
-    [SerializeField] private TMP_InputField inputField;
-    public void Paste()
+    public class PasteToPicker : MonoBehaviour
     {
-        inputField.onEndEdit.Invoke(GUIUtility.systemCopyBuffer);
+        [SerializeField] private TMP_InputField inputField;
+        public void Paste()
+        {
+            inputField.onEndEdit.Invoke(GUIUtility.systemCopyBuffer);
+        }
     }
 }

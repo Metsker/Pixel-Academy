@@ -1,11 +1,11 @@
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic.Menu.Creating;
-using _Scripts.GeneralLogic.Menu.Data;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Menu.Creating;
+using _Scripts.Menu.Data;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace _Scripts.GeneralLogic.Menu.Transition
+namespace _Scripts.Menu.Transition
 {
     public class StageController : MonoBehaviour
     {

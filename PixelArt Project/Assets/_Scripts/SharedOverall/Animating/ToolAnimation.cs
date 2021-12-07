@@ -1,12 +1,13 @@
 ﻿using System.Collections;
-using _Scripts.GeneralLogic.Audio;
+using _Scripts.Gameplay.Recording.Recording;
+using _Scripts.SharedOverall.Audio;
 using DG.Tweening;
 using UnityEngine;
 #if (UNITY_EDITOR)
-using _Scripts.EditorMod.Recording;
+
 #endif
 
-namespace _Scripts.GeneralLogic.Animating
+namespace _Scripts.SharedOverall.Animating
 {
     public class ToolAnimation : MonoBehaviour
     {

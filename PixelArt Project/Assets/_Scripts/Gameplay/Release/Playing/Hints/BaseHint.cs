@@ -1,11 +1,11 @@
 ﻿using System;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic.Ads;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.SharedOverall.Ads;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.Hints
+namespace _Scripts.Gameplay.Release.Playing.Hints
 {
     public abstract class BaseHint : BaseTool
     {

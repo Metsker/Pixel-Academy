@@ -1,8 +1,8 @@
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.EditorMod.ColorPresets
+namespace _Scripts.Gameplay.Recording.ColorPresets
 {
     public class ColorCreator : BaseTool, IPointerClickHandler
     {

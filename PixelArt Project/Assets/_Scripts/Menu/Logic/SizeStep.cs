@@ -1,10 +1,10 @@
 using System;
-using _Scripts.GeneralLogic.Audio;
-using _Scripts.GeneralLogic.Menu.Transition;
+using _Scripts.Menu.Transition;
+using _Scripts.SharedOverall.Audio;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.Logic
+namespace _Scripts.Menu.Logic
 {
     public class SizeStep : MonoBehaviour
     {

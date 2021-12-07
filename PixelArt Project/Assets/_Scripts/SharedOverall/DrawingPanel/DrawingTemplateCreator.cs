@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GeneralLogic.DrawingPanel
+namespace _Scripts.SharedOverall.DrawingPanel
 {
     public class DrawingTemplateCreator : MonoBehaviour, ICreator
     {

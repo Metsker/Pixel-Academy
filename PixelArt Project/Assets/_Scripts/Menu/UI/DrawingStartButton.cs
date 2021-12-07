@@ -1,8 +1,9 @@
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GeneralLogic.Menu.Logic;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Menu.Logic;
+using _Scripts.SharedOverall;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.UI
+namespace _Scripts.Menu.UI
 {
     public class DrawingStartButton : MonoBehaviour
     {

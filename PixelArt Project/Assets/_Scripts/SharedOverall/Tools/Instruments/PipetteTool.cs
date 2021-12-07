@@ -1,7 +1,7 @@
-﻿using _Scripts.GeneralLogic.Tools.Logic;
+﻿using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GeneralLogic.Tools.Instruments
+namespace _Scripts.SharedOverall.Tools.Instruments
 {
     public class PipetteTool : BaseTool, IPointerClickHandler
     {

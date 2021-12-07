@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.DrawingPanel;
-using _Scripts.GeneralLogic.Menu.Data;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.DrawingPanel;
 using DG.Tweening;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.EditorMod.ScriptableObjectLogic
+namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 {
     public class SnapshotTaker : MonoBehaviour
     {

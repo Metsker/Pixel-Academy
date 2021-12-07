@@ -1,20 +1,19 @@
 using System;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.Audio;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Instruments;
-using _Scripts.GeneralLogic.Tools.Palette;
-using UnityEditor;
+using _Scripts.Gameplay.Recording.Recording;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.Audio;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.Tools.Instruments;
+using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 #if (UNITY_EDITOR)
-using _Scripts.EditorMod.Recording;
+
 #endif
 
-namespace _Scripts.GeneralLogic.Tools.Logic
+namespace _Scripts.SharedOverall.Tools.Logic
 {
     public class ClickOnPixel : MonoBehaviour, IPointerClickHandler
     {

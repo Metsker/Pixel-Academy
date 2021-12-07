@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using _Scripts.EditorMod.DrawingPanel;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.Menu.Logic;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.Gameplay.Recording.DrawingPanel;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Menu.Logic;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.DrawingPanel
+namespace _Scripts.SharedOverall.DrawingPanel
 {
     public class DrawingPanelCreator : MonoBehaviour
     {

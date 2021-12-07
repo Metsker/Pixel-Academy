@@ -1,13 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GeneralLogic.Saving;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.SharedOverall.Saving;
 using UnityEditor;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic
+namespace _Scripts.SharedOverall
 {
     public static class Developer
     {

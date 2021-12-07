@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.Creating
+namespace _Scripts.Menu.Creating
 {
     public class NewLevelsBuilder : CategoryBuilder
     {

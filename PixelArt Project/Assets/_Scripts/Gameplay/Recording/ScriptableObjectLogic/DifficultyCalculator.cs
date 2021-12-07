@@ -1,6 +1,6 @@
-using static _Scripts.GeneralLogic.Menu.UI.DifficultyFilterManager;
+using static _Scripts.Menu.UI.DifficultyFilterManager;
 
-namespace _Scripts.EditorMod.ScriptableObjectLogic
+namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 {
     public static class DifficultyCalculator
     {

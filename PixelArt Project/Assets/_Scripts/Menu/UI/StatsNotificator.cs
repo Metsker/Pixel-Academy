@@ -1,10 +1,8 @@
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GeneralLogic.Menu.Transition;
-using _Scripts.GeneralLogic.Saving;
+using _Scripts.Menu.Transition;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.UI
+namespace _Scripts.Menu.UI
 {
     public class StatsNotificator : MonoBehaviour
     {

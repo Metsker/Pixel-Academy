@@ -2,14 +2,13 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using _Scripts.EditorMod.ScriptableObjectLogic;
-using _Scripts.EditorMod.UI;
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GeneralLogic.Data;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.Gameplay.Recording.UI;
+using _Scripts.SharedOverall.Data;
 using UnityEngine;
-using static _Scripts.EditorMod.ScriptableObjectLogic.LevelGroupScriptableObject;
+using static _Scripts.Gameplay.Recording.ScriptableObjectLogic.LevelGroupScriptableObject;
 
-namespace _Scripts.GeneralLogic.Saving
+namespace _Scripts.SharedOverall.Saving
 {
     public static class SaveSystem
     {

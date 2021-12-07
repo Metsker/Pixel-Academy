@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using ns;
+using _Scripts.SharedOverall.Utility;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace _Scripts.EditorMod.Animating
+namespace _Scripts.Gameplay.Recording.Animating
 {
     public class ClipListLoader : MonoBehaviour
     {

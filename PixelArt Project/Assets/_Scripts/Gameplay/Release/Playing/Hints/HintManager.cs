@@ -1,8 +1,8 @@
-﻿using _Scripts.GeneralLogic;
+﻿using _Scripts.SharedOverall;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.Hints
+namespace _Scripts.Gameplay.Release.Playing.Hints
 {
     public class HintManager : MonoBehaviour
     {

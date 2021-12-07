@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GeneralLogic.Tools.Logic
+namespace _Scripts.SharedOverall.Tools.Logic
 {
     public abstract class SelectableTool : BaseTool, ISelectable
     {

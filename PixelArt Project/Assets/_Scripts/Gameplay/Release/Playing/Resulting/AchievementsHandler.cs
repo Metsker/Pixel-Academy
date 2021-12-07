@@ -1,8 +1,8 @@
-﻿using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.Tools.Logic;
+﻿using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.Resulting
+namespace _Scripts.Gameplay.Release.Playing.Resulting
 {
     public class AchievementsHandler : BaseTool
     {

@@ -1,10 +1,10 @@
 #if (UNITY_EDITOR)
-using _Scripts.GeneralLogic;
+using _Scripts.SharedOverall;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace _Scripts.EditorMod.Recording
+namespace _Scripts.Gameplay.Recording.Recording
 {
     public class ScrollRecording : MonoBehaviour
     {

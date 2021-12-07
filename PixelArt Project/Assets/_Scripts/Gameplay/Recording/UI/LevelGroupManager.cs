@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.EditorMod.UI
+namespace _Scripts.Gameplay.Recording.UI
 {
     public class LevelGroupManager : MonoBehaviour
     {

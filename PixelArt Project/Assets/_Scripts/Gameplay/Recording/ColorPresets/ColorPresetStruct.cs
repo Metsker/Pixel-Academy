@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.EditorMod.ColorPresets
+namespace _Scripts.Gameplay.Recording.ColorPresets
 {
     [System.Serializable]
     public struct ColorPresetStruct

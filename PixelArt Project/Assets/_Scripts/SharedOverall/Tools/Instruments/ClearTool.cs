@@ -1,13 +1,13 @@
 using System;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic.DrawingPanel;
-using _Scripts.GeneralLogic.Tools.Logic;
-using _Scripts.GeneralLogic.Tools.Palette;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.SharedOverall.DrawingPanel;
+using _Scripts.SharedOverall.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GeneralLogic.Tools.Instruments
+namespace _Scripts.SharedOverall.Tools.Instruments
 {
     public class ClearTool : BaseTool, IPointerClickHandler
     {

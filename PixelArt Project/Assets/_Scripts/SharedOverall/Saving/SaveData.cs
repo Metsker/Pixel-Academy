@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Scripts.GeneralLogic.Data;
+using _Scripts.SharedOverall.Data;
 
-namespace _Scripts.GeneralLogic.Saving
+namespace _Scripts.SharedOverall.Saving
 {
     [Serializable]
     public class SavedData

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GeneralLogic
+namespace _Scripts.SharedOverall
 {
     public interface ICreator
     {

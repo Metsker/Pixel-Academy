@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.Animating;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Animating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.Resulting
+namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
 {
     public class ResultView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

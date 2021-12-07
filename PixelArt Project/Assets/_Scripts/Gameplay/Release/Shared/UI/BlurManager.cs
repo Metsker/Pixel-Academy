@@ -1,7 +1,7 @@
-using _Scripts.GameplayMod.Resulting;
+using _Scripts.Gameplay.Release.Playing.Resulting.UI;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.UI
+namespace _Scripts.Gameplay.Release.Shared.UI
 {
     public class BlurManager : MonoBehaviour
     {

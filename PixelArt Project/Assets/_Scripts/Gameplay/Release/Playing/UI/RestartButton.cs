@@ -1,7 +1,7 @@
-using _Scripts.GameplayMod.Animating;
+using _Scripts.Gameplay.Release.Shared.UI;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.UI
+namespace _Scripts.Gameplay.Release.Playing.UI
 {
     public class RestartButton : MonoBehaviour
     {

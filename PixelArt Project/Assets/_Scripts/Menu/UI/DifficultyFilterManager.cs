@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.UI
+namespace _Scripts.Menu.UI
 {
     public class DifficultyFilterManager: MonoBehaviour
     {

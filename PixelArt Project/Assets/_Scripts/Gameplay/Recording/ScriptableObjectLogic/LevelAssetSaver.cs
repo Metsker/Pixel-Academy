@@ -1,14 +1,14 @@
 #if (UNITY_EDITOR)
 using System.Collections.Generic;
-using _Scripts.EditorMod.Animating;
-using _Scripts.EditorMod.ColorPresets;
-using _Scripts.EditorMod.Recording;
-using _Scripts.EditorMod.UI;
+using _Scripts.Gameplay.Recording.Animating;
+using _Scripts.Gameplay.Recording.ColorPresets;
+using _Scripts.Gameplay.Recording.Recording;
+using _Scripts.Gameplay.Recording.UI;
 using UnityEditor;
 using UnityEngine;
-using static _Scripts.GeneralLogic.DrawingPanel.DrawingPanelCreator;
+using static _Scripts.SharedOverall.DrawingPanel.DrawingPanelCreator;
 
-namespace _Scripts.EditorMod.ScriptableObjectLogic
+namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 {
     public static class LevelAssetSaver
     {

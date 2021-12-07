@@ -1,7 +1,7 @@
-﻿using _Scripts.GameplayMod.Hints;
+﻿using _Scripts.Gameplay.Release.Playing.Hints;
 using GoogleMobileAds.Api;
 
-namespace _Scripts.GeneralLogic.Ads
+namespace _Scripts.SharedOverall.Ads
 {
     public class HintAdVideo : BaseAdVideo
     {

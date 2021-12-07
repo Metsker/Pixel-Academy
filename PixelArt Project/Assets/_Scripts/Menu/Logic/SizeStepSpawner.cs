@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.Logic
+namespace _Scripts.Menu.Logic
 {
     public class SizeStepSpawner : MonoBehaviour
     {

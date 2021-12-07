@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.IO;
-using _Scripts.EditorMod.UI;
+using _Scripts.Gameplay.Recording.UI;
 using UnityEditor;
 using UnityEngine;
+
 #if UNITY_EDITOR
 #endif
 
-namespace _Scripts.EditorMod.ScriptableObjectLogic
+namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 {
     [CreateAssetMenu(fileName = "Group", menuName = "ScriptableObjects/LevelGroup", order = 1)]
     public class LevelGroupScriptableObject : ScriptableObject

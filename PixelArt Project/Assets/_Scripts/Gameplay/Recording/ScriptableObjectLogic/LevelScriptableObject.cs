@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using _Scripts.EditorMod.UI;
-using _Scripts.GeneralLogic.Menu.UI;
+using _Scripts.Gameplay.Recording.UI;
+using _Scripts.Menu.UI;
 using UnityEngine;
 
-namespace _Scripts.EditorMod.ScriptableObjectLogic
+namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 {
     public class LevelScriptableObject : ScriptableObject
     {

@@ -1,12 +1,12 @@
 using System;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic.Ads;
-using _Scripts.GeneralLogic.Menu.Data;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Menu.Data;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Ads;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.UI
+namespace _Scripts.Menu.UI
 {
     public class LevelStartButton : MonoBehaviour
     {

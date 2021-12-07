@@ -1,11 +1,11 @@
 using System;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.Audio;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.Audio;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.Animating
+namespace _Scripts.Gameplay.Release.Playing.Animating
 {
     public class AnimationEventHandler : MonoBehaviour
     {

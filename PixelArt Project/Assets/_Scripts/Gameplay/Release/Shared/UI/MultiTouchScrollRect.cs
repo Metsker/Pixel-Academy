@@ -1,9 +1,6 @@
-using _Scripts.GameplayMod.Resulting;
-using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.UI
+namespace _Scripts.Gameplay.Release.Shared.UI
 {
     public class MultiTouchScrollRect : ScrollRect
     {

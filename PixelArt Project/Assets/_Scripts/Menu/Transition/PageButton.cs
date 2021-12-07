@@ -4,9 +4,9 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static _Scripts.GeneralLogic.Menu.Transition.PageManager;
+using static _Scripts.Menu.Transition.PageManager;
 
-namespace _Scripts.GeneralLogic.Menu.Transition
+namespace _Scripts.Menu.Transition
 {
     public class PageButton : MonoBehaviour, IPointerUpHandler
     {

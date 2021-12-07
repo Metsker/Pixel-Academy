@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using _Scripts.EditorMod.ScriptableObjectLogic;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
 
-namespace _Scripts.GeneralLogic.Data
+namespace _Scripts.SharedOverall.Data
 {
     public static class ScriptableObjectDataSaver
     {

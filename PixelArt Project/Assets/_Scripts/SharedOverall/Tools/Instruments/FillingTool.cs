@@ -1,9 +1,9 @@
-using _Scripts.GeneralLogic.Tools.Logic;
-using _Scripts.GeneralLogic.Tools.Palette;
+using _Scripts.SharedOverall.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GeneralLogic.Tools.Instruments
+namespace _Scripts.SharedOverall.Tools.Instruments
 {
     public class FillingTool : SelectableTool, IPointerClickHandler
     {

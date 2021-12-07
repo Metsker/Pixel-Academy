@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Audio
+namespace _Scripts.SharedOverall.Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public abstract class BaseAudio : MonoBehaviour

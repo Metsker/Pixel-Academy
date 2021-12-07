@@ -1,20 +1,20 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GameplayMod.Hints;
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Logic;
-using _Scripts.GeneralLogic.Tools.Palette;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Release.Playing.Hints;
+using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Palette;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.Animating
+namespace _Scripts.Gameplay.Release.Playing.Animating
 {
     public class ClipManager : ClipPlaying
     {

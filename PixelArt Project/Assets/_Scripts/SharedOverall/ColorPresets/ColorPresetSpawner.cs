@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using _Scripts.GameplayMod.Creating;
+using _Scripts.Gameplay.Release.Playing.Creating;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
-namespace _Scripts.GeneralLogic.ColorPresets
+namespace _Scripts.SharedOverall.ColorPresets
 {
     public class ColorPresetSpawner : MonoBehaviour, ICreator
     {

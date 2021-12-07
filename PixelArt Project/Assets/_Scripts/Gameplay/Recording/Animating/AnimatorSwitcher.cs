@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.DrawingPanel;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.DrawingPanel;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.EditorMod.Animating
+namespace _Scripts.Gameplay.Recording.Animating
 {
     public abstract class AnimatorSwitcher : ClipPlaying
     {

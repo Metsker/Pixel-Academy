@@ -1,9 +1,9 @@
-﻿using _Scripts.GeneralLogic.Tools.Logic;
+﻿using _Scripts.SharedOverall.Tools.Logic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GeneralLogic.Tools.Palette
+namespace _Scripts.SharedOverall.Tools.Palette
 {
     public abstract class PencilTool : SelectableTool, IPointerClickHandler
     {

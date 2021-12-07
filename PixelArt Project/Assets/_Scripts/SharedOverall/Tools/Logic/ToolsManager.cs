@@ -1,10 +1,9 @@
-using System;
 using System.Linq;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Instruments;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.Tools.Instruments;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Tools.Logic
+namespace _Scripts.SharedOverall.Tools.Logic
 {
     public class ToolsManager : MonoBehaviour
     {

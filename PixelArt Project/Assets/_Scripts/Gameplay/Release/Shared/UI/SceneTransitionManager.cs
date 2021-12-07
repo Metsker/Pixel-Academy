@@ -1,11 +1,11 @@
 ﻿using System.Collections;
+using _Scripts.SharedOverall.Utility;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-namespace _Scripts.GameplayMod.Animating
+namespace _Scripts.Gameplay.Release.Shared.UI
 {
     public class SceneTransitionManager : MonoBehaviour
     {

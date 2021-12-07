@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using _Scripts.GameplayMod.Resulting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace _Scripts.GeneralLogic
+namespace _Scripts.SharedOverall
 {
     public class GameModeManager : MonoBehaviour
     {

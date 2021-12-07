@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.Audio;
-using _Scripts.GeneralLogic.DrawingPanel;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.Audio;
+using _Scripts.SharedOverall.DrawingPanel;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.Resulting
+namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
 {
     public class LevelCompleter : MonoBehaviour
     {
@@ -39,17 +37,20 @@ namespace _Scripts.GameplayMod.Resulting
         {
             LevelCreator.isGameStarted = false;
             scrollUI.enabled = false;
-            switch (result)
+            if (AudioSettings.IsMusicEnabled())
             {
-                case RewardCalculator.Result.NotPassed:
-                    PlaySound?.Invoke(AudioEffects.AudioEffectType.LevelNotPassed);
-                    break;
-                case RewardCalculator.Result.Passed:
-                    PlaySound?.Invoke(AudioEffects.AudioEffectType.LevelPassed);
-                    break;
-                case RewardCalculator.Result.Perfect:
-                    PlaySound?.Invoke(AudioEffects.AudioEffectType.LevelPerfect);
-                    break;
+                switch (result)
+                {
+                    case RewardCalculator.Result.NotPassed:
+                        PlaySound?.Invoke(AudioEffects.AudioEffectType.LevelNotPassed);
+                        break;
+                    case RewardCalculator.Result.Passed:
+                        PlaySound?.Invoke(AudioEffects.AudioEffectType.LevelPassed);
+                        break;
+                    case RewardCalculator.Result.Perfect:
+                        PlaySound?.Invoke(AudioEffects.AudioEffectType.LevelPerfect);
+                        break;
+                }
             }
             ToggleEndScreen(true);
             BuildPixels();

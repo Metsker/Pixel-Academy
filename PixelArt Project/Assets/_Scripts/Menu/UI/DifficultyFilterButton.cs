@@ -1,10 +1,10 @@
-using _Scripts.GeneralLogic.Menu.Data;
+using _Scripts.Menu.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static _Scripts.GeneralLogic.Menu.UI.DifficultyFilterManager;
+using static _Scripts.Menu.UI.DifficultyFilterManager;
 
-namespace _Scripts.GeneralLogic.Menu.UI
+namespace _Scripts.Menu.UI
 {
     public class DifficultyFilterButton : MonoBehaviour, IPointerClickHandler
     {

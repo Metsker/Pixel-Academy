@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GeneralLogic.DrawingPanel
+namespace _Scripts.SharedOverall.DrawingPanel
 {
     public class ScrollUI : MonoBehaviour, IScrollHandler
     {

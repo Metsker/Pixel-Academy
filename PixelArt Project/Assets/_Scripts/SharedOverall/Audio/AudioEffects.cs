@@ -1,7 +1,8 @@
-﻿using _Scripts.GameplayMod.Resulting;
+﻿using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Gameplay.Release.Playing.Resulting.UI;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Audio
+namespace _Scripts.SharedOverall.Audio
 {
     public class AudioEffects : BaseAudio
     {

@@ -3,7 +3,7 @@
 
 using System;
 
-namespace ns
+namespace _Scripts.SharedOverall.Utility
 {
 
 	// emulates StrCmpLogicalW, but not fully

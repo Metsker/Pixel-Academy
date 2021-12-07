@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
-using _Scripts.EditorMod.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Palette;
+using _Scripts.Gameplay.Recording.ColorPresets;
+using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static _Scripts.GeneralLogic.ColorPresets.PickerHandler;
+using static _Scripts.SharedOverall.ColorPresets.PickerHandler;
 
-namespace _Scripts.GeneralLogic.ColorPresets
+namespace _Scripts.SharedOverall.ColorPresets
 {
     public class ColorPreset : PencilTool, IPointerClickHandler
     {

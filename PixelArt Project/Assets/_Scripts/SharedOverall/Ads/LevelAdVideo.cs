@@ -1,7 +1,7 @@
-﻿using _Scripts.GeneralLogic.Menu.Data;
+﻿using _Scripts.Menu.Data;
 using GoogleMobileAds.Api;
 
-namespace _Scripts.GeneralLogic.Ads
+namespace _Scripts.SharedOverall.Ads
 {
     public class LevelAdVideo : BaseAdVideo
     {

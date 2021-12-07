@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Drawing;
-using _Scripts.GameplayMod.Hints;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Ads;
-using _Scripts.GeneralLogic.Menu.UI;
-using _Scripts.GeneralLogic.Tools;
-using _Scripts.GeneralLogic.Tools.Instruments;
+using _Scripts.Gameplay.Release.Drawing;
+using _Scripts.Gameplay.Release.Playing.Animating;
+using _Scripts.Gameplay.Release.Playing.Hints;
+using _Scripts.Menu.UI;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Ads;
+using _Scripts.SharedOverall.Tools;
+using _Scripts.SharedOverall.Tools.Instruments;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GameplayMod.UI
+namespace _Scripts.Gameplay.Release.Shared.UI
 {
     public class WarningUI : MonoBehaviour
     {

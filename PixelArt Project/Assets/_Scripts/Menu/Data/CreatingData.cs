@@ -1,10 +1,10 @@
 using System.Collections;
-using _Scripts.GeneralLogic.Saving;
+using _Scripts.SharedOverall.Saving;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
-namespace _Scripts.GeneralLogic.Menu.Data
+namespace _Scripts.Menu.Data
 {
     public class CreatingData : MonoBehaviour
     {

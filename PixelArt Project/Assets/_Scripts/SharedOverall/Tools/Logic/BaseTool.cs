@@ -1,10 +1,10 @@
 ﻿using System;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic.Animating;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall.Animating;
 using UnityEngine;
-using static _Scripts.GeneralLogic.ColorPresets.PickerHandler;
+using static _Scripts.SharedOverall.ColorPresets.PickerHandler;
 
-namespace _Scripts.GeneralLogic.Tools.Logic
+namespace _Scripts.SharedOverall.Tools.Logic
 {
     public abstract class BaseTool: MonoBehaviour
     {

@@ -1,11 +1,11 @@
-﻿using _Scripts.GameplayMod.Creating;
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic.DrawingPanel;
+﻿using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.SharedOverall.DrawingPanel;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GameplayMod.Hints
+namespace _Scripts.Gameplay.Release.Playing.Hints
 {
     public class OpaqueHint : BaseHint, IPointerClickHandler
     {

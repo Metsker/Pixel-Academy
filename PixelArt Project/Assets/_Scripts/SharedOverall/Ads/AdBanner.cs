@@ -2,7 +2,7 @@ using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace _Scripts.GeneralLogic.Ads
+namespace _Scripts.SharedOverall.Ads
 {
     public class AdBanner : MonoBehaviour
     {

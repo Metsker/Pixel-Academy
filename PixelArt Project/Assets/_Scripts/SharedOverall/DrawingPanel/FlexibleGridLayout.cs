@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using _Scripts.GameplayMod.Animating;
+using _Scripts.Gameplay.Release.Playing.Animating;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GeneralLogic.DrawingPanel
+namespace _Scripts.SharedOverall.DrawingPanel
 {
     public class FlexibleGridLayout : LayoutGroup
     {

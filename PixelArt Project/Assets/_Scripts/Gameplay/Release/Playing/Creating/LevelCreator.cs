@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
-using _Scripts.EditorMod.ScriptableObjectLogic;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.DrawingPanel;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.Gameplay.Release.Playing.Animating;
+using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.DrawingPanel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
-namespace _Scripts.GameplayMod.Creating
+namespace _Scripts.Gameplay.Release.Playing.Creating
 {
     public class LevelCreator : MonoBehaviour, ICreator
     {

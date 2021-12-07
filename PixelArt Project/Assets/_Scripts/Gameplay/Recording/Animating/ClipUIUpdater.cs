@@ -1,10 +1,10 @@
 #if (UNITY_EDITOR)
-using _Scripts.EditorMod.DrawingPanel;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.Gameplay.Recording.DrawingPanel;
+using _Scripts.SharedOverall.Tools.Logic;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.EditorMod.Animating
+namespace _Scripts.Gameplay.Recording.Animating
 {
     public class ClipUIUpdater : AnimatorSwitcher
     {

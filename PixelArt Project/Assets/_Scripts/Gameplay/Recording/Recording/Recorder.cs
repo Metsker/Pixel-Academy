@@ -1,18 +1,18 @@
 #if (UNITY_EDITOR)
 using System.Collections.Generic;
-using _Scripts.EditorMod.Animating;
-using _Scripts.EditorMod.ColorPresets;
-using _Scripts.EditorMod.ScriptableObjectLogic;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.Audio;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.DrawingPanel;
+using _Scripts.Gameplay.Recording.Animating;
+using _Scripts.Gameplay.Recording.ColorPresets;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.Audio;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.DrawingPanel;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.EditorMod.Recording
+namespace _Scripts.Gameplay.Recording.Recording
 {
     public class Recorder : MonoBehaviour
     {

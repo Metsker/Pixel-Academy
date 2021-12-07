@@ -1,10 +1,10 @@
 ﻿#if (UNITY_EDITOR)
-using _Scripts.EditorMod.Animating;
-using _Scripts.GeneralLogic.DrawingPanel;
+using _Scripts.Gameplay.Recording.Animating;
+using _Scripts.SharedOverall.DrawingPanel;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.EditorMod.DrawingPanel
+namespace _Scripts.Gameplay.Recording.DrawingPanel
 {
     public class DrawingBuilderUI : MonoBehaviour
     {

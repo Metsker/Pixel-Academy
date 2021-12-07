@@ -1,9 +1,9 @@
 ﻿using System;
-using _Scripts.GameplayMod.UI;
+using _Scripts.Gameplay.Release.Shared.UI;
 using GoogleMobileAds.Api;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Ads
+namespace _Scripts.SharedOverall.Ads
 {
     public abstract class BaseAdVideo : MonoBehaviour
     {

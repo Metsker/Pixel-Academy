@@ -1,13 +1,13 @@
 #if (UNITY_EDITOR)
 using System;
 using System.IO;
-using _Scripts.EditorMod.Recording;
-using _Scripts.GeneralLogic.DrawingPanel;
+using _Scripts.Gameplay.Recording.Recording;
+using _Scripts.SharedOverall.DrawingPanel;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-namespace _Scripts.EditorMod.Animating
+namespace _Scripts.Gameplay.Recording.Animating
 {
     public class ClipCreator : MonoBehaviour
     {

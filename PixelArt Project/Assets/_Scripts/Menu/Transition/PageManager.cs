@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.Transition
+namespace _Scripts.Menu.Transition
 {
     public class PageManager : MonoBehaviour
     {

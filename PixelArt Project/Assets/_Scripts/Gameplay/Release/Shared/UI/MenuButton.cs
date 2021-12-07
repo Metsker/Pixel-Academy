@@ -1,12 +1,11 @@
 using System;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Creating;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 
-namespace _Scripts.GameplayMod.UI
+namespace _Scripts.Gameplay.Release.Shared.UI
 {
     public class MenuButton : BaseTool
     { 

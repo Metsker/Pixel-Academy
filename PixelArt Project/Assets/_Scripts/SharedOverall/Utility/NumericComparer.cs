@@ -1,10 +1,11 @@
 // (c) Vasian Cepa 2005
 // Version 2
 
-using System;
-using System.Collections; // required for NumericComparer : IComparer only
+using System.Collections;
 
-namespace ns
+// required for NumericComparer : IComparer only
+
+namespace _Scripts.SharedOverall.Utility
 {
 
 	public class NumericComparer : IComparer

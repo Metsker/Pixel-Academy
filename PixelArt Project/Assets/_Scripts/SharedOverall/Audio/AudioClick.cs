@@ -1,11 +1,10 @@
-using System;
-using _Scripts.GameplayMod.Animating;
-using _Scripts.GameplayMod.Resulting;
-using _Scripts.GeneralLogic.Menu.Logic;
+using _Scripts.Gameplay.Release.Playing.Animating;
+using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Menu.Logic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Scripts.GeneralLogic.Audio
+namespace _Scripts.SharedOverall.Audio
 {
     public class AudioClick : BaseAudio
     {

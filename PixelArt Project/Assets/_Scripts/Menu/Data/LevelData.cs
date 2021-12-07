@@ -1,10 +1,10 @@
-using _Scripts.EditorMod.ScriptableObjectLogic;
-using _Scripts.GeneralLogic.Data;
-using _Scripts.GeneralLogic.Saving;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.SharedOverall.Data;
+using _Scripts.SharedOverall.Saving;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.GeneralLogic.Menu.Data
+namespace _Scripts.Menu.Data
 {
     public class LevelData : MonoBehaviour
     {

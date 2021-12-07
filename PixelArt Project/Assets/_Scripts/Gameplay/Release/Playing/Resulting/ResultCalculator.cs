@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using _Scripts.EditorMod.ScriptableObjectLogic;
-using _Scripts.GeneralLogic;
-using _Scripts.GeneralLogic.Animating;
-using _Scripts.GeneralLogic.Audio;
-using _Scripts.GeneralLogic.ColorPresets;
-using _Scripts.GeneralLogic.Tools.Logic;
-using _Scripts.GeneralLogic.Tools.Palette;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Animating;
+using _Scripts.SharedOverall.Audio;
+using _Scripts.SharedOverall.ColorPresets;
+using _Scripts.SharedOverall.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.UI;
-using static _Scripts.GameplayMod.Creating.LevelCreator;
-using static _Scripts.GeneralLogic.DrawingPanel.DrawingTemplateCreator;
+using static _Scripts.Gameplay.Release.Playing.Creating.LevelCreator;
+using static _Scripts.SharedOverall.DrawingPanel.DrawingTemplateCreator;
 
-namespace _Scripts.GameplayMod.Resulting
+namespace _Scripts.Gameplay.Release.Playing.Resulting
 {
     public class ResultCalculator : RewardCalculator
     {

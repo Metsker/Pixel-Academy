@@ -1,10 +1,10 @@
 ﻿using System;
-using _Scripts.GameplayMod.UI;
-using _Scripts.GeneralLogic.Animating;
+using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.SharedOverall.Animating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.GameplayMod.Hints
+namespace _Scripts.Gameplay.Release.Playing.Hints
 {
     public class ClipHint : BaseHint, IPointerClickHandler
     {

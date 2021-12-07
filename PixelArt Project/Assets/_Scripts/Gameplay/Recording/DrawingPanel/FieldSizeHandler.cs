@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.EditorMod.DrawingPanel
+namespace _Scripts.Gameplay.Recording.DrawingPanel
 {
     public class FieldSizeHandler : MonoBehaviour, IPointerClickHandler
     {

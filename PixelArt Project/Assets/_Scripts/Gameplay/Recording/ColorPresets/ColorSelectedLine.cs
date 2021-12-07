@@ -1,7 +1,7 @@
-using _Scripts.GeneralLogic.Tools.Logic;
+using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 
-namespace _Scripts.EditorMod.ColorPresets
+namespace _Scripts.Gameplay.Recording.ColorPresets
 {
     public class ColorSelectedLine : MonoBehaviour
     {

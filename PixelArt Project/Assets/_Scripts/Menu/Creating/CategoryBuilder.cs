@@ -1,13 +1,13 @@
 using System;
-using _Scripts.EditorMod.ScriptableObjectLogic;
-using _Scripts.GeneralLogic.Menu.Data;
-using _Scripts.GeneralLogic.Menu.Transition;
-using _Scripts.GeneralLogic.Menu.UI;
-using _Scripts.GeneralLogic.Tools;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.Menu.Data;
+using _Scripts.Menu.Transition;
+using _Scripts.Menu.UI;
+using _Scripts.SharedOverall.Tools;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.GeneralLogic.Menu.Creating
+namespace _Scripts.Menu.Creating
 {
     public class CategoryBuilder : MonoBehaviour
     {

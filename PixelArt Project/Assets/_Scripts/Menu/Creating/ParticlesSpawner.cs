@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace _Scripts.GeneralLogic.Menu.Creating
+namespace _Scripts.Menu.Creating
 {
     public class ParticlesSpawner : MonoBehaviour
     {
