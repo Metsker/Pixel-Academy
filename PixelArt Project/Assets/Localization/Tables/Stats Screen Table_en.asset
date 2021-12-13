@@ -71,11 +71,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5357974810624
-    m_Localized: collect 30 stars
+    m_Localized: collect 50 stars
     m_Metadata:
       m_Items: []
   - m_Id: 5466326265856
-    m_Localized: collect 90 stars
+    m_Localized: collect 100 stars
     m_Metadata:
       m_Items: []
   - m_Id: 5589169041408

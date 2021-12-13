@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Icecream(8x8)
+  m_EditorClassIdentifier: 
+  xLenght: 8
+  yLenght: 8
+  stars: 0
+  isLocked: 0
+  groupType: 2
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: b7440bc75a6971c4cbf48f27e4ca5ea2, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 4dc5fcb20637fb34b9e75cfef24c85f5, type: 2}
+  - {fileID: 11400000, guid: b581f6436ce1f654784abfdfe1ebc034, type: 2}
+  - {fileID: 11400000, guid: 50e1d097fe33f964ebf77a2f3efee626, type: 2}
+  - {fileID: 11400000, guid: cc9bf192cd982614baa3a0200cdd3b60, type: 2}
+  - {fileID: 11400000, guid: 99390a973bd0a844a8865138a06df83d, type: 2}
+  - {fileID: 11400000, guid: d9709cf4e3494af46af7f622c2ef083c, type: 2}
+  - {fileID: 11400000, guid: 3b61e375465c99f47898cc2d0f94653d, type: 2}
+  - {fileID: 11400000, guid: 7b9906bb575a4a74fa3505e71cb64c83, type: 2}
+  - {fileID: 11400000, guid: 6fbe3bc9d7cddbc4cbdd4d70046efe6e, type: 2}
+  - {fileID: 11400000, guid: 4c772897261a51a41a9295b7f23b0a00, type: 2}
+  - {fileID: 11400000, guid: aabfaf3a0144a65439bf43d32295db8a, type: 2}
+  - {fileID: 11400000, guid: aef1c11f84836474baf5d8512425004b, type: 2}

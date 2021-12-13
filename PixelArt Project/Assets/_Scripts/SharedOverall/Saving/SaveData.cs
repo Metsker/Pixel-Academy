@@ -1,19 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using _Scripts.SharedOverall.Data;
+﻿using System.Collections.Generic;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.SharedOverall.Settings;
+using _Scripts.SharedOverall.Settings.LanguageToggler;
 
 namespace _Scripts.SharedOverall.Saving
 {
-    [Serializable]
-    public class SavedData
+    public static class SaveData
     {
-        public Dictionary<string, int> Stars;
-        public Dictionary<string, bool> Unlocks;
+        public static Dictionary<string, int> Stars = new();
+        public static Dictionary<string, bool> Unlocks = new();
+        public static float clipSliderValue;
+        public static int selectedLocaleIndex;
 
-        public SavedData()
+        public static void SaveLevelData(LevelScriptableObject level)
         {
-            Stars = ScriptableObjectDataSaver.Stars;
-            Unlocks = ScriptableObjectDataSaver.Unlocks;
+            if (Stars.ContainsKey(level.name))
+            {
+                Stars[level.name] = level.stars;
+            }
+            else
+            {
+                Stars.Add(level.name, level.stars);
+            }
+            
+            if (Unlocks.ContainsKey(level.name))
+            {
+                Unlocks[level.name] = level.isLocked;
+            }
+            else
+            {
+                Unlocks.Add(level.name, level.isLocked);
+            }
         }
+        public static void SaveSettingsData()
+        {
+            clipSliderValue = ClipSpeedSlider.slider.value;
+            selectedLocaleIndex = LanguageToggler.GetCurrentLocaleIndex();
+        }
+            
     }
 }

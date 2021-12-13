@@ -1,5 +1,4 @@
 using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
-using _Scripts.SharedOverall.Data;
 using _Scripts.SharedOverall.Saving;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,8 +42,8 @@ namespace _Scripts.Menu.Data
             shape.sprite = _creatingData.unlockedShape;
             lockObj.SetActive(false);
             state.gameObject.SetActive(false);
-            ScriptableObjectDataSaver.SaveData(scriptableObject);
-            SaveSystem.SaveData();
+            SaveData.SaveLevelData(scriptableObject);
+            SaveSystem.SaveDataToFile();
         }
 
         public void Lock()

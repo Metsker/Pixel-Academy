@@ -40,7 +40,7 @@ namespace _Scripts.Gameplay.Recording.DrawingPanel
         {
             drawingBuildUI.SetActive(!drawingBuildUI.activeSelf);
         }
-
+        
         public void DisablePanel()
         {
             if (!drawingBuildUI.activeSelf) return;

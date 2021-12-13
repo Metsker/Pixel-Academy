@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
 using _Scripts.Gameplay.Recording.UI;
-using _Scripts.SharedOverall.Data;
 using UnityEngine;
 using static _Scripts.Gameplay.Recording.ScriptableObjectLogic.LevelGroupScriptableObject;
 
@@ -14,24 +13,24 @@ namespace _Scripts.SharedOverall.Saving
     {
         private static readonly string Path = Application.persistentDataPath + "/save.pixel";
         
-        public static void SaveData()
+        public static void SaveDataToFile()
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(Path, FileMode.Create);
-            SavedData savedData = new SavedData();
-            formatter.Serialize(stream, savedData);
+            SaveDataObject saveDataObject = new SaveDataObject();
+            formatter.Serialize(stream, saveDataObject);
             stream.Close();
         }
         
-        private static SavedData LoadData()
+        private static SaveDataObject LoadData()
         {
             if (File.Exists(Path))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(Path, FileMode.Open);
-                SavedData savedData = formatter.Deserialize(stream) as SavedData;
+                SaveDataObject saveDataObject = formatter.Deserialize(stream) as SaveDataObject;
                 stream.Close();
-                return savedData;
+                return saveDataObject;
             }
             Debug.LogError("Save file not found in " + Path);
             return null;
@@ -42,21 +41,24 @@ namespace _Scripts.SharedOverall.Saving
             var save = LoadData();
             if (save == null) return;
             
-            ScriptableObjectDataSaver.Stars = save.Stars;
-            ScriptableObjectDataSaver.Unlocks = save.Unlocks;
+            SaveData.Stars = save.Stars;
+            SaveData.Unlocks = save.Unlocks;
+
+            SaveData.clipSliderValue = save.clipSpeedValue;
+            SaveData.selectedLocaleIndex = save.selectedLocaleIndex;
 
             for (var i = 0; i < Enum.GetNames(typeof(LevelGroupManager.GroupType)).Length; i++)
             {
                 foreach (var level in Resources.Load<LevelGroupScriptableObject>(
                     $"{FolderName}/{Enum.GetNames(typeof(LevelGroupManager.GroupType))[i]}").levels.Where(l => l != null))
                 {
-                    if (ScriptableObjectDataSaver.Stars.ContainsKey(level.name))
+                    if (SaveData.Stars.ContainsKey(level.name))
                     {
-                        level.stars = ScriptableObjectDataSaver.Stars[level.name];
+                        level.stars = SaveData.Stars[level.name];
                     }
-                    if (ScriptableObjectDataSaver.Unlocks.ContainsKey(level.name))
+                    if (SaveData.Unlocks.ContainsKey(level.name))
                     {
-                        level.isLocked = ScriptableObjectDataSaver.Unlocks[level.name];
+                        level.isLocked = SaveData.Unlocks[level.name];
                     }
                 }
             }

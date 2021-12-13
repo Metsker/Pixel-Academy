@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: News
   m_EditorClassIdentifier: 
   levels:
+  - {fileID: 11400000, guid: 613c57af4df0b264ca0efbcb10134f4b, type: 2}
+  - {fileID: 11400000, guid: 684d2a8327dc5454396d104e68ba8beb, type: 2}
+  - {fileID: 11400000, guid: 51a096f34b7f81a48bc8cdf7d3a06d5b, type: 2}
   - {fileID: 11400000, guid: 4418459ab062fff46a2c81fbbf6613f8, type: 2}
-  - {fileID: 11400000, guid: e1e011893e55aea4d889aa04dc715b64, type: 2}
   - {fileID: 11400000, guid: c3888fa9a2882854e8e77f707190e00f, type: 2}
   - {fileID: 11400000, guid: bc2b6307708851a46973cbcab0fc707b, type: 2}
   - {fileID: 11400000, guid: 4815327acdbe7f74d84565220dc01ec4, type: 2}

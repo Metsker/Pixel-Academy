@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xLenght: 9
   yLenght: 9
-  stars: 3
+  stars: 0
   isLocked: 0
   groupType: 4
   difficulty: 0

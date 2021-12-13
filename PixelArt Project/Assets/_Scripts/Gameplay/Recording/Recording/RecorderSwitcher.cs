@@ -59,7 +59,7 @@ namespace _Scripts.Gameplay.Recording.Recording
                     
                     GameStateManager.CurrentGameState = GameStateManager.GameState.Recording;
                     
-                    var currentClipName = ClipListLoader.AnimationClips[ClipListLoader.ClipNumber].name;
+                    var currentClipName = ClipListLoader.GetCurrentClip().name;
                     var index = currentClipName.LastIndexOf('_');
                     var part = currentClipName.Substring(index+1);
                     Recorder.Part = int.Parse(part);
@@ -83,7 +83,7 @@ namespace _Scripts.Gameplay.Recording.Recording
                         Recorder.selectedColorCash = ToolsManager.ColorZero;
                     }
                     _drawingBuilderUI.DisablePanel();
-                    recorder.Clip = (AnimationClip)ClipListLoader.AnimationClips[ClipListLoader.ClipNumber];
+                    recorder.Clip = ClipListLoader.GetCurrentClip();
                     _image.color = Color.green;
                     ToggleObjects();
                     recorder.enabled = true;

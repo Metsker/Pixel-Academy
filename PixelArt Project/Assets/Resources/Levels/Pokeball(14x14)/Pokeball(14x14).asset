@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Pokeball(14x14)
+  m_EditorClassIdentifier: 
+  xLenght: 14
+  yLenght: 14
+  stars: 0
+  isLocked: 0
+  groupType: 5
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 681e58398192f9841931ce4adc253c0f, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 5cd285cf6ecffec4f945a740d3d5bed2, type: 2}
+  - {fileID: 11400000, guid: a9531543f7553aa44a4d8a2ec8b33025, type: 2}
+  - {fileID: 11400000, guid: ad4cce7434b633e42915305e318ce4fa, type: 2}
+  - {fileID: 11400000, guid: 18745a83df70b5a4c807d57f5a8ad95c, type: 2}
+  - {fileID: 11400000, guid: 43daa59beeff56f4fa804f8f88024ad3, type: 2}
+  - {fileID: 11400000, guid: a204c04e48a3bee48a1c0f63eff198ae, type: 2}
+  - {fileID: 11400000, guid: 8d7c99b5a08c75640bdc0115e6be5264, type: 2}
+  - {fileID: 11400000, guid: 576984b0597474841b2fc858d70f640f, type: 2}
+  - {fileID: 11400000, guid: 8ceb9d3f8d661e840a716d7ff9837b34, type: 2}
+  - {fileID: 11400000, guid: 14afed040f5395c40af38652d5a9c26a, type: 2}
+  - {fileID: 11400000, guid: 580ea54f2cfa30848b7e911500d9b38a, type: 2}
+  - {fileID: 11400000, guid: 7e2ee6de6146e7a4ebb65260d97d5d24, type: 2}
+  - {fileID: 11400000, guid: daa26bab9c7c9f74a89b3e6595c197c2, type: 2}
+  - {fileID: 11400000, guid: 1975ff4d66dfe514181c8bc21c4fc58a, type: 2}
+  - {fileID: 11400000, guid: 12673052eee5bbf4a8e7337e21f562fc, type: 2}
+  - {fileID: 11400000, guid: fb5d23417f0180d4fbfac48f0541481f, type: 2}
+  - {fileID: 11400000, guid: 2f54ba3a938c4ba4ab4784efc9cbb92d, type: 2}
+  - {fileID: 11400000, guid: 5e8879949385c7341a1bd7094c500116, type: 2}
+  - {fileID: 11400000, guid: e14355e573cae0549bc3832b60ac95ba, type: 2}
+  - {fileID: 11400000, guid: d9d4cbc6ecf310f4e8378b79c7c06424, type: 2}
+  - {fileID: 11400000, guid: 07bac7e515eadbb45b3a90adbf10d0a4, type: 2}
+  - {fileID: 11400000, guid: 706f02efbbf4dcd43b2b2c2018ec4e1d, type: 2}
+  - {fileID: 11400000, guid: 54d612204998c434cb1bd0a23cea71b3, type: 2}
+  - {fileID: 11400000, guid: 5e485701af587c642aa9855e270c4d5d, type: 2}
+  - {fileID: 11400000, guid: 4a94bfb8941e42141967a7767048bca4, type: 2}
+  - {fileID: 11400000, guid: d9344bf2020bac544aa671265b762f90, type: 2}
+  - {fileID: 11400000, guid: 6aee6240166cd7f4c8aa080dc12854da, type: 2}

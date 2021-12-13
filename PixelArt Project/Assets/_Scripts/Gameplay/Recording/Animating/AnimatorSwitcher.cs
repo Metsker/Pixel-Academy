@@ -19,7 +19,10 @@ namespace _Scripts.Gameplay.Recording.Animating
             switch (animator.isActiveAndEnabled)
             {
                 case true :
-                    StopCoroutine(clipTimer);
+                    if (clipTimer != null)
+                    {
+                        StopCoroutine(clipTimer);
+                    }
                     GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
                     animator.enabled = false;
                     progress.value = 0;
@@ -46,7 +49,7 @@ namespace _Scripts.Gameplay.Recording.Animating
                     GameStateManager.CurrentGameState = GameStateManager.GameState.Animating;
                     copyButton.gameObject.SetActive(true);
                     SaveState();
-                    ChangeClip((AnimationClip)ClipListLoader.AnimationClips[ClipListLoader.ClipNumber]);
+                    ChangeClip(ClipListLoader.GetCurrentClip());
                     animator.Play(0, 0, 0);
                     animator.enabled = true;
                     break;
@@ -62,6 +65,7 @@ namespace _Scripts.Gameplay.Recording.Animating
         protected override IEnumerator ClipTimer()
         {
             yield return new WaitForSeconds(StartDelaySeconds);
+            if (animator.enabled == false) yield break;
             SwitchAnimate(false);
         }
     }

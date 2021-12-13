@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Bow(15x15)
+  m_EditorClassIdentifier: 
+  xLenght: 15
+  yLenght: 15
+  stars: 0
+  isLocked: 0
+  groupType: 4
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: b02e674aac0c9614c976856cf17d235d, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: c958670efaa74124abe4e3e3471bd460, type: 2}
+  - {fileID: 11400000, guid: 987c0847f2df9fa469450adfe6dcc078, type: 2}
+  - {fileID: 11400000, guid: 30af0a9d964e36e4aa0cce53cf167da7, type: 2}
+  - {fileID: 11400000, guid: 9bc906165a0180842b92cead669774b3, type: 2}
+  - {fileID: 11400000, guid: 5228cd4b248e1684c8827471ac60124b, type: 2}
+  - {fileID: 11400000, guid: ff0fe405822071b45ab8ca718cc9c7cd, type: 2}
+  - {fileID: 11400000, guid: b6e53ca747cd04640b95fe7903cb857a, type: 2}
+  - {fileID: 11400000, guid: 9e75615bd2d336e4692e5e25c622593e, type: 2}
+  - {fileID: 11400000, guid: 76f3c6a5dfa6f194c81c5d96d7890aa1, type: 2}
+  - {fileID: 11400000, guid: 6cfe3bca1ee410c40918405cb10075a9, type: 2}
+  - {fileID: 11400000, guid: 8e06939d33f2998498179c84f31cf1c0, type: 2}
+  - {fileID: 11400000, guid: ebccf33b903ad634da19090f973a847a, type: 2}
+  - {fileID: 11400000, guid: f58a34d9f8b706e498f19483dbbcb945, type: 2}
+  - {fileID: 11400000, guid: dc47438961e479345b70b5c1e8f5560f, type: 2}
+  - {fileID: 11400000, guid: a10309e7f65418242b0edb16025bbf72, type: 2}
+  - {fileID: 11400000, guid: 795b487e663d6a844950f1259a965e62, type: 2}
+  - {fileID: 11400000, guid: 67b5ba6b05061764292446827e8da392, type: 2}
+  - {fileID: 11400000, guid: f02aacf9adfee8b4e9f1ef8793bc24e2, type: 2}

@@ -72,11 +72,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5357974810624
-    m_Localized: "\u0441\u043E\u0431\u0440\u0430\u0442\u044C 30 \u0437\u0432\u0435\u0437\u0434"
+    m_Localized: "\u0441\u043E\u0431\u0440\u0430\u0442\u044C 50 \u0437\u0432\u0435\u0437\u0434"
     m_Metadata:
       m_Items: []
   - m_Id: 5466326265856
-    m_Localized: "\u0441\u043E\u0431\u0440\u0430\u0442\u044C 90 \u0437\u0432\u0435\u0437\u0434"
+    m_Localized: "\u0441\u043E\u0431\u0440\u0430\u0442\u044C 100 \u0437\u0432\u0435\u0437\u0434"
     m_Metadata:
       m_Items: []
   - m_Id: 5589169041408

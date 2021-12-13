@@ -13,7 +13,7 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
         [Range(0,64)]
         public int yLenght;
         
-        [Range(0,3)]
+        [Range(0,5)]
         public int stars;
 
         public bool isLocked;

@@ -22,5 +22,10 @@ namespace _Scripts.Gameplay.Recording.Animating
             AnimationClips = Resources.LoadAll("Levels/", typeof(AnimationClip)).ToList();
             AnimationClips.Sort((x, y) => nc.Compare(x.name, y.name));
         }
+
+        public static AnimationClip GetCurrentClip()
+        {
+            return AnimationClips[ClipNumber] as AnimationClip;
+        }
     }
 }

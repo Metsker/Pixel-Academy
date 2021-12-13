@@ -17,7 +17,7 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
         public static void CreateStageAsset(List<Color> pixelList, List<ColorPresetStruct> colorList,
             AnimationClip clip, List<float> audioClickTimings, List<float> audioToolTimings)
         {
-            var name = ClipListLoader.AnimationClips[ClipListLoader.ClipNumber].name;
+            var name = ClipListLoader.GetCurrentClip().name;
             var partLength = Recorder.Part.ToString().Length;
             var folderName = name.Remove(name.Length - partLength - 1);
             var asset = ScriptableObject.CreateInstance<StageScriptableObject>();
@@ -32,7 +32,7 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 
         public static void CreateLevelAsset()
         {
-            var name = ClipListLoader.AnimationClips[ClipListLoader.ClipNumber].name;
+            var name = ClipListLoader.GetCurrentClip().name;
             var partLength = Recorder.Part.ToString().Length;
             var folderName = name.Remove(name.Length - partLength - 1);
             var asset = ScriptableObject.CreateInstance<LevelScriptableObject>();
