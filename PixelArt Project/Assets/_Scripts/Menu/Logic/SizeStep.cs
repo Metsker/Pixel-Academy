@@ -1,6 +1,6 @@
 using System;
-using _Scripts.Menu.Transition;
 using _Scripts.SharedOverall.Audio;
+using Assets._Scripts.Menu.Transition;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ namespace _Scripts.Menu.Logic
         private const int Step = 50;
         private readonly Color _activeColor = Color.black;
         private readonly Color _inactiveColor = Color.gray;
-        public static event Action<AudioClick.AudioClickType> PlaySound;
+        public static event Action<AudioManager.AudioClickType> PlaySound;
         
         private void Awake()
         {
@@ -30,9 +30,9 @@ namespace _Scripts.Menu.Logic
         private void OnTriggerExit2D(Collider2D other)
         {
             CalculateStep(-Step, _inactiveColor,0);
-            if (PageManager.currentPage == PageManager.Pages.Editor)
+            if (PageManager.CurrentPage == PageManager.Pages.Editor)
             {
-                PlaySound?.Invoke(AudioClick.AudioClickType.UI);
+                PlaySound?.Invoke(AudioManager.AudioClickType.UI);
             }
         }
 

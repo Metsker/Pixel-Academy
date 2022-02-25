@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c44a7f5b1bdc7a498fca4794731a751, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
+  groupType: 2
   levels:
-  - {fileID: 11400000, guid: 4815327acdbe7f74d84565220dc01ec4, type: 2}
-  - {fileID: 11400000, guid: dfcbc9676626261458c50ad65545e304, type: 2}
   - {fileID: 11400000, guid: b173c6e435bf03b4c942b53d199d563c, type: 2}
   - {fileID: 11400000, guid: 5375a2964d2e7c544b83a9d4a74d86df, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 4815327acdbe7f74d84565220dc01ec4, type: 2}
   - {fileID: 11400000, guid: cfa6cd37221982643897d1281561d5bd, type: 2}

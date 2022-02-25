@@ -1,4 +1,5 @@
-﻿using _Scripts.Gameplay.Release.Playing.Creating;
+﻿using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.Gameplay.Shared.Tools.Logic;
 using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting
     {
         protected void SetAchievementsProgress(int mark)
         {
-            if (!(LevelCreator.scriptableObject.stars > 0))
+            if (!(LevelCreator.ScriptableObject.stars > 0))
             {
                 PlayerPrefs.SetInt("LevelsCompleted", PlayerPrefs.GetInt("LevelsCompleted")+1);
             }
@@ -67,11 +68,7 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting
                     PlayerPrefs.SetInt("Rocket", 1);
                     PlayerPrefs.SetInt("HasNewAchievement", 1);
                     break;
-            }
-            
-            switch (PlayerPrefs.GetInt("PerfectCompleted"))
-            {
-                case 10:
+                case 15:
                     if (PlayerPrefs.GetInt("HighAchiever", 0) == 1) break;
                     PlayerPrefs.SetInt("HighAchiever", 1);
                     PlayerPrefs.SetInt("HasNewAchievement", 1);

@@ -8,6 +8,7 @@
         {
             Drawing,
             Animating,
+            Correcting,
             Recording
         }
     }

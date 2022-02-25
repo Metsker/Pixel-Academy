@@ -17,13 +17,15 @@ MonoBehaviour:
   stars: 0
   isLocked: 0
   groupType: 4
-  difficulty: 0
-  previewSprite: {fileID: 21300000, guid: e7bdd404b4f63fb4e97f9394629809f0, type: 3}
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: c1ede0baae494a8438ef124d7a8356f8, type: 3}
   stageScriptableObjects:
   - {fileID: 11400000, guid: 8e71416923ee3554d8cca2a9e24d04c5, type: 2}
-  - {fileID: 11400000, guid: 661edb5a49f045840994bc70e020421c, type: 2}
-  - {fileID: 11400000, guid: 2092cea468b83b845a777ca8b1772177, type: 2}
-  - {fileID: 11400000, guid: 5ecf38f320bfd8f43a01b2fb316aa88c, type: 2}
-  - {fileID: 11400000, guid: 4a92cb4790aa54646ac52026940ff50c, type: 2}
-  - {fileID: 11400000, guid: ffdc2381151198d4bbf883ebd1d53edd, type: 2}
-  - {fileID: 11400000, guid: 7b938f47f28b4ff498c672aff54f264b, type: 2}
+  - {fileID: 11400000, guid: 9c14b57a0173a354681224653eee4aaa, type: 2}
+  - {fileID: 11400000, guid: d7d83f944df42d34e8e95fb6aeab397b, type: 2}
+  - {fileID: 11400000, guid: e50fea3b67b6a824ab3c49e18955dd8b, type: 2}
+  - {fileID: 11400000, guid: 569fc8983cdf50f45b75c7e76dad4960, type: 2}
+  - {fileID: 11400000, guid: a140af6531ed0ad4aa6c3882c05da4fb, type: 2}
+  - {fileID: 11400000, guid: 0c931902c65b06a4c9999b1016b03de2, type: 2}
+  - {fileID: 11400000, guid: 800545f8d5f17a74090ffa0738534848, type: 2}
+  - {fileID: 11400000, guid: 9c94aa014c1dc4f47a8282616a1a9f53, type: 2}

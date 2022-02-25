@@ -1,36 +1,37 @@
 using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
 using _Scripts.SharedOverall.Saving;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
+using static _Scripts.Menu.Data.CreatingData;
 
 namespace _Scripts.Menu.Data
 {
     public class LevelData : MonoBehaviour
     {
         public Image preview;
-        [HideInInspector]
-        public RectTransform previewRect;
+        public RectTransform PreviewRect { get; private set; }
+        public Vector2 RectStartSize { get; private set; }
         
         public GameObject lockObj;
+        public TextMeshProUGUI lockCostTxt;
         public Image shape;
         public Image state;
         public Image[] stars;
-        public LevelScriptableObject scriptableObject { get; set; }
-        public LevelGroupScriptableObject groupScriptableObject { get; set; }
-
-        private CreatingData _creatingData;
+        public LevelScriptableObject ScriptableObject { get; set; }
 
         private void Awake()
         {
-            _creatingData = FindObjectOfType<CreatingData>();
             if (preview == null) return;
-            previewRect = preview.GetComponent<RectTransform>();
+            PreviewRect = preview.GetComponent<RectTransform>();
+            RectStartSize = PreviewRect.sizeDelta;
         }
 
         private void OnEnable()
         {
-            if(scriptableObject == null) return;
-            if (!scriptableObject.isLocked && lockObj.activeSelf)
+            if(ScriptableObject == null) return;
+            if (!ScriptableObject.isLocked && lockObj.activeSelf)
             {
                 Unlock();
             }
@@ -38,41 +39,44 @@ namespace _Scripts.Menu.Data
 
         public void Unlock()
         {
-            scriptableObject.isLocked = false;
-            shape.sprite = _creatingData.unlockedShape;
+            ScriptableObject.isLocked = false;
+            shape.sprite = creatingData.unlockedShape;
             lockObj.SetActive(false);
             state.gameObject.SetActive(false);
-            SaveData.SaveLevelData(scriptableObject);
+            SaveData.SaveLevelData(ScriptableObject);
             SaveSystem.SaveDataToFile();
         }
 
         public void Lock()
         {
-            shape.sprite = _creatingData.lockedShape;
+            shape.sprite = creatingData.lockedShape;
+            lockCostTxt.text = ScriptableObject.GetCost().ToString();
             lockObj.SetActive(true);
-            state.color = _creatingData.lockedColor;
+            
+            state.color = creatingData.lockedColor;
             state.gameObject.SetActive(true);
             stars[0].transform.parent.gameObject.SetActive(false);
         }
 
-        public void Reload(bool isCompleted)
+        public void Reload()
         {
-            shape.sprite = _creatingData.unlockedShape;
+            var isCompleted = ScriptableObject.stars > 0;
+            shape.sprite = creatingData.unlockedShape;
             lockObj.SetActive(false);
             state.gameObject.SetActive(isCompleted);
             stars[0].transform.parent.gameObject.SetActive(isCompleted);
             
             
             if (!isCompleted) return;
-            state.color = _creatingData.completedColor;
+            state.color = creatingData.completedColor;
             foreach (var t in stars)       
             {
-                if (t.sprite == _creatingData.unfilledStar) continue;
-                t.sprite = _creatingData.unfilledStar;
+                if (t.sprite == creatingData.unfilledStar) continue;
+                t.sprite = creatingData.unfilledStar;
             }
-            for (var i = 0; i < scriptableObject.stars; i++)
+            for (var i = 0; i < ScriptableObject.stars; i++)
             {
-                stars[i].sprite = _creatingData.filledStar;
+                stars[i].sprite = creatingData.filledStar;
             }
         }
     }

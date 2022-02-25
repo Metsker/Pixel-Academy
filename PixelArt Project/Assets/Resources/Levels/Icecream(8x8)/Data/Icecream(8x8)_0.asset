@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationClip: {fileID: 7400000, guid: 5bb8ee71c64f316409639ac9990b59ef, type: 2}
   audioClickTimings:
-  - 0.7988793
-  - 1.2013848
-  - 1.6033602
+  - 0.79911983
+  - 1.2010032
+  - 1.6027447
   audioToolTimings:
   - 0.2
   pixelList:

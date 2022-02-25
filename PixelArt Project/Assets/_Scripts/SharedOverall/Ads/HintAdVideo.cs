@@ -1,4 +1,4 @@
-﻿using _Scripts.Gameplay.Release.Playing.Hints;
+﻿using _Scripts.Gameplay.Playing.Hints;
 using GoogleMobileAds.Api;
 
 namespace _Scripts.SharedOverall.Ads

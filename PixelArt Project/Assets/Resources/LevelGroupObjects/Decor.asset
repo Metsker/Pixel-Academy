@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c44a7f5b1bdc7a498fca4794731a751, type: 3}
   m_Name: Decor
   m_EditorClassIdentifier: 
+  groupType: 3
   levels:
-  - {fileID: 11400000, guid: 9d15c64463d56b64fa5b96363a8706d8, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 684d2a8327dc5454396d104e68ba8beb, type: 2}
+  - {fileID: 11400000, guid: 9d15c64463d56b64fa5b96363a8706d8, type: 2}

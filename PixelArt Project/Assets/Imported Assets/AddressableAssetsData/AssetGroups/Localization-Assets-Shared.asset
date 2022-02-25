@@ -33,6 +33,14 @@ MonoBehaviour:
     m_Address: Assets/Resources/Localization/Tables/Gameplay Table Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 4cd7b496b0352dc4fab772db14c695af
+    m_Address: Assets/Localization/Tables/Settings Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: f3c79f26838c28b4c9c3320d6a1a7447
+    m_Address: Assets/Localization/Tables/Shop Screen Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 57789216a859bbd4f8438305dd98f07b, type: 2}
   m_SchemaSet:

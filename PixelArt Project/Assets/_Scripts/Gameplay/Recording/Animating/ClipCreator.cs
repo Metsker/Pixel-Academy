@@ -6,6 +6,7 @@ using _Scripts.SharedOverall.DrawingPanel;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using static _Scripts.Gameplay.Recording.ScriptableObjectLogic.LevelAssetSaver;
 
 namespace _Scripts.Gameplay.Recording.Animating
 {
@@ -14,7 +15,6 @@ namespace _Scripts.Gameplay.Recording.Animating
         [SerializeField] private Recorder recorder;
         private ClipUIUpdater _clipUIUpdater;
         public TMP_InputField inputField;
-        private const string ClipPath = "Assets/Resources/Levels";
         public static event Action UpdateUI;
 
         private void Awake()
@@ -50,12 +50,12 @@ namespace _Scripts.Gameplay.Recording.Animating
             }
             recorder.Clip = new AnimationClip();
             var clipName = inputField.text + brackets;
-            if (!AssetDatabase.IsValidFolder($"{ClipPath}/{clipName}"))
+            if (!AssetDatabase.IsValidFolder($"{LevelPath}/{clipName}"))
             {
-                AssetDatabase.CreateFolder(ClipPath, clipName);
-                AssetDatabase.CreateFolder($"{ClipPath}/{clipName}", "Data");
+                AssetDatabase.CreateFolder(LevelPath, clipName);
+                AssetDatabase.CreateFolder($"{LevelPath}/{clipName}", "Data");
             }
-            AssetDatabase.CreateAsset(recorder.Clip, $"{ClipPath}/{clipName}/Data/{clipName}_{i}.anim");
+            AssetDatabase.CreateAsset(recorder.Clip, $"{LevelPath}/{clipName}/Data/{clipName}_{i}.anim");
             AssetDatabase.SaveAssets();
             ClipListLoader.AnimationClips.Add(recorder.Clip);
             _clipUIUpdater.createClipUI.gameObject.SetActive(false);
@@ -63,23 +63,23 @@ namespace _Scripts.Gameplay.Recording.Animating
             UpdateUI?.Invoke();
         }
 
-        public void CreateClip(AnimationClip clip)
+        public bool CreateClip(AnimationClip clip)
         {
-            
             var partLength = Recorder.Part.ToString().Length;
             var clipName = clip.name.Remove(clip.name.Length - partLength - 1);
-            if (File.Exists($"{ClipPath}/{clipName}/Data/{clipName}_{Recorder.Part+1}.anim"))
+            if (File.Exists($"{LevelPath}/{clipName}/Data/{clipName}_{Recorder.Part+1}.anim"))
             {
                 Debug.LogWarning("Уже существует");
-                return;
+                return false;
             }
             Recorder.Part++;
             recorder.Clip = new AnimationClip();
-            AssetDatabase.CreateAsset(recorder.Clip, $"{ClipPath}/{clipName}/Data/{clipName}_{Recorder.Part}.anim");
+            AssetDatabase.CreateAsset(recorder.Clip, $"{LevelPath}/{clipName}/Data/{clipName}_{Recorder.Part}.anim");
             AssetDatabase.SaveAssets();
             ClipListLoader.AnimationClips.Add(recorder.Clip);
             ClipListLoader.ClipNumber = ClipListLoader.AnimationClips.Count - 1;
             UpdateUI?.Invoke();
+            return true;
         }
     }
 }

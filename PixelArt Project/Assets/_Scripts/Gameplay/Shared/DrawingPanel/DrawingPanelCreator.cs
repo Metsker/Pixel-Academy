@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using _Scripts.Gameplay.Playing.Creating;
 using _Scripts.Gameplay.Recording.DrawingPanel;
-using _Scripts.Gameplay.Release.Playing.Creating;
 using _Scripts.Menu.Logic;
 using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
@@ -35,7 +35,7 @@ namespace _Scripts.SharedOverall.DrawingPanel
             switch (GameModeManager.CurrentGameMode)
             {
                 case GameModeManager.GameMode.Play:
-                    count = SetGrid(LevelCreator.scriptableObject.xLenght, LevelCreator.scriptableObject.yLenght);
+                    count = SetGrid(LevelCreator.ScriptableObject.xLenght, LevelCreator.ScriptableObject.yLenght);
                     break;
                 case GameModeManager.GameMode.Paint:
                     count = SetGrid(SizeStep.XSide, SizeStep.YSide);
@@ -52,7 +52,17 @@ namespace _Scripts.SharedOverall.DrawingPanel
             Clear();
             await Task.WhenAll(Build(count));
         }
-
+        
+#if UNITY_EDITOR
+        private async void Update()
+        {
+            if (GameModeManager.CurrentGameMode == GameModeManager.GameMode.Record
+                && Input.GetKeyDown(KeyCode.Return))
+            {
+                await Create();
+            }
+        }  
+#endif
         private async Task Build(int count)
         {
             await _flexibleGridLayout.SetSize(true);
@@ -60,8 +70,11 @@ namespace _Scripts.SharedOverall.DrawingPanel
             for (var i = 0; i < count; i++)
             {     
                 var p = Instantiate(pxPreset, transform);
-                p.GetComponent<ClickOnPixel>().index = i;
+                var click = p.GetComponent<ClickOnPixel>();
+                click.Index = i;
                 p.name = "Px " + "(" + i + ")";
+                if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Play) continue;
+                click.GetImage().color = LevelCreator.GetLastStageScOb().pixelList[i];
             }
             
             await _flexibleGridLayout.SetSize(false);
@@ -73,8 +86,8 @@ namespace _Scripts.SharedOverall.DrawingPanel
 
         private void Clear()
         {
-            if(!FindObjectOfType<ClickOnPixel>()) return;
-            foreach (var pixel in FindObjectsOfType<ClickOnPixel>())
+            if (DrawingTemplateCreator.PixelList == null || DrawingTemplateCreator.PixelList.Count == 0) return;
+            foreach (var pixel in DrawingTemplateCreator.PixelList)
             {
                 Destroy(pixel.gameObject);
             }

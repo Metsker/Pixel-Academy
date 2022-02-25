@@ -15,7 +15,7 @@ MonoBehaviour:
   xLenght: 16
   yLenght: 16
   stars: 0
-  isLocked: 0
+  isLocked: 1
   groupType: 3
   difficulty: 2
   previewSprite: {fileID: 21300000, guid: a503ef3b1e0abb946977978dcf9d6230, type: 3}

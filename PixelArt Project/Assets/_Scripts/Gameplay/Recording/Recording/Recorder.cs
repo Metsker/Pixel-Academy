@@ -1,8 +1,11 @@
 #if (UNITY_EDITOR)
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.Gameplay.Recording.Animating;
 using _Scripts.Gameplay.Recording.ColorPresets;
 using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.Gameplay.Shared.ColorPresets;
 using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.Animating;
 using _Scripts.SharedOverall.Audio;
@@ -11,6 +14,7 @@ using _Scripts.SharedOverall.DrawingPanel;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 namespace _Scripts.Gameplay.Recording.Recording
 {
@@ -18,17 +22,17 @@ namespace _Scripts.Gameplay.Recording.Recording
     {
         public const float SnapshotDelay = 0.4f;
         public AnimationClip Clip { get; set; }
-        private static GameObjectRecorder recorderObject { get; set; }
+        private static GameObjectRecorder RecorderObject { get; set; }
         
         [SerializeField] private GameObject drawingPanel;
-        [SerializeField] private GameObject palettePanel;
-        [SerializeField] private GameObject fillingTool;
-        
+        [SerializeField] private GameObject colorPresets;
+        [SerializeField] private GameObject instruments;
+
         [Header("Resources")] 
         [SerializeField] private GameObject uiToSwitch;
 
-        public static Color selectedColorCash;
-        
+        public static Color? SelectedColorCash { get; set; }
+
         private ClipCreator _clipCreator;
         private SnapshotTaker _snapshotTaker;
         private RecorderSwitcher _recorderSwitcher;
@@ -60,18 +64,18 @@ namespace _Scripts.Gameplay.Recording.Recording
         
         public static void Snapshot(float delay)
         {
-            recorderObject.TakeSnapshot(delay);
+            RecorderObject.TakeSnapshot(delay);
         }
 
-        public static void Snapshot(AudioClick.AudioClickType audioClickType)
+        public static void Snapshot(AudioManager.AudioClickType audioClickType)
         {
             switch (audioClickType)
             {
-                case AudioClick.AudioClickType.Click:
-                    _audioClickTimings.Add(recorderObject.currentTime);
+                case AudioManager.AudioClickType.Click:
+                    _audioClickTimings.Add(RecorderObject.currentTime);
                     break;
-                case AudioClick.AudioClickType.Tool:
-                    _audioToolTimings.Add(recorderObject.currentTime);
+                case AudioManager.AudioClickType.Tool:
+                    _audioToolTimings.Add(RecorderObject.currentTime);
                     break;
             }
         }
@@ -80,32 +84,49 @@ namespace _Scripts.Gameplay.Recording.Recording
         {
             _audioClickTimings = new List<float>();
             _audioToolTimings = new List<float>();
-            recorderObject = new GameObjectRecorder(gameObject);
+            RecorderObject = new GameObjectRecorder(gameObject);
             
             foreach (Transform child in drawingPanel.transform)
             {
-                recorderObject.BindComponent(child.GetComponent<Image>());
+                RecorderObject.BindComponent(child.GetComponent<Image>());
             }
-            recorderObject.BindComponentsOfType<Image>(palettePanel, true);
-            recorderObject.BindComponentsOfType<RectTransform>(palettePanel, true);
-            recorderObject.BindComponentsOfType<Image>(fillingTool, true);
-            recorderObject.BindComponentsOfType<RectTransform>(fillingTool, true);
-            Snapshot(Time.deltaTime);
-            if (ColorPresetSpawner.GetSelected() != null)
+                
+            RecorderObject.BindComponent(colorPresets.transform.GetComponent<RectTransform>());
+            foreach (Transform child in colorPresets.transform)
             {
-                Snapshot(ToolAnimation.AnimDuration);
+                if (!child.gameObject.activeSelf) continue;
+                RecorderObject.BindComponent(child.GetComponent<RectTransform>());
             }
+            foreach (var child in colorPresets.GetComponentsInChildren<Transform>())
+            {
+                if (child.name != "Color") continue;
+                RecorderObject.BindComponent(child.GetComponent<Image>());
+            }
+            
+            RecorderObject.BindComponent(instruments.transform.GetComponent<RectTransform>());
+            foreach (Transform child in instruments.transform)
+            {
+                if (!child.gameObject.activeSelf) continue;
+                RecorderObject.BindComponent(child.GetComponent<RectTransform>());
+            }
+            foreach (var child in instruments.GetComponentsInChildren<Transform>())
+            {
+                if (child.name != "Color") continue;
+                RecorderObject.BindComponent(child.GetComponent<Image>());
+            }
+            
+            Snapshot(ColorPresetSpawner.GetSelected() == null ?
+                Time.deltaTime : ToolAnimation.AnimDuration);
         }
 
         public void NextPart()
         {
-            var selected = ColorPresetSpawner.GetSelected();
-            if (selected != null)
+            if (ColorPresetSpawner.GetSelected() != null)
             {
-                selectedColorCash = selected.image.color;
+                SelectedColorCash = ColorPresetSpawner.GetSelected().GetImageColor();
             }
             SaveClip();
-            _clipCreator.CreateClip(Clip);
+            if (!_clipCreator.CreateClip(Clip)) return;
             _recorderSwitcher.SwitchRecording();
         }
 
@@ -128,11 +149,11 @@ namespace _Scripts.Gameplay.Recording.Recording
 
         private void SaveClip()
         {
-            recorderObject.SaveToClip(Clip);
+            RecorderObject.SaveToClip(Clip);
             LevelAssetSaver.CreateStageAsset(ExportPixels(), ExportColorPresets(),
                 Clip, _audioClickTimings, _audioToolTimings);
         }
-        
+
         private void TakeShot()
         {
             var partLength = Part.ToString().Length;
@@ -153,7 +174,7 @@ namespace _Scripts.Gameplay.Recording.Recording
         private List<ColorPresetStruct> ExportColorPresets()
         {
             _colorPresetList = new List<ColorPresetStruct>();
-            foreach (var pt in ColorPresetSpawner.colorPresets)
+            foreach (var pt in ColorPresetSpawner.ColorPresets)
             {
                 pt.AssignStruct();
                 _colorPresetList.Add(pt.PresetStruct);

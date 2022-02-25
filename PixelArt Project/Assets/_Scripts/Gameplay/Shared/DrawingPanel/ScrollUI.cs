@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,6 +8,7 @@ namespace _Scripts.SharedOverall.DrawingPanel
     {
         [SerializeField] private float maxZoom = 8;
         private const float EditorZoomSpeed = 0.1f;
+        public static event Action CorrectGrid;
 
 #if !UNITY_EDITOR
      private const float ZoomSpeed = 0.005f; //Test
@@ -25,7 +27,6 @@ namespace _Scripts.SharedOverall.DrawingPanel
             var scrollDelta = currentTouchDistance - oldTouchDistance;
             OnScroll(scrollDelta);
         }
-        
         private void OnScroll(float scrollDelta)
         {
             var delta = Vector3.one * (scrollDelta * ZoomSpeed);
@@ -33,7 +34,7 @@ namespace _Scripts.SharedOverall.DrawingPanel
             desiredScale = ClampDesiredScale(desiredScale);
             transform.localScale = desiredScale;
         }   
-#endif
+#endif 
 
         public void OnScroll(PointerEventData eventData)
         {
@@ -43,6 +44,8 @@ namespace _Scripts.SharedOverall.DrawingPanel
             desiredScale = ClampDesiredScale(desiredScale);
             transform.localScale = desiredScale;
 #endif
+            CorrectGrid?.Invoke();
+            
         }
         private Vector3 ClampDesiredScale(Vector3 desiredScale)
         {

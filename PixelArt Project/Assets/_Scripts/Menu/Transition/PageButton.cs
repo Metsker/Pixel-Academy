@@ -4,91 +4,99 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static _Scripts.Menu.Transition.PageManager;
+using static Assets._Scripts.Menu.Transition.PageManager;
 
-namespace _Scripts.Menu.Transition
+namespace Assets._Scripts.Menu.Transition
 {
     public class PageButton : MonoBehaviour, IPointerUpHandler
     {
-        [SerializeField] private GameObject objToMove;
+        public GameObject objToMove;
         [SerializeField] private GameObject background;
-        [SerializeField] private Transform startPos;
-        [SerializeField] private PageManager pageManager;
-        [SerializeField] private Pages page;
-        [SerializeField] private Ease ease;
+        public Pages page;
+        private static PageManager _pageManager;
 
+        private const Ease Ease = DG.Tweening.Ease.InOutSine;
         private Image _selectImage;
         private RectTransform _objRectTransform;
-        private Vector2 _startPivot;
-        
+
         private static int _sublimingIndex;
-        private static bool _isAnimating;
+        public static bool IsAnimating { get; private set; }
         public static event Action ClearNotification;
-        
+
         private void Awake()
         {
             _selectImage = GetComponent<Image>();
             _objRectTransform = objToMove.GetComponent<RectTransform>();
-            
-            objToMove.transform.position = startPos.transform.position;
-            _startPivot = _objRectTransform.pivot;
-            if(_sublimingIndex == 0) _sublimingIndex = objToMove.transform.parent.childCount - 1;
-            if (!_isAnimating) return;
-            _isAnimating = false;
+            if (_pageManager == null)
+            {
+                _pageManager = FindObjectOfType<PageManager>();
+            }
+            if (_sublimingIndex == 0)
+            {
+                _sublimingIndex = objToMove.transform.parent.childCount - 1;
+            }
+            if (!IsAnimating) return;
+            IsAnimating = false;
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            cashPage = currentPage;
-            if (currentPage == page) return;
+            CashPage = CurrentPage;
+            if (CurrentPage == page) return;
             Pointer(Duration);
         }
 
         public void Pointer(float duration)
         {
-            if(_isAnimating) return;
+            if(IsAnimating) return;
             
-            _isAnimating = true;
-            currentPage = page;
+            IsAnimating = true;
+
+            SetDirection();
+            CurrentPage = page;
+            PageManager.StageController.SetParticlesLayer(0);
             objToMove.transform.SetSiblingIndex(_sublimingIndex);
             objToMove.SetActive(true);
             background.SetActive(true);
             
             Select();
-            foreach (var m in pageManager.pages.Where(m => m != this))
+            foreach (var m in pages.Where(m => m != this))
             {
                 m.Deselect();
             }
-            ClearNotification?.Invoke();
-            
+            foreach (var arrow in _pageManager.arrows)
+            {
+                arrow.FadeOut();
+            }
+
             _objRectTransform.pivot = Vector2.one/2;
-            objToMove.transform.DOMove(new Vector3(0,0,90), duration).SetEase(ease)
+            objToMove.transform.DOMoveX(0, duration).SetEase(Ease)
                 .OnComplete(() =>
             {
                 background.SetActive(false);
-                foreach (var m in pageManager.pages.Where(m => m != this))
+                foreach (var m in pages.Where(m => m != this))
                 {
                     m.objToMove.SetActive(false);
-                    m.objToMove.transform.position = m.startPos.transform.position;
                 }
-                switch (page)
-                { 
-                    case Pages.Editor:
-                        SetMainPos(Pages.Stats);
-                        break;
-                    case Pages.Stats:
-                        SetMainPos(Pages.Editor);
-                        break; 
+                foreach (var arrow in _pageManager.arrows)
+                {
+                    arrow.FadeIn();
                 }
-                _objRectTransform.pivot = _startPivot;
-                _isAnimating = false;
+                PageManager.StageController.SetParticlesLayer(1);
+                IsAnimating = false;
+                if (CurrentPage != Pages.Stats) return;
+                ClearNotification?.Invoke();
             });
         }
         
-        private void SetMainPos(Pages refPage)
+        private void SetDirection()
         {
-            ((RectTransform)pageManager.pages[(int)Pages.Main].objToMove.transform).pivot = ((RectTransform)pageManager.pages[(int)refPage].objToMove.transform).pivot;
-            pageManager.pages[(int)Pages.Main].objToMove.transform.position = pageManager.pages[(int)refPage].startPos.transform.position;
+            var m = (int)page - (int)CurrentPage;
+            var newDir = m > 0 ? Direction.Right : Direction.Left;
+
+            ((RectTransform)pages[(int)page].objToMove.transform).pivot = _pageManager.GetPivot(newDir);
+            pages[(int)page].objToMove.transform.position = _pageManager.GetPos(newDir);
+
         }
 
         private void Select()

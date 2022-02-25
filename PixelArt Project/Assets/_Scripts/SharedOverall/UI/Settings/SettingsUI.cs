@@ -1,17 +1,24 @@
 ﻿using System;
 using _Scripts.SharedOverall.Saving;
-using UnityEngine;
 
 namespace _Scripts.SharedOverall.UI.Settings
 {
-    public class SettingsUI : MonoBehaviour
-    {
-        public static event Action SwitchBlur;
-        
-        public void CloseSettings()
+    public class SettingsUI : UIPanel
+    { 
+        public static event Action<bool> SwitchBlur;
+        public void OpenUI()
         {
-            SwitchBlur?.Invoke();
+            SwitchBlur?.Invoke(true);
+            gameObject.SetActive(true);
+        }
+
+        public override void CloseUI()
+        {
+            if(!gameObject.activeSelf) return;
+            SwitchBlur?.Invoke(false);
+            gameObject.SetActive(false);
             SaveData.SaveSettingsData();
+            SaveSystem.SaveDataToFile();
         }
     }
 }

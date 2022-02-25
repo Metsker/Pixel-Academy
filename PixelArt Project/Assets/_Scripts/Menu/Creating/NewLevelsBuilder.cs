@@ -1,16 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.Menu.Data;
+using _Scripts.SharedOverall;
+using UnityEngine;
 
 namespace _Scripts.Menu.Creating
 {
     public class NewLevelsBuilder : CategoryBuilder
     {
         [SerializeField] private GameObject panel;
-        private new void Start()
+
+        protected override LevelGroupScriptableObject GetGroup()
         {
-            base.Start();
-            for (var i = 0; i < group.levels.Count; i++)
+            return LevelGroupsLoader.levelGroupsLoader == null ? null : LevelGroupsLoader.levelGroupsLoader.newsLevelGroup;
+        }
+
+        private void Start()
+        {
+            if (GetGroup() == null) return;
+            for (var i = 0; i < GetGroup().levels.Count; i++)
             {
-                var g = Instantiate(creatingData.categoryInstance, panel.transform);
+                var g = Instantiate(CreatingData.creatingData.categoryInstance, panel.transform);
                 g.name = "New Level " + i;
             }
             LoadChildren(panel);

@@ -1,31 +1,44 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.Utility;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace _Scripts.Gameplay.Recording.Animating
 {
     public class ClipListLoader : MonoBehaviour
     {
         public static int ClipNumber { get; set; }
-        public static List<Object> AnimationClips { get; private set; } = new();
+        public static List<AnimationClip> AnimationClips { get; private set; }
 
         private void Awake()
         {
-            LoadObjectsList();
+            StartCoroutine(LoadObjectsList());
         }
         
-        private void LoadObjectsList()
+        private IEnumerator LoadObjectsList()
         {
+            yield return new WaitUntil(() => LevelGroupsLoader.levelGroupsLoader != null);
+            
             var nc = new NumericComparer();
-            AnimationClips = Resources.LoadAll("Levels/", typeof(AnimationClip)).ToList();
+            AnimationClips = new List<AnimationClip>();
+            
+            foreach (var group in LevelGroupsLoader.levelGroupsLoader.levelGroups)
+            {
+                foreach (var stage in group.levels.SelectMany(level => level.stageScriptableObjects))
+                {
+                    if (stage == null) continue;
+                    AnimationClips.Add(stage.animationClip);
+                }
+            }
             AnimationClips.Sort((x, y) => nc.Compare(x.name, y.name));
         }
 
         public static AnimationClip GetCurrentClip()
         {
-            return AnimationClips[ClipNumber] as AnimationClip;
+            return AnimationClips?[ClipNumber];
         }
     }
 }

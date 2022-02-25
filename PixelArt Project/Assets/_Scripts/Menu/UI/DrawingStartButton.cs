@@ -1,6 +1,7 @@
 using _Scripts.Gameplay.Release.Shared.UI;
 using _Scripts.Menu.Logic;
 using _Scripts.SharedOverall;
+using _Scripts.SharedOverall.Utility;
 using UnityEngine;
 
 namespace _Scripts.Menu.UI
@@ -13,7 +14,7 @@ namespace _Scripts.Menu.UI
             GameModeManager.isDebug = false;
             GameModeManager.LevelGameMode = GameModeManager.GameMode.Paint;
             GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
-            SceneTransitionManager.OpenScene(1);
+            SceneTransitionManager.OpenScene(SceneTransitionManager.Scenes.Play);
         }
     }
 }

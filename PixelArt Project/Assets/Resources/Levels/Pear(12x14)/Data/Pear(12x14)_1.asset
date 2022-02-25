@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed516ceb416e644d8ab92c03fb73aed, type: 3}
   m_Name: Pear(12x14)_1
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: 8deed0514038c6148a7764877fcef8ae, type: 2}
+  animationClip: {fileID: 7400000, guid: 93697760203be5349ae87dbf30cdfb25, type: 2}
   audioClickTimings:
-  - 0.79297274
-  - 1.1972152
-  audioToolTimings:
-  - 0.2
+  - 0
+  - 0.4056637
+  - 0.8103624
+  audioToolTimings: []
   pixelList:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -26,7 +26,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.2901961, g: 0.1254902, b: 0.12156863, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.34901962, g: 0.50980395, b: 0.23529412, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -37,7 +37,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.2901961, g: 0.1254902, b: 0.12156863, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.34901962, g: 0.50980395, b: 0.23529412, a: 1}
   - {r: 0.34901962, g: 0.50980395, b: 0.23529412, a: 1}
@@ -188,5 +188,6 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   colorPresetStruct:
-  - color: {r: 0.2901961, g: 0.1254902, b: 0.12156863, a: 1}
+  - color: {r: 0.34901962, g: 0.50980395, b: 0.23529412, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

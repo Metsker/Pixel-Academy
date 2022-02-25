@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed516ceb416e644d8ab92c03fb73aed, type: 3}
   m_Name: Peach(14x14)_7
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: 9e268ed6848d73f4fae22f6f66a4120b, type: 2}
+  animationClip: {fileID: 7400000, guid: 90ca89e78a32df94eba3d6bc9211a653, type: 2}
   audioClickTimings:
-  - 0.80216885
-  - 1.2065015
-  - 1.6110557
+  - 1.2955271
+  - 1.7004331
+  - 2.1051824
   audioToolTimings:
-  - 0.2
+  - 0.68995655
+  - 2.8877866
   pixelList:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -202,20 +203,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
   colorPresetStruct:
   - color: {r: 1, g: 0.41960785, b: 0.52156866, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
+using _Scripts.Gameplay.Shared.ColorPresets;
 using _Scripts.SharedOverall.Utility;
 using HSVPicker;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -29,9 +31,9 @@ namespace _Scripts.SharedOverall.ColorPresets
                 _picker.gameObject.SetActive(true);
                 PickerAnimation();
             }
-            foreach (var ps in ColorPresetSpawner.colorPresets)
+            foreach (var ps in ColorPresetSpawner.ColorPresets)
             {
-                _picker.onValueChanged.RemoveListener(ps.pickerAction);
+                _picker.onValueChanged.RemoveListener(ps.PickerAction);
             }
             _picker.CurrentColor = image.color;
             _picker.onValueChanged.AddListener(pickerAction);
@@ -47,9 +49,10 @@ namespace _Scripts.SharedOverall.ColorPresets
             return GameModeManager.CurrentGameMode != GameModeManager.GameMode.Play && _picker.gameObject.activeSelf;
         }
 
-        public static void RandomizeColor() 
+        public static void RandomizeColor()
         {
-            _picker.CurrentColor = ColorRandomizer.GetRandomColor();
+            var c = ColorRandomizer.GetRandomColor();
+            _picker.CurrentColor = new Color(c.r, c.g, c.b, _picker.CurrentColor.a);
         }
 
         private static async void PickerAnimation()

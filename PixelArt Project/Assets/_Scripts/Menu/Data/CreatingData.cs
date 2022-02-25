@@ -1,13 +1,13 @@
-using System.Collections;
 using _Scripts.SharedOverall.Saving;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 namespace _Scripts.Menu.Data
 {
     public class CreatingData : MonoBehaviour
     {
+        public static CreatingData creatingData { get; private set; }
         [Header("Dependencies")]
         public GameObject categoryInstance;
         public GameObject levelPanel;
@@ -21,17 +21,19 @@ namespace _Scripts.Menu.Data
 
         private void Awake()
         {
-            SaveSystem.SetData();
-        }
-        public IEnumerator Start()
-        {
-            yield return LocalizationSettings.InitializationOperation;
-            if (LocalizationSettings.SelectedLocale != LocalizationSettings.AvailableLocales.Locales
-                [Application.systemLanguage == SystemLanguage.Russian ? 0 : 1])
+            if (creatingData != null && creatingData != this)
             {
-                LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales
-                    [Application.systemLanguage == SystemLanguage.Russian ? 0 : 1];
+                Destroy(gameObject);
+            } 
+            else 
+            {
+                creatingData = this;
             }
+        }
+
+        private void Start()
+        {
+            SaveSystem.SetData();
         }
     }
 }

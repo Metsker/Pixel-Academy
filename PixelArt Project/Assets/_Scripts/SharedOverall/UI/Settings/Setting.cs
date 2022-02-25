@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.SharedOverall.Settings
+namespace _Scripts.SharedOverall.UI.Settings
 {   
     [RequireComponent(typeof(Image))]
     public abstract class Setting : MonoBehaviour
@@ -11,11 +10,10 @@ namespace _Scripts.SharedOverall.Settings
         [SerializeField] protected List<Sprite> sprites; //0 - off; 1 - on
         protected Image image;
 
-        private void Awake()
+        protected void Awake()
         {
             image = GetComponent<Image>();
         }
-
         public abstract void ToggleClick();
     }
 }

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c44a7f5b1bdc7a498fca4794731a751, type: 3}
   m_Name: Animals
   m_EditorClassIdentifier: 
+  groupType: 0
   levels:
-  - {fileID: 11400000, guid: c3888fa9a2882854e8e77f707190e00f, type: 2}
-  - {fileID: 11400000, guid: 51a096f34b7f81a48bc8cdf7d3a06d5b, type: 2}
+  - {fileID: 11400000, guid: e6a7cbf5be5dd1d4cbc27e7e096ff50a, type: 2}
   - {fileID: 11400000, guid: a61ca068580616540b0a51a2380e7c29, type: 2}
+  - {fileID: 11400000, guid: c3888fa9a2882854e8e77f707190e00f, type: 2}
+  - {fileID: 11400000, guid: 554c87f9ab2e909439ffb10da18232e4, type: 2}

@@ -22,10 +22,6 @@ MonoBehaviour:
     m_Localized: Don't show this warning again.
     m_Metadata:
       m_Items: []
-  - m_Id: 778801475584
-    m_Localized: The drawing is saved to the gallery.
-    m_Metadata:
-      m_Items: []
   references:
     version: 2
     RefIds: []

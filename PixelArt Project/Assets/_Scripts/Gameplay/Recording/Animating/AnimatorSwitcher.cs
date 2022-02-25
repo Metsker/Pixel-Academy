@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Shared.Tools.Logic;
 using _Scripts.SharedOverall;
-using _Scripts.SharedOverall.Animating;
 using _Scripts.SharedOverall.DrawingPanel;
 using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace _Scripts.Gameplay.Recording.Animating
     public abstract class AnimatorSwitcher : ClipPlaying
     {
         [SerializeField] private Button copyButton;
-
+        [SerializeField] private Slider slider;
+        
         public void SwitchAnimate(bool isCopy)
         {
             if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Record) return;
@@ -25,10 +27,11 @@ namespace _Scripts.Gameplay.Recording.Animating
                     }
                     GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
                     animator.enabled = false;
-                    progress.value = 0;
                     ToolsManager.CurrentTool = ToolsManager.Tools.None;
                     ToolsManager.DeselectTools();
+                    ToolsManager.DeselectColors();
                     copyButton.gameObject.SetActive(false);
+                    GetSlider().value = 0;
                     if (!isCopy)
                     {
                         LoadState();
@@ -64,9 +67,13 @@ namespace _Scripts.Gameplay.Recording.Animating
         }
         protected override IEnumerator ClipTimer()
         {
-            yield return new WaitForSeconds(StartDelaySeconds);
+            yield return new WaitForSeconds(2);
             if (animator.enabled == false) yield break;
             SwitchAnimate(false);
+        }
+        protected override Slider GetSlider()
+        {
+            return slider;
         }
     }
 }

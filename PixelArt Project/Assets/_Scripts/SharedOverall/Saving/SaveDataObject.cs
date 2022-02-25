@@ -9,16 +9,16 @@ namespace _Scripts.SharedOverall.Saving
         public Dictionary<string, int> Stars;
         public Dictionary<string, bool> Unlocks;
 
-        public float clipSpeedValue;
-        public int selectedLocaleIndex;
+        public float? clipSpeedValue;
+        public int? selectedLocaleIndex;
 
         public SaveDataObject()
         {
             Stars = SaveData.Stars;
             Unlocks = SaveData.Unlocks;
 
-            clipSpeedValue = SaveData.clipSliderValue;
-            selectedLocaleIndex = SaveData.selectedLocaleIndex;
+            clipSpeedValue = SaveData.ClipSliderValue;
+            selectedLocaleIndex = SaveData.SelectedLocaleIndex;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
-using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Playing.Creating;
 using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.Animating;
 using _Scripts.SharedOverall.Audio;
@@ -11,7 +12,7 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
     {
         public static event Action TimerEvent;
         public static event Action CheckProgress;
-        public static event Action<AudioClick.AudioClickType> PlaySound;
+        public static event Action<AudioManager.AudioClickType> PlaySound;
 
         private void OnEnable()
         {
@@ -49,12 +50,12 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
         
         private void ClickEvent()
         {
-            PlaySound?.Invoke(AudioClick.AudioClickType.Click);
+            PlaySound?.Invoke(AudioManager.AudioClickType.Click);
         }
         
         private void ToolEvent()
         {
-            PlaySound?.Invoke(AudioClick.AudioClickType.Tool);
+            PlaySound?.Invoke(AudioManager.AudioClickType.Tool);
         }
     }
 }

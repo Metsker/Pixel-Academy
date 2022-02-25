@@ -1,57 +1,70 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
-using _Scripts.Gameplay.Release.Playing.Creating;
-using _Scripts.Gameplay.Release.Playing.Hints;
-using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.Gameplay.Playing.Hints;
+using _Scripts.Gameplay.Playing.Resulting;
+using _Scripts.Gameplay.Playing.UI;
 using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Gameplay.Shared.ColorPresets;
+using _Scripts.Gameplay.Shared.Tools.Logic;
 using _Scripts.SharedOverall;
-using _Scripts.SharedOverall.Animating;
-using _Scripts.SharedOverall.ColorPresets;
 using _Scripts.SharedOverall.Tools.Logic;
 using _Scripts.SharedOverall.Tools.Palette;
-using DG.Tweening;
+using _Scripts.SharedOverall.UI;
+using _Scripts.SharedOverall.UI.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.Gameplay.Release.Playing.Animating
+namespace _Scripts.Gameplay.Playing.Animating
 {
     public class ClipManager : ClipPlaying
     {
         [SerializeField] private Button submitButton;
         [SerializeField] private Button skipButton;
-        [SerializeField] private Sprite pauseSprite;
-        [SerializeField] private Sprite unpauseSprite;
-        
-        public Image pauseImage;
-        private const float AnimationDuration = 0.3f;
-        private const float PauseOpacity = 0.7f;
-        private static bool _isReadyToStart;
-        private bool _isAnimating;
-
+        private ResultCorrector _resultCorrector;
         public static event Action<WarningUI.WarningType> ShowWarning;
         public static event Action<Vector3, bool> SetHelpDirection;
+        public static event Action<bool> SwitchPause;
+        public static event Action<TextHint.HintType, float> ShowHint;
+        public static event Action SkipHint;
+
+        private const int LevelStartDelay = 3;
+        public static bool IsReadyToStart;
+        public static bool IsHintPlayed;
+        
+        public enum State
+        {
+            Pause, Start
+        }
+        
+        protected new void Awake()
+        {
+            base.Awake();
+            _resultCorrector = FindObjectOfType<ResultCorrector>();
+            IsHintPlayed = false;
+        }
         
         private void Start()
         {
-            _isReadyToStart = false;
+            IsReadyToStart = false;
         }
 
         private new void OnEnable()
         {
             base.OnEnable();
-            ClickOnPixel.StopClip += StopClip;
-            ResultCalculator.SwitchSkipButton += SwitchSkipButton;
+            ClickOnPixel.PauseOrStartClip += PauseOrStartClip;
+            ResultCorrector.SwitchSkipButton += SwitchSkipButton;
             ClipHint.RepeatClip += PlayClip;
-            ColorPreset.StartLevel += StartLevel;
+            SelectableTool.StartLevel += StartLevel;
         }
         private new void OnDisable()
         {
             base.OnDisable();
-            ClickOnPixel.StopClip -= StopClip;
-            ResultCalculator.SwitchSkipButton -= SwitchSkipButton;
+            ClickOnPixel.PauseOrStartClip -= PauseOrStartClip;
+            ResultCorrector.SwitchSkipButton -= SwitchSkipButton;
             ClipHint.RepeatClip -= PlayClip;
-            ColorPreset.StartLevel -= StartLevel;
+            SelectableTool.StartLevel -= StartLevel;
         }
 
         public async void SetClip()
@@ -62,36 +75,41 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
 
         private void PlayClip()
         {
-            LevelCreator.isGameStarted = false;
-            GameStateManager.CurrentGameState = GameStateManager.GameState.Animating;
-            animator.Play(0, 0, 0);
-            animator.enabled = true;
-            progress.value = 0;
-            progress.gameObject.SetActive(true);
-            SwitchSkipButton(true);
-            submitButton.interactable = false;
+            StartCoroutine(ClipCoroutine());
         }
 
-        private void StopClip()
+        private IEnumerator ClipCoroutine()
         {
-            switch (_isReadyToStart)
+            animator.Play(0, 0, 0);
+            if (LevelCreator.Stage == 0)
+            {
+                ShowHint?.Invoke(TextHint.HintType.Learn,0);
+                yield return new WaitUntil(() => !TextHint.IsAnimating);
+                IsHintPlayed = true;
+            }
+            GameStateManager.CurrentGameState = GameStateManager.GameState.Animating;
+            animator.enabled = true;
+            SwitchSkipButton(true);
+        }
+
+        private State PauseOrStartClip()
+        {
+            switch (IsReadyToStart)
             {
                 case true:
                     StartLevel();
-                    break;
+                    return State.Start;
                 default:
-                    SwitchPauseWithAnimation(!animator.enabled);
-                    break;
+                    var state = animator.enabled;
+                    SetAnimatorState(!state);
+                    SwitchPause?.Invoke(state);
+                    return State.Pause;
             }
         }
 
         public void SkipClipClick()
         {
-            if (GameStateManager.CurrentGameState == GameStateManager.GameState.Drawing)
-            {
-                SkipClip();
-            }
-            else if (PlayerPrefs.GetInt("ClipWarning",0) == 1)
+            if (PlayerPrefs.GetInt("ClipWarning",0) == 1)
             {
                 SkipClip();
             }
@@ -104,44 +122,63 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
         public void SkipClip()
         {
             SwitchSkipButton(false);
+            SkipHint?.Invoke();
             switch (GameStateManager.CurrentGameState)
             {
                 case GameStateManager.GameState.Animating:
-                    SwitchPauseWithAnimation(true);
+                    if (animator.enabled == false)
+                    {
+                        SetAnimatorState(true);
+                        SwitchPause?.Invoke(false);
+                    }
                     animator.Play(0, 0, 1);
                     break;
-                case GameStateManager.GameState.Drawing:
-                    ResultCalculator.Skip = true;
-                    StartCoroutine(CorrectionTimer());
+                case GameStateManager.GameState.Correcting:
+                    _resultCorrector.SkipCorrection();
                     break;
             }
         }
         private void StartLevel()
         {
-            if(!_isReadyToStart) return;
+            if(!IsReadyToStart) return;
+            GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
+            if (LevelCreator.Stage == 0)
+            {
+                ShowHint?.Invoke(TextHint.HintType.Do,3);
+            }
+            ProgressController.ToggleSliderState(false);
             StopCoroutine(clipTimer);
             SetHelpDirection?.Invoke(Vector3.zero, false);
-            GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
-            LevelCreator.isGameStarted = true;
+            
+            LevelCreator.IsGameStarted = true;
             animator.enabled = false;
             submitButton.interactable = true;
             SwitchSkipButton(false);
-            progress.gameObject.SetActive(false);
-            
-            if (ResultCalculator.selectedColorCash == ToolsManager.ColorZero || !ColorPresetSpawner.colorPresets.Exists(c => c.image.color == ResultCalculator.selectedColorCash))
+            if (LevelCreator.Stage == 0)
             {
                 ToolsManager.CurrentTool = ToolsManager.Tools.None;
+                ToolsManager.DeselectColors();
                 ToolsManager.DeselectTools();
             }
             else
             {
-                var cp = ColorPresetSpawner.GetByColor(ResultCalculator.selectedColorCash);
-                ToolsManager.CurrentTool = ToolsManager.Tools.Pencil;
-                cp.Select();
-                ToolsManager.DeselectInstruments();
-                PencilTool.SetColor(cp.image.color);
-                ResultCalculator.selectedColorCash = ToolsManager.ColorZero;
+                if (ToolsManager.CurrentTool != ToolsManager.Tools.Pencil)
+                {
+                    ToolsManager.SelectTool(ToolsManager.Tools.Pencil);
+                }
+
+                if (ColorPresetSpawner.ColorPresets.Exists(c => c.GetImageColor() == ResultCorrector.SelectedColorCash))
+                {
+                    var cp = ColorPresetSpawner.GetByColor(ResultCorrector.SelectedColorCash.Value);
+                    cp.SelectWithoutAnimation();
+                    ColorPreset.SetColor(cp.GetImageColor());
+                }
+                else
+                {
+                    ToolsManager.DeselectColors();
+                }
             }
+            
             switch (ClipHint.IsHint)
             {
                 case true:
@@ -152,7 +189,7 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
                     LoadPreviousState();
                     break;
             }
-            _isReadyToStart = false;
+            IsReadyToStart = false;
         }
         
         
@@ -161,31 +198,16 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
             skipButton.gameObject.SetActive(state);
         }
 
-        private void SwitchPauseWithAnimation(bool animatorActiveState)
+        public void SetAnimatorState(bool state)
         {
-            if(animator.enabled == animatorActiveState) return;
-            animator.enabled = animatorActiveState;
-            pauseImage.sprite = animatorActiveState ? pauseSprite : unpauseSprite;
-            pauseImage.DOFade(PauseOpacity, AnimationDuration);
-            DOTween.Sequence().AppendCallback(
-                () =>
-                {
-                    if (_isAnimating) return;
-                    _isAnimating = true;
-                    pauseImage.gameObject.transform.DOPunchScale(Vector3.one * 0.25f, AnimationDuration, 1)
-                        .OnComplete(() => _isAnimating = false);
-                }).AppendInterval(0.6f).Append(pauseImage.DOFade(0, AnimationDuration));
-        }
-        
-        public void SwitchPause(bool animatorActiveState)
-        {
-            if(animator.enabled == animatorActiveState) return;
-            animator.enabled = animatorActiveState;
+            if (animator.enabled == state) return;
+            animator.enabled = state;
         }
 
         protected override void StartTimer()
         {
-            _isReadyToStart = true;
+            if(!IsHintPlayed) return;
+            IsReadyToStart = true;
             skipButton.gameObject.SetActive(false);
             SetHelpDirection?.Invoke(Vector3.zero, false);
             base.StartTimer();
@@ -193,14 +215,16 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
 
         protected override IEnumerator ClipTimer()
         {
-            yield return new WaitForSeconds(StartDelaySeconds);
+            for (float i = 0; i < LevelStartDelay; i+=Time.deltaTime)
+            {
+                if (BlurManager.IsBlured())
+                {
+                    yield return new WaitUntil(() => !BlurManager.IsBlured());
+                }
+                yield return null;
+            }
+            ProgressController.ToggleSliderState(false);
             StartLevel();
-        }
-
-        private IEnumerator CorrectionTimer()
-        {
-            yield return new WaitForSeconds(0.5f);
-            ResultCalculator.Skip = false;
         }
     }
 }

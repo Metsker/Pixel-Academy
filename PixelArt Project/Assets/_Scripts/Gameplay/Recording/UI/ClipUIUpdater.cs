@@ -1,8 +1,13 @@
 #if (UNITY_EDITOR)
+using System;
+using System.Collections;
 using _Scripts.Gameplay.Recording.DrawingPanel;
+using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
+using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.Tools.Logic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
 namespace _Scripts.Gameplay.Recording.Animating
 {
@@ -24,10 +29,12 @@ namespace _Scripts.Gameplay.Recording.Animating
             ClipCreator.UpdateUI -= UpdateUIText;
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            if (ClipListLoader.AnimationClips.Count > 0)
+            if (LevelGroupsLoader.levelGroupsLoader.levelGroups.Count > 0)
             {
+                yield return new WaitUntil(() => ClipListLoader.GetCurrentClip() != null);
+                
                 ChangeClip(ClipListLoader.GetCurrentClip());
                 UpdateUIText();
             }
@@ -109,6 +116,18 @@ namespace _Scripts.Gameplay.Recording.Animating
             createClipUI.gameObject.SetActive(false);
         }
 
+        public void DeletePart()
+        {
+            var folderName = ClipListLoader.GetCurrentClip().name
+                .Substring(0,ClipListLoader.GetCurrentClip().name.LastIndexOf("_", StringComparison.Ordinal));
+            File.Delete($"{LevelAssetSaver.LevelPath}/{folderName}/Data/{ClipListLoader.GetCurrentClip().name}.anim");
+            File.Delete($"{LevelAssetSaver.LevelPath}/{folderName}/Data/{ClipListLoader.GetCurrentClip().name}.anim.meta");
+            File.Delete($"{LevelAssetSaver.LevelPath}/{folderName}/Data/{ClipListLoader.GetCurrentClip().name}.asset.meta");
+            File.Delete($"{LevelAssetSaver.LevelPath}/{folderName}/Data/{ClipListLoader.GetCurrentClip().name}.asset.meta");
+            ClipListLoader.AnimationClips.Remove(ClipListLoader.GetCurrentClip());
+            Decrease();
+        }
+        
         private void UpdateUIText()
         {
             currentAnimName.SetText(ClipListLoader.ClipNumber == ClipListLoader.AnimationClips.Count  ? 

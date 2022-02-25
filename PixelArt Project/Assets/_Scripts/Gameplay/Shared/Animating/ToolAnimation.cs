@@ -21,22 +21,25 @@ namespace _Scripts.SharedOverall.Animating
             _isAnimating = true;
             isAnyAnimating = true;
             
+#if (UNITY_EDITOR)
+            if (GameStateManager.CurrentGameState == GameStateManager.GameState.Recording)
+            {
+                StartCoroutine(AnimationRecording());
+            }
+#endif
             transform.DOPunchScale(Vector3.one/3, AnimDuration,1).OnComplete(()=>
             {
                 _isAnimating = false;
                 isAnyAnimating = false;
             });
-#if (UNITY_EDITOR)
-            if (GameStateManager.CurrentGameState != GameStateManager.GameState.Recording) return;
-            StartCoroutine(AnimationRecording());
-#endif
+
         }
         
 #if (UNITY_EDITOR)
         private IEnumerator AnimationRecording()
         {
             Recorder.Snapshot(Recorder.SnapshotDelay/2);
-            Recorder.Snapshot(AudioClick.AudioClickType.Tool);
+            Recorder.Snapshot(AudioManager.AudioClickType.Tool);
             
             for (float i = 0; i < AnimDuration; i+=Time.deltaTime)
             {

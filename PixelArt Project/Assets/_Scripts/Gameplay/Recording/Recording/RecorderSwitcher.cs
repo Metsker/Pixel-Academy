@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using _Scripts.Gameplay.Recording.Animating;
 using _Scripts.Gameplay.Recording.DrawingPanel;
+using _Scripts.Gameplay.Shared.ColorPresets;
+using _Scripts.Gameplay.Shared.Tools.Instruments;
+using _Scripts.Gameplay.Shared.Tools.Logic;
 using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.ColorPresets;
 using _Scripts.SharedOverall.DrawingPanel;
@@ -38,7 +41,6 @@ namespace _Scripts.Gameplay.Recording.Recording
                     GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
                     recorder.enabled = false;
                     ToggleObjects();
-                    ToolsManager.DeselectInstruments();
                     _image.color = Color.red;
                     recorder.EditClip();
                     break;
@@ -66,21 +68,25 @@ namespace _Scripts.Gameplay.Recording.Recording
                     if (Recorder.Part == 0)
                     {
                         ClearTool.Clear();
-                    }
-                    
-                    if (Recorder.selectedColorCash == ToolsManager.ColorZero || !ColorPresetSpawner.colorPresets.Exists(c => c.image.color == Recorder.selectedColorCash && ColorPresetSpawner.GetSelected() != null && ColorPresetSpawner.GetSelected().image.color == Recorder.selectedColorCash))
-                    {
                         ToolsManager.CurrentTool = ToolsManager.Tools.None;
                         ToolsManager.DeselectTools();
+                        ToolsManager.DeselectColors();
+                        Recorder.SelectedColorCash = null;
+                    }
+                    else if (ToolsManager.CurrentTool == ToolsManager.Tools.None || ToolsManager.CurrentTool == ToolsManager.Tools.Eraser)
+                    {
+                        ToolsManager.SelectTool(ToolsManager.Tools.Pencil);
+                    }
+                    
+                    if (Recorder.SelectedColorCash != null && ColorPresetSpawner.GetByColor(Recorder.SelectedColorCash.Value) != null)
+                    {
+                        var cp = ColorPresetSpawner.GetByColor(Recorder.SelectedColorCash.Value);
+                        cp.SelectWithoutAnimation();
+                        ColorPreset.SetColor(cp.GetImageColor());
                     }
                     else
                     {
-                        var cp = ColorPresetSpawner.GetByColor(Recorder.selectedColorCash);
-                        cp.Select();
-                        ToolsManager.CurrentTool = ToolsManager.Tools.Pencil;
-                        ToolsManager.DeselectInstruments();
-                        PencilTool.SetColor(cp.image.color);
-                        Recorder.selectedColorCash = ToolsManager.ColorZero;
+                        ToolsManager.DeselectColors();
                     }
                     _drawingBuilderUI.DisablePanel();
                     recorder.Clip = ClipListLoader.GetCurrentClip();
@@ -104,7 +110,6 @@ namespace _Scripts.Gameplay.Recording.Recording
             foreach (var t in imagesToSwitch)
             {
                 t.raycastTarget = !t.raycastTarget;
-                t.color = t.raycastTarget ? Color.white : new Color(1, 1, 1, 0.5f);
             }
         }
     }

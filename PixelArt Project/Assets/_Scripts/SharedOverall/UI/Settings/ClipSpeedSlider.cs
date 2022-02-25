@@ -1,41 +1,68 @@
 ﻿using System;
 using System.Globalization;
-using _Scripts.Gameplay.Release.Playing.Resulting;
-using _Scripts.SharedOverall.Animating;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Playing.Resulting;
+using _Scripts.SharedOverall.Saving;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.SharedOverall.Settings
+namespace _Scripts.SharedOverall.UI.Settings
 {
     public class ClipSpeedSlider : MonoBehaviour
     {
-        [SerializeField] private ClipPlaying clipPlaying;
-        [SerializeField] private TextMeshProUGUI animationSpeed;
+        [SerializeField] private TextMeshProUGUI animationSpeedTxt;
+        private ClipPlaying _clipPlaying;
+        public static Slider SpeedSlider { get; private set; }
         
-        public static Slider slider { get; private set; }
+        public const float ClipMin = 0.5f;
+        public const float ClipMax = 2;
+        public const float ClipDefault = 1;
+        public const float CorrectionMin = 0.4f;
+        public const float CorrectionMax = 0.1f;
 
         private void Awake()
         {
-            slider = GetComponent<Slider>();
+            SpeedSlider = GetComponent<Slider>();
+            if (GameModeManager.CurrentGameMode == GameModeManager.GameMode.Play)
+            {
+                _clipPlaying = FindObjectOfType<ClipPlaying>();
+            }
+            if (SaveData.ClipSliderValue == null) return;
+            SpeedSlider.value = (float)SaveData.ClipSliderValue;
+            SetUI();
         }
 
         public void Start()
         {
-            gameObject.SetActive(GameModeManager.CurrentGameMode == GameModeManager.GameMode.Play);
-            slider.onValueChanged.AddListener(_ => ValueChangeCheck());
-        }
-
-        private void OnDisable()
-        {
-            slider.onValueChanged.RemoveAllListeners();
+            SpeedSlider.onValueChanged.AddListener(_ => ValueChangeCheck());
         }
 
         private void ValueChangeCheck()
         {
-            clipPlaying.animator.speed = Mathf.Lerp(0.1f,2,slider.value);
-            ResultCalculator.RecoveryTiming = Mathf.Lerp(400, 20, slider.value);
-            animationSpeed.SetText(Math.Round(clipPlaying.animator.speed,1).ToString(CultureInfo.CurrentCulture));
+            SetUI();
+            if (_clipPlaying == null) return;
+            _clipPlaying.animator.speed = Mathf.Lerp(ClipMin,ClipMax,SpeedSlider.value);
+            ResultCorrector.RecoveryTiming = Mathf.Lerp(CorrectionMin,CorrectionMax, SpeedSlider.value);
+            if (GameStateManager.CurrentGameState != GameStateManager.GameState.Correcting) return;
+            ResultCorrector.InitCorrectionDuration();
+
+        }
+        
+        private void SetUI()
+        {
+            var speed = Mathf.Lerp(ClipMin,ClipMax,SpeedSlider.value);
+            animationSpeedTxt.SetText(Math.Round(speed, 1).ToString(CultureInfo.CurrentCulture) + "x");
+        }
+
+        public static float GetSavedAnimatorSpeed()
+        {
+            var v = SaveData.ClipSliderValue switch
+            {
+                null => ClipDefault,
+                _ => (float) SaveData.ClipSliderValue
+            };
+            return Mathf.Lerp(ClipMin,ClipMax,v);
         }
     }
 }

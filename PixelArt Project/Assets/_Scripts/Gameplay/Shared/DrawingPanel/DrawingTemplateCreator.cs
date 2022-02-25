@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.SharedOverall.Tools.Logic;
@@ -10,6 +11,12 @@ namespace _Scripts.SharedOverall.DrawingPanel
     {
         public static List<Image> ImagesList { get; private set; }
         public static List<ClickOnPixel> PixelList { get; private set; }
+
+        private void Awake()
+        {
+            ImagesList = null;
+            PixelList = null;
+        }
 
         public void Create()
         {

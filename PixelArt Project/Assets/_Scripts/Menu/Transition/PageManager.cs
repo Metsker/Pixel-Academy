@@ -1,41 +1,75 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using _Scripts.Menu.UI;
+using UnityEngine;
 
-namespace _Scripts.Menu.Transition
+namespace Assets._Scripts.Menu.Transition
 {
     public class PageManager : MonoBehaviour
     {
-        public static Pages currentPage = Pages.Main;
-        public PageButton[] pages;
-        public const float Duration = 0.7f;
-        public static Pages cashPage { get; set; } = Pages.Main;
+        public Transform[] dirPos;
         
+        public static Pages CurrentPage = Pages.Main;
+        public static List<PageButton> pages;
+        public List<BaseArrowHint> arrows;
+        public static Pages CashPage { get; set; } = Pages.Main;
+        public static StageController StageController;
+        public const float Duration = 0.7f;
+
+        public enum Direction
+        {
+            Left,
+            Right
+        }
         public enum Pages
         {
+            Stats,
             Editor,
             Main,
-            Stats
+            Shop
         }
 
+        private void Awake()
+        {
+            StageController = FindObjectOfType<StageController>();
+            pages = FindObjectsOfType<PageButton>().ToList().OrderBy(x => (int)(x.page))
+                .ToList();
+        }
         private void Start()
         {
-            switch (currentPage)
+            switch (CurrentPage)
             {
                 case Pages.Editor:
                     pages[(int)Pages.Editor].Pointer(0);
                     break;
-                case Pages.Stats:
-                    pages[(int)Pages.Stats].Pointer(0);
+                case Pages.Shop:
+                    pages[(int)Pages.Shop].Pointer(0);
                     break;
             }
         }
-        
+
+        public Vector2 GetPivot(Direction dir)
+        {
+            switch (dir)
+            {
+                case Direction.Left:
+                    return new Vector2(1, 0.5f);
+                case Direction.Right:
+                    return new Vector2(0, 0.5f);
+            }
+            return Vector2.zero;
+        }
+        public Vector3 GetPos(Direction dir)
+        {
+            return dirPos[(int)dir].position;
+        }
 #if UNITY_ANDROID
         public void GotoPreviousPage()
         {
-            switch (cashPage != currentPage)
+            switch (CashPage != CurrentPage)
             {
                 case true:
-                    pages[(int)cashPage].Pointer(Duration);
+                    pages[(int)CashPage].Pointer(Duration);
                     break;
                 case false:
                     Application.Quit();

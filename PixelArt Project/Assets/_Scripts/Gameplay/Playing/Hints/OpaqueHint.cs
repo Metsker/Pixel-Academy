@@ -1,25 +1,24 @@
-﻿using _Scripts.Gameplay.Release.Playing.Creating;
-using _Scripts.Gameplay.Release.Playing.Resulting;
-using _Scripts.Gameplay.Release.Shared.UI;
+﻿using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.Gameplay.Playing.Resulting;
 using _Scripts.SharedOverall.DrawingPanel;
+using _Scripts.SharedOverall.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.Gameplay.Release.Playing.Hints
+namespace _Scripts.Gameplay.Playing.Hints
 {
     public class OpaqueHint : BaseHint, IPointerClickHandler
     {
-        private const int Cost = 2;
         private const float Alpha = 0.25f;
 
-        private void OnEnable()
+        /*private void OnEnable()
         {
-            ResultCalculator.ContinueLevel += EnableHint;
+            ResultCorrector.ContinueLevel += EnableHint;
         }
         private void OnDisable()
         {
-            ResultCalculator.ContinueLevel -= EnableHint;
-        }
+            ResultCorrector.ContinueLevel -= EnableHint;
+        }*/
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -29,8 +28,8 @@ namespace _Scripts.Gameplay.Release.Playing.Hints
 
         public override void TakeHint()
         {
+            base.TakeHint();
             var i = 0;
-            DisableHint();
             foreach (var img in DrawingTemplateCreator.ImagesList)
             {
                 var color = LevelCreator.GetCurrentStageScOb().pixelList[i];
@@ -47,15 +46,6 @@ namespace _Scripts.Gameplay.Release.Playing.Hints
                 }
                 i++;
             }
-        }
-        public override bool HaveTokens()
-        {
-            return PlayerPrefs.GetInt("HintTokens", 3) >= Cost;
-        }
-
-        public override int GetCost()
-        {
-            return Cost;
         }
 
         protected override WarningUI.WarningType GetWarningType()

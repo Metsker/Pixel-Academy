@@ -6,7 +6,7 @@ namespace _Scripts.SharedOverall.Audio
     public abstract class BaseAudio : MonoBehaviour
     {
         protected AudioSource audioSource;
-        private void Awake()
+        protected void Awake()
         {
             audioSource = GetComponent<AudioSource>();
         }

@@ -1,14 +1,12 @@
 ﻿using System;
-using _Scripts.Gameplay.Release.Shared.UI;
-using _Scripts.SharedOverall.Animating;
-using UnityEngine;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.SharedOverall.UI;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.Gameplay.Release.Playing.Hints
+namespace _Scripts.Gameplay.Playing.Hints
 {
     public class ClipHint : BaseHint, IPointerClickHandler
     {
-        private const int Cost = 1;
         public static bool IsHint { get; set; }
         public static event Action RepeatClip;
 
@@ -19,18 +17,10 @@ namespace _Scripts.Gameplay.Release.Playing.Hints
         }
         public override void TakeHint()
         {
+            base.TakeHint();
             ClipPlaying.SaveState();
             IsHint = true;
             RepeatClip?.Invoke();
-        }
-        public override bool HaveTokens()
-        {
-            return PlayerPrefs.GetInt("HintTokens", 3) >= Cost;
-        }
-        
-        public override int GetCost()
-        {
-            return Cost;
         }
 
         protected override WarningUI.WarningType GetWarningType()

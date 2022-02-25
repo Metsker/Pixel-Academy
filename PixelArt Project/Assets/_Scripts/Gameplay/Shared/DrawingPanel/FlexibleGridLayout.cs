@@ -1,5 +1,6 @@
+using System;
 using System.Threading.Tasks;
-using _Scripts.Gameplay.Release.Playing.Animating;
+using _Scripts.Gameplay.Playing.Animating;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,8 @@ namespace _Scripts.SharedOverall.DrawingPanel
         
         [SerializeField] private bool fitX;
         [SerializeField] private bool fitY;
+
+        public event Action SetUpGrid;
 
         public override void CalculateLayoutInputVertical()
         {
@@ -97,12 +100,8 @@ namespace _Scripts.SharedOverall.DrawingPanel
                 case false :
                     CalculateLayoutInputVertical();
                     rectTransform.sizeDelta = new Vector2(cellSize.x * columns, cellSize.y * rows);
-
-                    if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Play) break;
-                    var clipRect = (RectTransform)FindObjectOfType<ClipManager>().pauseImage.transform.parent.transform;
-                    clipRect.sizeDelta = rectTransform.sizeDelta;
-                    clipRect.position = rectTransform.transform.position;
-                    break;
+                    SetUpGrid?.Invoke();
+                    return;
                 
                 case true :
                     var rect = viewPort.rect;

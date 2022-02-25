@@ -1,18 +1,12 @@
 ﻿#if UNITY_EDITOR
-using System;
 using _Scripts.SharedOverall.Saving;
-using _Scripts.SharedOverall.Utility;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace _Scripts.SharedOverall
 {
     public static class Developer
     {
-        public static event Action UpdateUI;
-
         [MenuItem("Developer/Reset Prefs")]
         public static void ResetPrefs()
         {
@@ -25,20 +19,20 @@ namespace _Scripts.SharedOverall
             SaveSystem.DeleteSaveFile();
         }
         
-        [MenuItem("Developer/Get 25 Hint Tokens")]
-        public static void GetHintTokens()
+        [MenuItem("Developer/Get 25 Coins")]
+        public static void GetCoins()
         {
-            PlayerPrefs.SetInt("HintTokens", PlayerPrefs.GetInt("HintTokens", 3)+25);
+            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0)+25);
             PlayerPrefs.Save();
-            UpdateUI?.Invoke();
+            CoinsUI.UpdateCoinsUI();
         }
         
-        [MenuItem("Developer/Spend Hint Tokens")]
-        public static void SpendHintTokens()
+        [MenuItem("Developer/Spend Coins")]
+        public static void SpendCoins()
         {
-            PlayerPrefs.SetInt("HintTokens", 0);
+            PlayerPrefs.SetInt("Coins", 0);
             PlayerPrefs.Save();
-            UpdateUI?.Invoke();
+            CoinsUI.UpdateCoinsUI();
         }
     }
 }

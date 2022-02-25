@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Gameplay.Playing.UI;
 using _Scripts.Menu.Logic;
 using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.DrawingPanel;
@@ -12,8 +12,10 @@ namespace _Scripts.Gameplay.Release.Drawing
     {
         [Header("Dependencies")]
         [SerializeField] private DrawingPanelCreator drawingPanelCreator;
-        public static event Action<WarningUI.WarningType> ShowTip;
 
+        private static bool _isHintShown;
+
+        public static event Action<TextHint.HintType, float> ShowHint;
         private IEnumerator Start()
         {
             if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Paint) yield break;
@@ -23,11 +25,10 @@ namespace _Scripts.Gameplay.Release.Drawing
                 SizeStep.YSide = 8;
             }
             yield return drawingPanelCreator.Create();
-            yield return new WaitUntil(SceneTransitionManager.IsLoaded);
-            
-            if (PlayerPrefs.GetInt("DrawingTipWarning", 0) == 1) yield break;
-            
-            ShowTip?.Invoke(WarningUI.WarningType.DrawingTip1);
+            if (_isHintShown) yield break;
+            ShowHint?.Invoke(TextHint.HintType.Drawing, 3);
+            _isHintShown = true;
+
         }
     }
 }

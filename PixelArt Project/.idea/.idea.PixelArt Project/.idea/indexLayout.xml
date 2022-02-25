@@ -14,7 +14,7 @@
       <Path>Library/PackageCache/com.unity.collab-proxy@1.15.1</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.6</Path>
       <Path>Library/PackageCache/com.unity.ide.rider@3.0.7</Path>
-      <Path>Library/PackageCache/com.unity.ide.visualstudio@2.0.11</Path>
+      <Path>Library/PackageCache/com.unity.ide.visualstudio@2.0.14</Path>
       <Path>Library/PackageCache/com.unity.ide.vscode@1.2.4</Path>
       <Path>Library/PackageCache/com.unity.localization@1.0.5</Path>
       <Path>Library/PackageCache/com.unity.mathematics@1.2.4</Path>
@@ -31,6 +31,7 @@
     </explicitIncludes>
     <explicitExcludes>
       <Path>.idea</Path>
+      <Path>.vs</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed516ceb416e644d8ab92c03fb73aed, type: 3}
   m_Name: Apple(14x14)_2
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: e5e3b238f99ab33408047482fbd4931d, type: 2}
+  animationClip: {fileID: 7400000, guid: ca085f38b065bc34ab49cae60bd144d7, type: 2}
   audioClickTimings:
-  - 0.8022406
-  - 1.2064316
-  - 1.610626
-  - 2.014933
+  - 0.791307
+  - 1.1965026
+  - 1.601661
+  - 2.0063078
   audioToolTimings:
   - 0.2
   pixelList:
@@ -220,3 +220,4 @@ MonoBehaviour:
   colorPresetStruct:
   - color: {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

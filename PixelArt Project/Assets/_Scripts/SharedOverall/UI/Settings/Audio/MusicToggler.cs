@@ -1,13 +1,13 @@
-using UnityEngine;
-using UnityEngine.Audio;
+using _Scripts.SharedOverall.Audio;
 
 namespace _Scripts.SharedOverall.Settings
 {
     public class MusicToggler : AudioSetting
     {
+        private const string ChannelName = "Music";
         private void Start()
         {
-            blocker.SetActive(IsMusicEnabled()); //change
+            image.sprite = IsMusicEnabled() ? sprites[1] : sprites[0];
         }
         
         public override void ToggleClick()
@@ -17,7 +17,11 @@ namespace _Scripts.SharedOverall.Settings
         
         public static bool IsMusicEnabled()
         {
-            return musicCashValue < 0;
+            if (AudioManager.AudioMixer.GetFloat(ChannelName, out var value))
+            {
+                return value > -80;
+            }
+            return false;
         }
     }
 }

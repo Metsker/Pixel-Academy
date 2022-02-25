@@ -4,6 +4,8 @@ using _Scripts.Gameplay.Recording.Animating;
 using _Scripts.Gameplay.Recording.ColorPresets;
 using _Scripts.Gameplay.Recording.Recording;
 using _Scripts.Gameplay.Recording.UI;
+using _Scripts.Gameplay.Shared.ColorPresets;
+using _Scripts.SharedOverall;
 using UnityEditor;
 using UnityEngine;
 using static _Scripts.SharedOverall.DrawingPanel.DrawingPanelCreator;
@@ -12,7 +14,7 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 {
     public static class LevelAssetSaver
     {
-        private const string LevelPath = "Assets/Resources/Levels";
+        public const string LevelPath = "Assets/Resources/Levels";
         
         public static void CreateStageAsset(List<Color> pixelList, List<ColorPresetStruct> colorList,
             AnimationClip clip, List<float> audioClickTimings, List<float> audioToolTimings)
@@ -28,6 +30,23 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
             asset.audioToolTimings = audioToolTimings;
             AssetDatabase.CreateAsset(asset, $"{LevelPath}/{folderName}/Data/{name}.asset");
             AssetDatabase.SaveAssets();
+
+            if (!LevelGroupsLoader.TryFindLevelInCurrentGroup(folderName, out var level))
+            {
+                if (!LevelGroupsLoader.TryFindLevelInOtherGroups(folderName, out level))
+                {
+                    return;
+                }
+            }
+            
+            if (level.stageScriptableObjects.Count > Recorder.Part)
+            {
+                level.stageScriptableObjects[Recorder.Part] = asset;
+            }
+            else
+            {
+                level.stageScriptableObjects.Add(asset);
+            }
         }
 
         public static void CreateLevelAsset()
@@ -40,27 +59,18 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
             asset.yLenght = Y;
             asset.difficulty = DifficultyCalculator.Calculate(X * Y);
             asset.previewSprite = Resources.Load<Sprite>($"Levels/{folderName}/{folderName}");
-            asset.groupType = LevelGroupManager.selectedGroupType;
+            asset.groupType = LevelGroupsManager.SelectedGroupType;
             asset.stageScriptableObjects = new List<StageScriptableObject>();
             for (var i = 0; i < Recorder.Part + 1; i++)
             {
                 asset.stageScriptableObjects.Add(Resources.Load<StageScriptableObject>(
                     $"Levels/{folderName}/Data/{folderName}_{i}"));
             }
-    
             var levelPath = $"{LevelPath}/{folderName}/{folderName}.asset";
             AssetDatabase.CreateAsset(asset, levelPath);
-            LevelGroupScriptableObject.GetLevelGroupScrObj().levels.Add(
-                Resources.Load<LevelScriptableObject>($"Levels/{folderName}/{folderName}"));
-            
-            var nlg = Resources.Load<LevelGroupScriptableObject>("LevelGroupObjects/News").levels;
-            nlg.Insert(0,asset);
-            if (nlg.Count > 6)
-            {
-                nlg.RemoveAt(nlg.Count-1);
-            }
-
-            EditorUtility.SetDirty(LevelGroupScriptableObject.GetLevelGroupScrObj());
+            LevelGroupScriptableObject.GetCurrentLevelGroupScrObj().levels.Add(
+                asset);
+            EditorUtility.SetDirty(LevelGroupScriptableObject.GetCurrentLevelGroupScrObj());
             AssetDatabase.SaveAssets();
         }
     }

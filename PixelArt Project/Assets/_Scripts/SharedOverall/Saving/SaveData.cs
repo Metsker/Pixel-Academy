@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
 using _Scripts.SharedOverall.Settings;
-using _Scripts.SharedOverall.Settings.LanguageToggler;
+using _Scripts.SharedOverall.UI.Settings;
 
 namespace _Scripts.SharedOverall.Saving
 {
@@ -9,8 +9,8 @@ namespace _Scripts.SharedOverall.Saving
     {
         public static Dictionary<string, int> Stars = new();
         public static Dictionary<string, bool> Unlocks = new();
-        public static float clipSliderValue;
-        public static int selectedLocaleIndex;
+        public static float? ClipSliderValue;
+        public static int? SelectedLocaleIndex;
 
         public static void SaveLevelData(LevelScriptableObject level)
         {
@@ -34,8 +34,8 @@ namespace _Scripts.SharedOverall.Saving
         }
         public static void SaveSettingsData()
         {
-            clipSliderValue = ClipSpeedSlider.slider.value;
-            selectedLocaleIndex = LanguageToggler.GetCurrentLocaleIndex();
+            ClipSliderValue = ClipSpeedSlider.SpeedSlider.value;
+            SelectedLocaleIndex = LanguageToggler.GetCurrentLocaleIndex();
         }
             
     }

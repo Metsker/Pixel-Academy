@@ -12,17 +12,17 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Spicy
+  companyName: LuckyFrog
   productName: Pixel Academy
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
-  m_ShowUnitySplashScreen: 0
+  m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
-  m_SplashScreenOverlayOpacity: 1
-  m_SplashScreenAnimation: 2
-  m_SplashScreenLogoStyle: 0
-  m_SplashScreenDrawMode: 0
+  m_SplashScreenOverlayOpacity: 0.5
+  m_SplashScreenAnimation: 1
+  m_SplashScreenLogoStyle: 1
+  m_SplashScreenDrawMode: 1
   m_SplashScreenBackgroundAnimationZoom: 1
   m_SplashScreenLogoAnimationZoom: 1
   m_SplashScreenBackgroundLandscapeAspect: 1
@@ -39,7 +39,11 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: cfb9ea4e129b3c24ea58a5b5ef05aa37, type: 3}
+    duration: 2
+  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
@@ -135,7 +139,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: a15ad700339f3a4418d5c54e6a08fdac, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -267,11 +272,80 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: f7fb8ae6265b18a4ba39343ab14bddac, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 33216ac42a83ca4498bde0f90dfd74e4, type: 3}
+      - {fileID: 2800000, guid: f7fb8ae6265b18a4ba39343ab14bddac, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
@@ -300,66 +374,6 @@ PlayerSettings:
       m_Width: 81
       m_Height: 81
       m_Kind: 2
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 1
       m_SubKind: 
   - m_BuildTarget: iPhone
     m_Icons:
@@ -734,7 +748,7 @@ PlayerSettings:
   ps4IncludedModules: []
   ps4attribVROutputEnabled: 0
   monoEnv: 
-  splashScreenBackgroundSourceLandscape: {fileID: 0}
+  splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid: 2e6afcf26e5ed0243b44b2bfd9e6020f, type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   blurSplashScreenBackground: 1
   spritePackerPolicy: 

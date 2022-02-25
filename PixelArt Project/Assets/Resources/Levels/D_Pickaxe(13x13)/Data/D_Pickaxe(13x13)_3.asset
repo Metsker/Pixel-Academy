@@ -12,16 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed516ceb416e644d8ab92c03fb73aed, type: 3}
   m_Name: D_Pickaxe(13x13)_3
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: 782c5eb1f62dac746885d76843f6a10e, type: 2}
+  animationClip: {fileID: 7400000, guid: 10229ec7e3c1ada4cb28b46e60e596fb, type: 2}
   audioClickTimings:
   - 0
-  - 0.4047127
-  - 0.8089243
-  - 1.2131703
-  - 1.6172416
-  - 2.0217628
-  - 2.425985
-  - 2.8303397
+  - 0.4017159
+  - 0.8034337
+  - 1.2051848
+  - 1.606973
   audioToolTimings: []
   pixelList:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -196,3 +193,4 @@ MonoBehaviour:
   colorPresetStruct:
   - color: {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

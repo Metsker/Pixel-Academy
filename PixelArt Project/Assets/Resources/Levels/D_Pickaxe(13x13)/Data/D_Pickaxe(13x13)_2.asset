@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed516ceb416e644d8ab92c03fb73aed, type: 3}
   m_Name: D_Pickaxe(13x13)_2
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: 02d892b1d7dfd0d498eaa5daefe96f0e, type: 2}
+  animationClip: {fileID: 7400000, guid: 85b672aa5205a3d4489560920ac17417, type: 2}
   audioClickTimings:
   - 0
-  - 0.4044178
-  - 0.8089298
-  - 1.2133098
+  - 0.4018572
+  - 0.8037431
+  - 1.2056316
+  - 1.6074183
+  - 2.009155
   audioToolTimings: []
   pixelList:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -50,10 +52,10 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
+  - {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
+  - {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
+  - {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -148,7 +150,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -192,3 +194,4 @@ MonoBehaviour:
   colorPresetStruct:
   - color: {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

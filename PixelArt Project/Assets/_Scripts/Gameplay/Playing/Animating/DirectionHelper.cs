@@ -1,4 +1,5 @@
-using _Scripts.Gameplay.Release.Playing.Resulting;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Playing.Resulting;
 using _Scripts.SharedOverall.Tools.Logic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,14 +20,14 @@ namespace _Scripts.Gameplay.Release.Playing.Animating
         {
             ClickOnPixel.SetHelpDirection += SetHelpDirection;
             ClipManager.SetHelpDirection += SetHelpDirection;
-            ResultCalculator.SetHelpDirection += SetHelpDirection;
+            ResultCorrector.SetHelpDirection += SetHelpDirection;
         }
 
         private void OnDisable()
         {
             ClickOnPixel.SetHelpDirection -= SetHelpDirection;
             ClipManager.SetHelpDirection -= SetHelpDirection;
-            ResultCalculator.SetHelpDirection -= SetHelpDirection;
+            ResultCorrector.SetHelpDirection -= SetHelpDirection;
         }
 
         private void SetHelpDirection(Vector3 targetPos, bool state)

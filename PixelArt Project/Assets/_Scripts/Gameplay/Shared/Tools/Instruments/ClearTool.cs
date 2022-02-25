@@ -1,18 +1,19 @@
 using System;
-using _Scripts.Gameplay.Release.Playing.Creating;
-using _Scripts.Gameplay.Release.Shared.UI;
+using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.Gameplay.Shared.Tools.Logic;
+using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.DrawingPanel;
 using _Scripts.SharedOverall.Tools.Logic;
 using _Scripts.SharedOverall.Tools.Palette;
+using _Scripts.SharedOverall.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace _Scripts.SharedOverall.Tools.Instruments
+namespace _Scripts.Gameplay.Shared.Tools.Instruments
 {
     public class ClearTool : BaseTool, IPointerClickHandler
     {
         public static event Action<WarningUI.WarningType> ShowWarning;
-        
         public void OnPointerClick(PointerEventData eventData)
         {
             ClickEvent();
@@ -30,20 +31,26 @@ namespace _Scripts.SharedOverall.Tools.Instruments
                 ShowWarning?.Invoke(WarningUI.WarningType.Clear);
             }
         }
-        
+
         public static void Clear()
         {
             if (DrawingTemplateCreator.ImagesList == null) return;
             if (LevelCreator.Stage <= 0)
-                for (var i = 0; i < DrawingTemplateCreator.PixelList.Count; i++)
+            {
+                foreach (var img in DrawingTemplateCreator.ImagesList)
                 {
-                    DrawingTemplateCreator.ImagesList[i].color = EraserTool.GetColor();
+                    img.color = EraserTool.GetColor();
                 }
+            }
             else
-                for (var i = 0; i < DrawingTemplateCreator.PixelList.Count; i++)
+            {
+                var i = 0;
+                foreach (var img in DrawingTemplateCreator.ImagesList)
                 {
-                    DrawingTemplateCreator.ImagesList[i].color = LevelCreator.GetPreviousStageScOb().pixelList[i];
+                    img.color = LevelCreator.GetPreviousStageScOb().pixelList[i];
+                    i++;
                 }
+            }
         }
     }
 }

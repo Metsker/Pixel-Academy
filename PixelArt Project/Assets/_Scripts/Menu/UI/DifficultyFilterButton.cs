@@ -64,9 +64,9 @@ namespace _Scripts.Menu.UI
                     continue;
                 }
 
-                if (data.scriptableObject != null)
+                if (data.ScriptableObject != null)
                 {
-                    data.gameObject.SetActive(data.scriptableObject.difficulty == dif);
+                    data.gameObject.SetActive(data.ScriptableObject.difficulty == dif);
                 }
             }
             currentDifficulty = dif;

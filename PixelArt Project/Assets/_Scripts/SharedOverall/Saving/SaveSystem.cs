@@ -1,11 +1,7 @@
-using System;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using _Scripts.Gameplay.Recording.ScriptableObjectLogic;
-using _Scripts.Gameplay.Recording.UI;
 using UnityEngine;
-using static _Scripts.Gameplay.Recording.ScriptableObjectLogic.LevelGroupScriptableObject;
 
 namespace _Scripts.SharedOverall.Saving
 {
@@ -44,13 +40,12 @@ namespace _Scripts.SharedOverall.Saving
             SaveData.Stars = save.Stars;
             SaveData.Unlocks = save.Unlocks;
 
-            SaveData.clipSliderValue = save.clipSpeedValue;
-            SaveData.selectedLocaleIndex = save.selectedLocaleIndex;
+            SaveData.ClipSliderValue = save.clipSpeedValue;
+            SaveData.SelectedLocaleIndex = save.selectedLocaleIndex;
 
-            for (var i = 0; i < Enum.GetNames(typeof(LevelGroupManager.GroupType)).Length; i++)
+            foreach (var group in LevelGroupsLoader.levelGroupsLoader.levelGroups)
             {
-                foreach (var level in Resources.Load<LevelGroupScriptableObject>(
-                    $"{FolderName}/{Enum.GetNames(typeof(LevelGroupManager.GroupType))[i]}").levels.Where(l => l != null))
+                foreach (var level in group.levels.Where(l => l != null))
                 {
                     if (SaveData.Stars.ContainsKey(level.name))
                     {
@@ -59,7 +54,7 @@ namespace _Scripts.SharedOverall.Saving
                     if (SaveData.Unlocks.ContainsKey(level.name))
                     {
                         level.isLocked = SaveData.Unlocks[level.name];
-                    }
+                    } 
                 }
             }
         }

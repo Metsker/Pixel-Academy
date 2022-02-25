@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using _Scripts.Gameplay.Recording.UI;
+using _Scripts.SharedOverall;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,21 +13,23 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
     [CreateAssetMenu(fileName = "Group", menuName = "ScriptableObjects/LevelGroup", order = 1)]
     public class LevelGroupScriptableObject : ScriptableObject
     {
-        public const string FolderName = "LevelGroupObjects";
+        private const string FolderName = "LevelGroupObjects";
+        public LevelGroupsManager.GroupType groupType;
         
         public List<LevelScriptableObject> levels = new();
         
-#if UNITY_EDITOR    
-        public static LevelGroupScriptableObject GetLevelGroupScrObj()
+#if UNITY_EDITOR 
+        public static LevelGroupScriptableObject GetCurrentLevelGroupScrObj()
         {
-            var path = $"Assets/Resources/{FolderName}/{LevelGroupManager.selectedGroupType.ToString()}.asset";
+            var path = $"Assets/Resources/{FolderName}/{LevelGroupsManager.SelectedGroupType.ToString()}.asset";
             if (!File.Exists(path))
             {
                 var asset = CreateInstance<LevelGroupScriptableObject>();
                 AssetDatabase.CreateAsset(asset, path);
                 AssetDatabase.SaveAssets();
+                LevelGroupsLoader.levelGroupsLoader.levelGroups.Add(asset);
             }
-            return Resources.Load<LevelGroupScriptableObject>($"{FolderName}/{LevelGroupManager.selectedGroupType.ToString()}");
+            return LevelGroupsLoader.levelGroupsLoader.levelGroups.Find((g) => g.groupType == LevelGroupsManager.SelectedGroupType);
         }
 #endif
     }

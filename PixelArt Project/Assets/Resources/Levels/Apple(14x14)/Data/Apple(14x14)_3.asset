@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed516ceb416e644d8ab92c03fb73aed, type: 3}
   m_Name: Apple(14x14)_3
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: 7a749cbec92f74847b0dae8be4e3165d, type: 2}
+  animationClip: {fileID: 7400000, guid: a0197a05337508e4a882816f996408d2, type: 2}
   audioClickTimings:
   - 0
-  - 0.4050312
-  - 0.8091628
+  - 0.4054214
+  - 0.8107149
   audioToolTimings: []
   pixelList:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -70,13 +70,13 @@ MonoBehaviour:
   - {r: 0.2901961, g: 0.1254902, b: 0.12156863, a: 1}
   - {r: 0.2901961, g: 0.1254902, b: 0.12156863, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
-  - {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
-  - {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -90,6 +90,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -103,8 +104,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -218,3 +218,4 @@ MonoBehaviour:
   colorPresetStruct:
   - color: {r: 0.78431374, g: 0.1882353, b: 0.14509805, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

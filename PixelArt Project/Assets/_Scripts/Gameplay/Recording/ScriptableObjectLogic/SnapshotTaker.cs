@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Playing.UI;
+using _Scripts.Gameplay.Recording.Recording;
 using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.DrawingPanel;
 using DG.Tweening;
@@ -14,14 +17,13 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
     public class SnapshotTaker : MonoBehaviour
     {
         [SerializeField] private RectTransform targetRect;
-        [SerializeField] private TextMeshProUGUI resultInfoText;
         [SerializeField] private Button paintingSnapButton;
+        [SerializeField] private BorderManager borderManager;
         private Camera _camera;
-        
-        private const int FadeDuration = 1;
-        private const int IntervalDuration = 2;
-
+        public static event Action<TextHint.HintType, float> ShowHint;
 #if UNITY_EDITOR
+        [Header("Recording")]
+        [SerializeField] private GameObject recorderUI;
         public static event Action SnapshotCallback;
 #endif
 
@@ -47,13 +49,15 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
             {
                 paintingSnapButton.interactable = false;
             }
-            
+
+            borderManager.ToggleState(false);
             foreach (var i in DrawingTemplateCreator.PixelList)
             {
                 i.ToggleGrid(false);
-
             }
-
+#if UNITY_EDITOR
+            recorderUI.SetActive(false);
+#endif
             yield return new WaitForEndOfFrame();
             
             var corners = new Vector3[4];
@@ -68,6 +72,7 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
             Rect rex = new Rect(bl.x,bl.y,width,height);
             tex.ReadPixels(rex, 0, 0);
             tex.Apply();
+            borderManager.ToggleState(true);
             foreach (var i in DrawingTemplateCreator.PixelList)
             {
                 i.ToggleGrid(true);
@@ -76,6 +81,7 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
             var bytes = tex.EncodeToJPG();
             File.WriteAllBytes(filePath, bytes);
             AssetDatabase.Refresh();
+            recorderUI.SetActive(true);
             SnapshotCallback?.Invoke();
 #else
             var shotName = $"{Application.productName}_Drawing_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.png";
@@ -83,14 +89,8 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
 #endif
             Destroy(tex);
             if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Paint) yield break;
-            SetResultInfo();
+            ShowHint?.Invoke(TextHint.HintType.Snapshot, 3);
             paintingSnapButton.interactable = true;
-        }
-
-        private void SetResultInfo()
-        {
-            DOTween.Sequence().Append(resultInfoText.DOFade(1, FadeDuration)).
-                AppendInterval(IntervalDuration).Append(resultInfoText.DOFade(0, 1));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace _Scripts.SharedOverall
     }
     public interface ISelectable
     {
-        void Select();
+        void SelectWithoutAnimation();
         void Deselect();
         bool IsSelected();
         Color GetDeselectedColor();

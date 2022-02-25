@@ -1,5 +1,5 @@
 ﻿using System;
-using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Playing.Creating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -8,14 +8,14 @@ namespace _Scripts.SharedOverall.Audio
 {
     public class AudioClickEvent : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private AudioClick.AudioClickType clickType;
+        [SerializeField] private AudioManager.AudioClickType clickType;
         [SerializeField] private bool ignoreGameState;
         
-        public static event Action<AudioClick.AudioClickType> PlaySound;
+        public static event Action<AudioManager.AudioClickType> PlaySound;
         
         private void Start()
         {
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 1)
             {
                 ignoreGameState = true;
             }
@@ -23,7 +23,7 @@ namespace _Scripts.SharedOverall.Audio
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (GameModeManager.CurrentGameMode == GameModeManager.GameMode.Play && !LevelCreator.isGameStarted && !ignoreGameState) return;
+            if (GameModeManager.CurrentGameMode == GameModeManager.GameMode.Play && !LevelCreator.IsGameStarted && !ignoreGameState) return;
             PlaySound?.Invoke(clickType);
         }
     }

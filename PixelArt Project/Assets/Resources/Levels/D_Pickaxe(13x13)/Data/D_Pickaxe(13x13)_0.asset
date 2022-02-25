@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationClip: {fileID: 7400000, guid: a57a7c6828b811345bd8a774a5ec4b0c, type: 2}
   audioClickTimings:
-  - 0.7979512
-  - 1.2055387
-  - 1.6096919
-  - 2.0136805
-  - 2.4179618
+  - 1.5985516
+  - 2.0003743
+  - 2.4022176
+  - 2.8041477
+  - 3.205873
   audioToolTimings:
   - 0.2
+  - 0.9984522
   pixelList:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -194,3 +195,4 @@ MonoBehaviour:
   colorPresetStruct:
   - color: {r: 0.050980393, g: 0.29411766, b: 0.3019608, a: 1}
     name: Preset Color (0)
+  firstColor: {r: 0, g: 0, b: 0, a: 0}

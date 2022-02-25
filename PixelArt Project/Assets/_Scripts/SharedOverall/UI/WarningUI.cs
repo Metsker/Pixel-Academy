@@ -1,25 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Playing.Hints;
+using _Scripts.Gameplay.Playing.UI;
 using _Scripts.Gameplay.Release.Drawing;
-using _Scripts.Gameplay.Release.Playing.Animating;
-using _Scripts.Gameplay.Release.Playing.Hints;
+using _Scripts.Gameplay.Shared.Tools.Instruments;
+using _Scripts.Gameplay.Shared.UI;
 using _Scripts.Menu.UI;
-using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.Ads;
 using _Scripts.SharedOverall.Tools;
-using _Scripts.SharedOverall.Tools.Instruments;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+using static _Scripts.SharedOverall.Dictionaries;
 
-namespace _Scripts.Gameplay.Release.Shared.UI
+namespace _Scripts.SharedOverall.UI
 {
-    public class WarningUI : MonoBehaviour
+    public class WarningUI : UIPanel
     {
         [SerializeField] private GameObject warningUI;
         [SerializeField] private Toggle showAgain;
         [SerializeField] private Image picture;
-        [SerializeField] private ClipManager clipManager;
 
         [SerializeField] private BaseAdVideo baseAdVideo;
         
@@ -33,90 +34,23 @@ namespace _Scripts.Gameplay.Release.Shared.UI
         [SerializeField] private Sprite chickko;
         [SerializeField] private Sprite dinno;
         [SerializeField] private Sprite seallo;
-
-        private readonly Dictionary<string, string> _ruDictionary = new()
-        {
-            { "ClearLabel", "Очистить лист?" }, 
-            { "ClearPurpose", "Весь прогресс рисования будет утерян. Придется начать заново." },
-            { "ClearButton", "Стереть!" },
-            
-            { "SkipLabel", "Пропустить клип?" },
-            { "SkipPurpose", "Если играете первый раз, то советуем не пропускать вспомогательный клип." },
-            { "SkipButton", "Пропустить!" },
-            
-            { "HintLabel", "Посмотреть подсказку?" },
-            { "HintAdLabel", "Не хватает токенов." },
-            { "HintCost", "\n Стоимость:" },
-            { "HintOpaquePurpose", "Откроет картинку." },
-            { "HintClipPurpose", "Повторит клип с начала." },
-            { "HintAdPurpose", "Зарабатывайте их, проходя уровни,\n или просто посмотрите рекламу." },
-            { "HintButton", "Посмотреть!" },
-            
-            { "DrawingTipLabel", "Совет" },
-            { "DrawingTipPurpose", "Чтобы изменить цвет, нажми на него два раза подряд." },
-            { "DrawingTipButton", "Понятно!" },
-            
-            { "ExitLabel", "Выйти в меню?" },
-            { "ExitButton", "Выйти!" },
-            
-            { "UnlockLevelLabel", "Разблокировать уровень?" },
-            { "UnlockLevelPurpose", "Посмотрите рекламу чтобы открыть уровень навсегда." },
-            { "UnlockLevelButton", "Посмотреть!" },
-            
-            { "UnlockLevelLabelError", "Реклама не загрузилась :(" },
-            { "UnlockLevelPurposeError", "Получить награду не получится. Проверьте подключение к интернету." },
-            { "UnlockLevelButtonError", "Eщё попытка!" }
-        };
-        
-        private readonly Dictionary<string, string> _engDictionary = new()
-        {
-            { "ClearLabel", "Clear the canvas?" }, 
-            { "ClearPurpose", "All drawing progress will be lost. You'll have to start over." },
-            { "ClearButton", "Clear" },
-            
-            { "SkipLabel", "Skip the clip?" },
-            { "SkipPurpose", "If you are playing for the first time, we advise you not to skip the supporting clip." },
-            { "SkipButton", "Skip!" },
-            
-            { "HintLabel", "Watch a hint?" },
-            { "HintAdLabel", "Not enough tokens :(" },
-            { "HintCost", "\n Price:" },
-            { "HintOpaquePurpose", "This will open the picture." },
-            { "HintClipPurpose", "This will repeat the clip from the beginning." },
-            { "HintAdPurpose", "Earn them by completing levels, or watch the ad to get a hint." },
-            { "HintButton", "Watch!" },
-            
-            { "DrawingTipLabel", "Tip" },
-            { "DrawingTipPurpose", "To change the color, click on it twice in a row." },
-            { "DrawingTipButton", "Clear!" },
-            
-            { "ExitLabel", "Go to main menu?" },
-            { "ExitButton", "Go!" },
-            
-            { "UnlockLevelLabel", "Unlock level?" },
-            { "UnlockLevelPurpose", "Watch the ad to unlock the level forever." },
-            { "UnlockLevelButton", "Watch!" },
-            
-            { "UnlockLevelLabelError", "Ad loading fail :(" },
-            { "UnlockLevelPurposeError", "You will not be able to get a reward. Check your Internet connection." },
-            { "UnlockLevelButtonError", "Try again!" }
-        };
         
         private OpaqueHint _opaqueHint;
         private ClipHint _clipHint;
-        private MenuButton _menuButton;
+        private ClipManager _clipManager;
         private Vector2 _pictureStartSize;
-        public static event Action SwitchBlur;
+        public static event Action<bool> SwitchBlur;
 
         private WarningType _warningType;
+        
         public enum WarningType
         {
             Clear,
             Skip,
             OpaqueHint,
             ClipHint,
-            DrawingTip1,
             Exit,
+            Restart,
             UnlockLevel
         }
 
@@ -127,48 +61,39 @@ namespace _Scripts.Gameplay.Release.Shared.UI
 
         private void Start()
         {
-            _menuButton = FindObjectOfType<MenuButton>();
             if(GameModeManager.CurrentGameMode != GameModeManager.GameMode.Play) return;
             _opaqueHint = FindObjectOfType<OpaqueHint>();
             _clipHint = FindObjectOfType<ClipHint>();
+            _clipManager = FindObjectOfType<ClipManager>();
         }
 
-        private void OnEnable()
+        protected new void OnEnable()
         {
+            base.OnEnable();
             ClearTool.ShowWarning += ShowWarning;
             ClipManager.ShowWarning += ShowWarning;
             BaseHint.ShowWarning += ShowWarning;
-            StartDrawing.ShowTip += ShowWarning;
-            MenuButton.ShowWarning += ShowWarning;
-            LevelStartButton.ShowWarning += ShowWarning;
-
-            MenuButton.IsWarningActive += IsWarningActive;
-            MenuButton.CloseWarning += CloseWarning;
+            MenuAwaiter.ShowWarning += ShowWarning;
+            RestartAwaiter.ShowWarning += ShowWarning;
+            StartLevelButton.ShowWarning += ShowWarning;
         }
 
-        private void OnDisable()
+        protected new void OnDisable()
         {
+            base.OnDisable();
             ClearTool.ShowWarning -= ShowWarning;
             ClipManager.ShowWarning -= ShowWarning;
             BaseHint.ShowWarning -= ShowWarning;
-            StartDrawing.ShowTip -= ShowWarning;
-            MenuButton.ShowWarning -= ShowWarning;
-            LevelStartButton.ShowWarning -= ShowWarning;
-            
-            MenuButton.IsWarningActive -= IsWarningActive;
-            MenuButton.CloseWarning -= CloseWarning;
+            MenuAwaiter.ShowWarning -= ShowWarning;
+            RestartAwaiter.ShowWarning -= ShowWarning;
+            StartLevelButton.ShowWarning -= ShowWarning;
         }
 
         private void ShowWarning(WarningType type)
         {   
-            SwitchBlur?.Invoke();
+            SwitchBlur?.Invoke(true);
             _warningType = type;
-            
-            if (clipManager != null && GameStateManager.CurrentGameState == GameStateManager.GameState.Animating)
-            {
-                clipManager.SwitchPause(false);
-            }
-            
+
             if (!showAgain.interactable)
             {
                 showAgain.interactable = true;
@@ -191,64 +116,51 @@ namespace _Scripts.Gameplay.Release.Shared.UI
                     picture.sprite = froggo;
                     break;
                 case WarningType.OpaqueHint:
-                    switch (_opaqueHint.HaveTokens())
-                    {
-                        case true:
-                            labelText.SetText(GetLocalizedString("HintLabel"));
-                            var costString = $"{GetLocalizedString("HintCost")} {_opaqueHint.GetCost()}";
-                            purposeText.SetText(GetLocalizedString("HintOpaquePurpose") + costString);
-                            buttonText.SetText(GetLocalizedString("HintButton"));
-                            picture.sprite = chickko;
-                            break;
-                        case false:
-                            showAgain.interactable = false;
-                            CheckAdLoaded(this, EventArgs.Empty);
-                            break;
-                    }
+                    CheckAdLoaded(this, EventArgs.Empty);
                     break;
                 case WarningType.ClipHint:
-                    switch (_clipHint.HaveTokens())
-                    {
-                        case true:
-                            labelText.SetText(GetLocalizedString("HintLabel"));
-                            var costString = $"{GetLocalizedString("HintCost")} {_clipHint.GetCost()}";
-                            purposeText.SetText(GetLocalizedString("HintClipPurpose") + costString);
-                            buttonText.SetText(GetLocalizedString("HintButton"));
-                            picture.sprite = chickko;
-                            break;
-                        case false:
-                            showAgain.interactable = false;
-                            CheckAdLoaded(this, EventArgs.Empty);
-                            break;
-                    }
-                    break;
-                case WarningType.DrawingTip1:
-                    labelText.SetText(GetLocalizedString("DrawingTipLabel"));
-                    purposeText.SetText(GetLocalizedString("DrawingTipPurpose"));
-                    buttonText.SetText(GetLocalizedString("DrawingTipButton"));
-                    picture.sprite = dinno;
+                    CheckAdLoaded(this, EventArgs.Empty);
                     break;
                 case WarningType.Exit:
                     labelText.SetText(GetLocalizedString("ExitLabel"));
                     purposeText.SetText(GetLocalizedString("ClearPurpose"));
                     buttonText.SetText(GetLocalizedString("ExitButton"));
                     picture.sprite = seallo;
+                    break; 
+                case WarningType.Restart:
+                    labelText.SetText(GetLocalizedString("RestartLabel"));
+                    purposeText.SetText(GetLocalizedString("ClearPurpose"));
+                    buttonText.SetText(GetLocalizedString("RestartButton"));
+                    picture.sprite = dinno;
                     break;
                 case WarningType.UnlockLevel:
-                    showAgain.interactable = false;
-                    CheckAdLoaded(this, EventArgs.Empty);
+                    switch (StartLevelButton.CheckCost())
+                    {
+                        case true:
+                            labelText.SetText(GetLocalizedString("UnlockLevelLabel"));
+                            purposeText.SetText(GetLocalizedString("UnlockLevelPurpose") + StartLevelButton.LevelDataToUnlock.ScriptableObject.GetCost());
+                            buttonText.SetText(GetLocalizedString("UnlockLevelButton"));
+                            picture.sprite = seallo;
+                            showAgain.interactable = false;
+                            break;
+                        case false:
+                            labelText.SetText(GetLocalizedString("NoCoinsLabel"));
+                            purposeText.SetText(GetLocalizedString("NoCoinsPurpose"));
+                            buttonText.SetText(GetLocalizedString("NoCoinsButton"));
+                            picture.sprite = dinno;
+                            showAgain.interactable = false;
+                            break;
+                    }
                     break;
             }
             ImageAdjuster.Adjust((RectTransform)picture.transform, picture.sprite, _pictureStartSize);
         }
-        public void CloseWarning()
+
+        public override void CloseUI()
         {
-            SwitchBlur?.Invoke();   
+            if(!warningUI.activeSelf) return;
+            SwitchBlur?.Invoke(false);   
             warningUI.gameObject.SetActive(false);
-            if (clipManager != null && GameStateManager.CurrentGameState == GameStateManager.GameState.Animating)
-            {
-                clipManager.SwitchPause(true);
-            }
             if (showAgain.isOn == false) return;
             showAgain.isOn = false;
         }
@@ -263,21 +175,18 @@ namespace _Scripts.Gameplay.Release.Shared.UI
                     PlayerPrefs.Save();
                     break;
                 case WarningType.Skip:
-                    clipManager.SkipClip();
+                    _clipManager.SkipClip();
                     if (!showAgain.isOn) break;
                     PlayerPrefs.SetInt("ClipWarning", 1);
                     PlayerPrefs.Save();
                     break;
                 case WarningType.OpaqueHint:
-                    switch (_opaqueHint.HaveTokens())
+                    switch (baseAdVideo.IsAdLoaded())
                     {
                         case true:
-                            _opaqueHint.BuyHint();
+                            _opaqueHint.GetHintByAd();
                             break;
-                        case false when baseAdVideo.IsAdLoaded():
-                            _opaqueHint.WatchAd();
-                            break;
-                        case false when !baseAdVideo.IsAdLoaded():
+                        case false:
                             baseAdVideo.RequestRewarded();
                             return;
                     }
@@ -286,15 +195,12 @@ namespace _Scripts.Gameplay.Release.Shared.UI
                     PlayerPrefs.Save();
                     break;
                 case WarningType.ClipHint:
-                    switch (_clipHint.HaveTokens())
+                    switch (baseAdVideo.IsAdLoaded())
                     {
                         case true:
-                            _clipHint.BuyHint();
+                            _clipHint.GetHintByAd();
                             break;
-                        case false when baseAdVideo.IsAdLoaded():
-                            _clipHint.WatchAd();
-                            break;
-                        case false when !baseAdVideo.IsAdLoaded():
+                        case false:
                             baseAdVideo.RequestRewarded();
                             return;
                     }
@@ -302,35 +208,28 @@ namespace _Scripts.Gameplay.Release.Shared.UI
                     PlayerPrefs.SetInt("HintWarning", 1);
                     PlayerPrefs.Save();
                     break;
-                case WarningType.DrawingTip1:
-                    if (!showAgain.isOn) break;
-                    PlayerPrefs.SetInt("DrawingTipWarning", 1);
-                    PlayerPrefs.Save();
-                    break;
                 case WarningType.Exit:
-                    _menuButton.GotoMenu();
+                    MenuAwaiter.GotoMenu();
                     if (!showAgain.isOn) break;
                     PlayerPrefs.SetInt("ExitWarning", 1);
                     PlayerPrefs.Save();
                     break;
+                case WarningType.Restart:
+                    RestartAwaiter.Restart();
+                    if (!showAgain.isOn) break;
+                    PlayerPrefs.SetInt("RestartWarning", 1);
+                    PlayerPrefs.Save();
+                    break;
                 case WarningType.UnlockLevel:
-                    switch (baseAdVideo.IsAdLoaded())
+                    if (StartLevelButton.CheckCost())
                     {
-                        case true:
-                            baseAdVideo.ShowVideo();
-                            break;
-                        case false:
-                            baseAdVideo.RequestRewarded();
-                            return;
+                        StartLevelButton.LevelDataToUnlock.Unlock();
+                        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) - StartLevelButton.LevelDataToUnlock.ScriptableObject.GetCost());
+                        CoinsUI.UpdateCoinsUI();
                     }
                     break;
             }
-            CloseWarning();
-        }
-
-        public bool IsWarningActive()
-        {
-            return warningUI.activeSelf;
+            CloseUI();
         }
 
         public void CheckAdLoaded(object sender, EventArgs eventArgs)
@@ -339,42 +238,29 @@ namespace _Scripts.Gameplay.Release.Shared.UI
             switch (baseAdVideo.IsAdLoaded())
             {
                 case true:
+                    labelText.SetText(GetLocalizedString("HintLabel"));
+                    buttonText.SetText(GetLocalizedString("HintButton"));
                     switch (_warningType)
                     {
-                        case WarningType.ClipHint:
-                            labelText.SetText(GetLocalizedString("HintAdLabel"));
-                            purposeText.SetText(GetLocalizedString("HintAdPurpose"));
-                            buttonText.SetText(GetLocalizedString("HintButton"));
-                            picture.sprite = dinno;
-                            break;
                         case WarningType.OpaqueHint:
-                            labelText.SetText(GetLocalizedString("HintAdLabel"));
-                            purposeText.SetText(GetLocalizedString("HintAdPurpose"));
-                            buttonText.SetText(GetLocalizedString("HintButton"));
-                            picture.sprite = dinno;
+                            purposeText.SetText(GetLocalizedString("HintOpaquePurpose"));
+                            picture.sprite = seallo;
                             break;
-                        case WarningType.UnlockLevel:
-                            labelText.SetText(GetLocalizedString("UnlockLevelLabel"));
-                            purposeText.SetText(GetLocalizedString("UnlockLevelPurpose"));
-                            buttonText.SetText(GetLocalizedString("UnlockLevelButton"));
-                            picture.sprite = dinno;
+                        case WarningType.ClipHint:
+                            purposeText.SetText(GetLocalizedString("HintClipPurpose"));
+                            picture.sprite = chickko;
                             break;
                     }
                     break;
                 case false:
-                    labelText.SetText(GetLocalizedString("UnlockLevelLabelError"));
-                    purposeText.SetText(GetLocalizedString("UnlockLevelPurposeError"));
-                    buttonText.SetText(GetLocalizedString("UnlockLevelButtonError"));
+                    labelText.SetText(GetLocalizedString("AdLoadingErrorLabel"));
+                    purposeText.SetText(GetLocalizedString("AdLoadingErrorPurpose"));
+                    buttonText.SetText(GetLocalizedString("AdLoadingErrorButton"));
                     picture.sprite = duckko;
                     baseAdVideo.RequestRewarded();
                     break;
             }
             ImageAdjuster.Adjust((RectTransform)picture.transform, picture.sprite, _pictureStartSize);
-        }
-
-        private string GetLocalizedString(string index)
-        {
-            return Application.systemLanguage == SystemLanguage.Russian ? _ruDictionary[index] : _engDictionary[index];
         }
     }
 }

@@ -1,4 +1,4 @@
-using _Scripts.Menu.Transition;
+using Assets._Scripts.Menu.Transition;
 using TMPro;
 using UnityEngine;
 

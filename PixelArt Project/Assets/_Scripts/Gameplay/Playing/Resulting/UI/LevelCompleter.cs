@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Scripts.Gameplay.Release.Playing.Creating;
-using _Scripts.SharedOverall.Animating;
+using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.Audio;
 using _Scripts.SharedOverall.DrawingPanel;
 using _Scripts.SharedOverall.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
+namespace _Scripts.Gameplay.Playing.Resulting.UI
 {
     public class LevelCompleter : MonoBehaviour
     {
@@ -16,14 +16,20 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
         [SerializeField] private GameObject completeUI;
         [SerializeField] private FlexibleGridLayout resultGrid;
         [SerializeField] private FlexibleGridLayout drawingGrid;
-        [SerializeField] private ScrollUI scrollUI;
-        
+
         [SerializeField] private GameObject pxPrefab;
         [SerializeField] private GameObject resultView;
         
-        public static event Action SwitchBlur;
+        public static bool IsLevelCompleted { get; private set; }
+        public static event Action<bool> SwitchBlur;
         public static event Action<AudioEffects.AudioEffectType> PlaySound;
-        public static List<Image> ResultPixels { get; private set; }
+        public static List<Image> ResultImages { get; private set; }
+        public static List<Color> ResultColors { get; private set; }
+
+        private void Start()
+        {
+            IsLevelCompleted = false;
+        }
 
         private void OnEnable()
         {
@@ -34,10 +40,12 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
             RewardCalculator.CompleteLevel -= Complete;
         }
 
-        private void Complete(RewardCalculator.Result result, bool needRef)
+        private void Complete(RewardCalculator.Result result)
         {
-            LevelCreator.isGameStarted = false;
-            scrollUI.enabled = false;
+            LevelCreator.IsGameStarted = false;
+            IsLevelCompleted = true;
+            GameStateManager.CurrentGameState = GameStateManager.GameState.Drawing;
+            
             if (MusicToggler.IsMusicEnabled())
             {
                 switch (result)
@@ -55,26 +63,30 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
             }
             ToggleEndScreen(true);
             BuildPixels();
-            if(!needRef) return;
+            if(result == RewardCalculator.Result.Perfect) return;
             resultView.SetActive(true);
         }
         public void ToggleEndScreen(bool state)
         {
-            SwitchBlur?.Invoke();
+            SwitchBlur?.Invoke(true);
             completeUI.SetActive(state);
         }
         private async void BuildPixels()
         {
-            ResultPixels = new List<Image>();
+            ResultImages = new List<Image>();
+            ResultColors = new List<Color>();
+            
             resultGrid.columns = drawingGrid.columns;
             for (var i = 0; i < DrawingTemplateCreator.ImagesList.Count; i++)
             {
                 var obj = Instantiate(pxPrefab, resultGrid.transform);
                 obj.name = $"Px ({i}) Result";
                 var image = obj.GetComponent<Image>();
-                ResultPixels.Add(image);
-                if (ClipPlaying.CashImageStates == null) continue;
-                image.color = ClipPlaying.CashImageStates[i];
+                image.color = DrawingTemplateCreator.PixelList[i].IsWrong
+                    ? (Color) ResultCorrector.MistakeColor
+                    : LevelCreator.GetCurrentStageScOb().pixelList[i];
+                ResultImages.Add(image);
+                ResultColors.Add(image.color);
             }
             await resultGrid.SetSize(false);
         }

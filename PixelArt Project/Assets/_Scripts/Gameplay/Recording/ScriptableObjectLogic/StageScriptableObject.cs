@@ -11,5 +11,6 @@ namespace _Scripts.Gameplay.Recording.ScriptableObjectLogic
         public List<float> audioToolTimings;
         public List<Color> pixelList;
         public List<ColorPresetStruct> colorPresetStruct;
+        public Color firstColor;
     }
 }

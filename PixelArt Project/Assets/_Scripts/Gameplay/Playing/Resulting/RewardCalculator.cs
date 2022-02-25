@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.Gameplay.Release.Playing.Resulting;
 using _Scripts.Menu.UI;
 using _Scripts.SharedOverall.Audio;
 using _Scripts.SharedOverall.Saving;
@@ -10,8 +11,9 @@ using _Scripts.SharedOverall.Settings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static _Scripts.SharedOverall.Dictionaries;
 
-namespace _Scripts.Gameplay.Release.Playing.Resulting
+namespace _Scripts.Gameplay.Playing.Resulting
 {
     public abstract class RewardCalculator : AchievementsHandler
     {
@@ -21,39 +23,18 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting
         [SerializeField] private Color perfectColor;
         
         private Result _result;
-        
-        public static event Action<Result, bool> CompleteLevel;
-        public static event Action<AudioEffects.AudioEffectType> PlaySound;
 
-        private readonly Dictionary<string, string> _ruDictionary = new()
-        {
-            { "Perfect", "Идеально!" },
-            { "Great", "Отлично!" },
-            { "Good", "Хорошо." },
-            { "OK", "Не плохо." },
-            { "Bad", "Плохо." },
-            { "NotPassed", "Слишком много ошибок. :(" },
-            
-            { "TokensEarned", "\nТокенов заработано:" }
-        };
-        private readonly Dictionary<string, string> _engDictionary = new()
-        {
-            { "Perfect", "Perfect!" },
-            { "Great", "Great!" },
-            { "Good", "Good." },
-            { "OK", "OK." },
-            { "Bad", "Bad." },
-            { "NotPassed", "Too many mistakes. :(" },
-            
-            { "TokensEarned", "\nTokens earned:" }
-        };
+        public static event Action RateRequest;
+        public static event Action<Result> CompleteLevel;
+        public static event Action<AudioEffects.AudioEffectType> PlaySound;
+        
         public enum Result
         {
             NotPassed,
             Passed,
             Perfect
         }
-        protected async void CalculateStars(int mistakesCount, bool lastStageMistake)
+        protected async void CalculateStars(int mistakesCount)
         {
             var pxCount = LevelCreator.GetCurrentStageScOb().pixelList.Count(img => img != Color.white);
             var result = (float)(pxCount - mistakesCount) / pxCount;
@@ -61,30 +42,30 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting
             
             switch (mistakesCount)
             {
-                case 0 :
+                case 0:
                     mark = 5;
                     resultText.color = perfectColor;
-                    SetResult(GetLocalizedString("Perfect"), Result.Perfect, false);
+                    SetResult(GetLocalizedString("Perfect"), Result.Perfect);
                     break;
                 case var _ when result > 0.875f:
                     mark = 4;
-                    SetResult(GetLocalizedString("Great"), Result.Passed, lastStageMistake);
+                    SetResult(GetLocalizedString("Great"), Result.Passed);
                     break;
                 case var _ when result <= 0.875f && result > 0.75f:
                     mark = 3;
-                    SetResult(GetLocalizedString("Good"), Result.Passed, lastStageMistake);
+                    SetResult(GetLocalizedString("Good"), Result.Passed);
                     break;
                 case var _ when result <= 0.75f && result > 0.625f:
                     mark = 2;
-                    SetResult(GetLocalizedString("OK"), Result.Passed, lastStageMistake);
+                    SetResult(GetLocalizedString("OK"), Result.Passed);
                     break;
                 case var _ when result <= 0.625f && result > 0.5f:
                     mark = 1;
-                    SetResult(GetLocalizedString("Bad"), Result.Passed, lastStageMistake);
+                    SetResult(GetLocalizedString("Bad"), Result.Passed);
                     break;
                 default:
                     PlayerPrefs.SetInt("WinStreak", 0);
-                    SetResult(GetLocalizedString("NotPassed"), Result.NotPassed, lastStageMistake);
+                    SetResult(GetLocalizedString("NotPassed"), Result.NotPassed);
                     return;
             }
             
@@ -101,54 +82,40 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting
                 PlaySound?.Invoke(AudioEffects.AudioEffectType.Stars);
                 stars[i].sprite = filledStar;
             }
-            SaveData.SaveLevelData(LevelCreator.scriptableObject);
+            SaveData.SaveLevelData(LevelCreator.ScriptableObject);
             SaveSystem.SaveDataToFile();
+            RateRequest?.Invoke();
         }
 
         private void CalculateReward(int mark)
         {
-            if (LevelCreator.scriptableObject.stars < mark)
+            var coinsCount = Mathf.RoundToInt(mark * ((int) LevelCreator.ScriptableObject.difficulty + 1));
+            if (LevelCreator.ScriptableObject.stars < mark)
             {
-                SetAchievementsProgress(mark - LevelCreator.scriptableObject.stars);
-                LevelCreator.scriptableObject.stars = mark;
-                if (mark != 3) return;
-                PlayerPrefs.SetInt("PerfectCompleted", PlayerPrefs.GetInt("PerfectCompleted",0)+1);
-                PlayerPrefs.Save();
-                switch (LevelCreator.scriptableObject.difficulty)
-                {
-                    case DifficultyFilterManager.Difficulties.Easy:
-                        AddTokens(1);
-                        break;
-                    case DifficultyFilterManager.Difficulties.Medium:
-                        AddTokens(2);
-                        break;
-                    case DifficultyFilterManager.Difficulties.Hard:
-                        AddTokens(3);
-                        break;
-                }
+                SetAchievementsProgress(mark - LevelCreator.ScriptableObject.stars);
+                AddCoins(coinsCount);
+                LevelCreator.ScriptableObject.stars = mark;
+                
             }
             else
             {
                 SetAchievementsProgress(0);
+                AddCoins(coinsCount/2);
             }
         }
         
-        private void SetResult(string resultTxt, Result result, bool lastStageMistake)
+        private void SetResult(string resultTxt, Result result)
         {
             resultText.text = resultTxt;
             _result = result;
-            CompleteLevel?.Invoke(_result, lastStageMistake);
+            CompleteLevel?.Invoke(_result);
         }
         
-        private void AddTokens(int value)
+        private void AddCoins(int value)
         {
-            PlayerPrefs.SetInt("HintTokens", PlayerPrefs.GetInt("HintTokens", 3) + value);
+            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins", 0) + value);
             PlayerPrefs.Save();
-            resultText.text += $"{GetLocalizedString("TokensEarned")} {value}";
-        }
-        private string GetLocalizedString(string index)
-        {
-            return Application.systemLanguage == SystemLanguage.Russian ? _ruDictionary[index] : _engDictionary[index];
+            resultText.text += $"{GetLocalizedString("CoinsEarned")} {value}";
         }
     }
 }

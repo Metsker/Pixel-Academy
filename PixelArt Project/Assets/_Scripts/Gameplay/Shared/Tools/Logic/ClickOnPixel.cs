@@ -1,14 +1,22 @@
 using System;
-using _Scripts.Gameplay.Release.Playing.Creating;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using _Scripts.Gameplay.Playing.Animating;
+using _Scripts.Gameplay.Playing.Creating;
+using _Scripts.Gameplay.Playing.Resulting;
+using _Scripts.Gameplay.Playing.UI;
+using _Scripts.Gameplay.Shared.ColorPresets;
+using _Scripts.Gameplay.Shared.Tools.Logic;
 using _Scripts.SharedOverall.Animating;
 using _Scripts.SharedOverall.Audio;
 using _Scripts.SharedOverall.ColorPresets;
-using _Scripts.SharedOverall.Tools.Instruments;
+using _Scripts.SharedOverall.DrawingPanel;
 using _Scripts.SharedOverall.Tools.Palette;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using static _Scripts.SharedOverall.GameModeManager;
+using static _Scripts.SharedOverall.GameStateManager;
 #if (UNITY_EDITOR)
 using _Scripts.Gameplay.Recording.Recording;
 #endif
@@ -22,61 +30,84 @@ namespace _Scripts.SharedOverall.Tools.Logic
         private BoxCollider2D _boxCollider2D;
         private Color _cashColor;
         private RectTransform _cash;
-        
+        public int Index { get; set; }
+        public bool IsWrong { get; set; }
+        private Image Image { get; set; }
         private static BoxCollider2D _viewCollider;
-        public int index { get; set; }
-        private Image image { get; set; }
-        
-        public static event Action StopClip;
+        public static event Func<ClipManager.State> PauseOrStartClip;
+        public static event Action SetPipetteColor;
         public static event Action<Vector3, bool> SetHelpDirection;
+        public static event Action<TextHint.HintType, float> ShowHint;
+        
         private void Awake()
         {
-            image = GetComponent<Image>();
+            Image = GetComponent<Image>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
             
             if (_viewCollider != null) return;
             var parent = transform.parent;
             _viewCollider = parent.GetComponentInParent<BoxCollider2D>();
             _viewCollider.size = parent.GetComponentInParent<RectTransform>().rect.size;
-            
         }
         
+        [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
         public void OnPointerClick(PointerEventData eventData)
         {
-            switch (GameModeManager.CurrentGameMode)
+            if (TextHint.IsAnimating)
             {
-                case GameModeManager.GameMode.Play when
-                    GameStateManager.CurrentGameState == GameStateManager.GameState.Animating:
-                    StopClip?.Invoke();
-                    break;
-                default:
-                    if (PickerHandler.IsPickerActive())
-                    {
-                        PickerHandler.DisablePicker();
-                    }
-                    break;
+                TextHint.SkipTextAnim();
+                return;
             }
-            if (ToolsManager.CurrentTool == ToolsManager.Tools.None) return;
+            switch (CurrentGameMode)
+            {
+                case GameMode.Play when CurrentGameState == GameState.Animating:
+                {
+                    switch (PauseOrStartClip?.Invoke())
+                    {
+                        case ClipManager.State.Pause: 
+                            return;
+                        case ClipManager.State.Start:
+                            break;
+                    } break;
+                }
+                case GameMode.Play when
+                    CurrentGameState == GameState.Correcting:
+                    if (ResultCorrector.SetCorrectionState(!ResultCorrector.IsPaused)) { return; } 
+                    else { break; }
+                case GameMode.Play when !LevelCreator.IsGameStarted:
+                    return;
+                default:
+                    if (!PickerHandler.IsPickerActive()) break;
+                    PickerHandler.DisablePicker();
+                    return;
+            }
+            if (ToolsManager.CurrentTool == ToolsManager.Tools.None && CurrentGameState == GameState.Drawing)
+            {
+                ShowHint?.Invoke(TextHint.HintType.PickTool, 3);
+                return;
+            }
             switch (ToolsManager.CurrentTool)
             {
-                case ToolsManager.Tools.Pencil:
-                    OnPointer(PencilTool.GetColor(), c=> image.color = c);
+                case var _ when ToolsManager.CurrentTool != ToolsManager.Tools.Eraser && ColorPreset.GetColor() == null && CurrentGameState == GameState.Drawing:
+                    ShowHint?.Invoke(TextHint.HintType.PickColor,3);
                     break;
-                case ToolsManager.Tools.Eraser when GameModeManager.CurrentGameMode == GameModeManager.GameMode.Play && LevelCreator.Stage > 0:
-                    OnPointer(EraserTool.GetColor(index),c=> image.color = c);
+                case ToolsManager.Tools.Pencil when ColorPreset.GetColor() != null:
+                    OnPointer(ColorPreset.GetColor().Value, c=> Image.color = c);
+                    break;
+                case ToolsManager.Tools.Eraser when CurrentGameMode == GameMode.Play && LevelCreator.Stage > 0:
+                    OnPointer(EraserTool.GetColor(Index),c=> Image.color = c);
                     break;
                 case ToolsManager.Tools.Eraser:
-                    OnPointer(EraserTool.GetColor(),c=> image.color = c);
+                    OnPointer(EraserTool.GetColor(),c=> Image.color = c);
                     break;
-                case ToolsManager.Tools.Filler:
-                    var targetColor = image.color;
-                    OnPointer(FillingTool.GetColor(), c => OnFiller(c, targetColor));
+                case ToolsManager.Tools.Filler when ColorPreset.GetColor() != null:
+                    var targetColor = Image.color;
+                    OnPointer(ColorPreset.GetColor().Value, c => OnFiller(c, targetColor));
                     break;
                 case ToolsManager.Tools.Pipette:
-                    PencilTool.SetColor(image.color);
-                    ColorPresetSpawner.GetSelected().image.color = image.color;
-                    ToolsManager.CurrentTool = ToolsManager.Tools.Pencil;
-                    ToolsManager.DeselectPipette();
+                    ColorPreset.SetColor(Image.color);
+                    ColorPresetSpawner.GetSelected().SetImageColor(Image.color);
+                    SetPipetteColor?.Invoke();
                     break;
             }
         }
@@ -90,22 +121,22 @@ namespace _Scripts.SharedOverall.Tools.Logic
 
         private void FixedUpdate()
         {
-            if (LevelCreator.isGameStarted || _cashColor == image.color) return;
-            _cashColor = image.color;
+            if (LevelCreator.IsGameStarted || _cashColor == Image.color) return;
+            _cashColor = Image.color;
         }
 
         private void LateUpdate()
         {
             var position = transform.position;
-            switch (LevelCreator.isGameStarted)
+            switch (LevelCreator.IsGameStarted)
             {
-                case false when _cashColor != image.color && !_viewCollider.bounds.Contains(position):
+                case false when _cashColor != Image.color && !_viewCollider.bounds.Contains(position):
                 {
                     SetHelpDirection?.Invoke(position, true);
                     _cash = (RectTransform)transform;
                     break;
                 }
-                case false when _cashColor != image.color && _viewCollider.bounds.Contains(position):
+                case false when _cashColor != Image.color && _viewCollider.bounds.Contains(position):
                     _cash = (RectTransform)transform;
                     break;
             }
@@ -113,16 +144,16 @@ namespace _Scripts.SharedOverall.Tools.Logic
 
         private void OnPointer(Color c, Action<Color> action) 
         {
-            if (image.color == c) return;
-            switch (GameStateManager.CurrentGameState)
+            if (Image.color == c) return;
+            switch (CurrentGameState)
             {
-                case GameStateManager.GameState.Recording when ToolAnimation.isAnyAnimating:
+                case GameState.Recording when ToolAnimation.isAnyAnimating:
                     Debug.LogWarning("Дождись окончания анимации");
                     return;
 #if (UNITY_EDITOR) 
-                case GameStateManager.GameState.Recording:
+                case GameState.Recording:
                     action(c);
-                    Recorder.Snapshot(AudioClick.AudioClickType.Click);
+                    Recorder.Snapshot(AudioManager.AudioClickType.Click);
                     Recorder.Snapshot(Time.deltaTime); 
                     Recorder.Snapshot(Recorder.SnapshotDelay); 
                     break;
@@ -146,11 +177,11 @@ namespace _Scripts.SharedOverall.Tools.Logic
                     _ => Vector2.zero
                 };
                 var hit = Physics2D.Raycast(transform.position, v);
-                image.color = c;
+                Image.color = c;
                 if (hit.collider == null) continue;
                 if (!hit.transform.gameObject.TryGetComponent(out ClickOnPixel click)) continue;
-                if (click.image.color != target) continue;
-                click.image.color = c;
+                if (click.Image.color != target) continue;
+                click.Image.color = c;
                 click.OnFiller(c, target);
             }
         }
@@ -161,6 +192,10 @@ namespace _Scripts.SharedOverall.Tools.Logic
         public void SetColliderSize()
         {
             _boxCollider2D.size = ((RectTransform)transform).sizeDelta;
+        }
+        public Image GetImage()
+        {
+            return Image;
         }
     }
 }

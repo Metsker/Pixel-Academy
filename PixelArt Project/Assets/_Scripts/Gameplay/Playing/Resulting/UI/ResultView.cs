@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using _Scripts.Gameplay.Release.Playing.Creating;
-using _Scripts.SharedOverall.Animating;
+using _Scripts.Gameplay.Playing.Creating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
+namespace _Scripts.Gameplay.Playing.Resulting.UI
 {
     public class ResultView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
@@ -25,15 +24,15 @@ namespace _Scripts.Gameplay.Release.Playing.Resulting.UI
         public void OnPointerExit(PointerEventData eventData)
         {
             _image.color = Color.white;
-            CompareResult(ClipPlaying.CashImageStates);
+            CompareResult(LevelCompleter.ResultColors);
         }
         
         private void CompareResult(List<Color> colors)
         {
-            for (var i = 0; i < LevelCompleter.ResultPixels.Count; i++)
+            for (var i = 0; i < LevelCompleter.ResultImages.Count; i++)
             {
-                if(LevelCompleter.ResultPixels[i].color == colors[i]) continue;
-                LevelCompleter.ResultPixels[i].color = colors[i];
+                if(LevelCompleter.ResultImages[i].color == colors[i]) continue;
+                LevelCompleter.ResultImages[i].color = colors[i];
             }
         }
     }

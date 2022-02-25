@@ -3,32 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _Scripts.Gameplay.Playing.Creating;
 using _Scripts.Gameplay.Release.Playing.Animating;
-using _Scripts.Gameplay.Release.Playing.Creating;
+using _Scripts.Gameplay.Shared.ColorPresets;
+using _Scripts.Gameplay.Shared.Tools.Instruments;
+using _Scripts.SharedOverall;
 using _Scripts.SharedOverall.ColorPresets;
 using _Scripts.SharedOverall.DrawingPanel;
-using _Scripts.SharedOverall.Tools.Instruments;
-using _Scripts.SharedOverall.Utility;
+using _Scripts.SharedOverall.Saving;
+using _Scripts.SharedOverall.UI.Settings;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.SharedOverall.Animating
+namespace _Scripts.Gameplay.Playing.Animating
 {
     public abstract class ClipPlaying : MonoBehaviour
     {
         public Animator animator;
-        [SerializeField] protected Slider progress;
-        private Image _progressImage;
-        public static List<Color> CashImageStates { get; private set; }
+        private static List<Color> CashImageStates { get; set; }
         private static List<Color> CashColorPresetStates { get; set; }
         public static event Action<AnimationClip> LoadEvents;
-
-        protected const int StartDelaySeconds = 4;
+        
         protected IEnumerator clipTimer;
 
         protected void Awake()
         {
-            _progressImage = progress.fillRect.GetComponent<Image>();
+            if (SaveData.ClipSliderValue == null) return;
+            animator.speed = Mathf.Lerp(ClipSpeedSlider.ClipMin,ClipSpeedSlider.ClipMax, (float)SaveData.ClipSliderValue);
         }
 
         protected void OnEnable()
@@ -72,10 +73,14 @@ namespace _Scripts.SharedOverall.Animating
         
         private IEnumerator AnimationProgress()
         {
-            _progressImage.color = ColorRandomizer.GetRandomColor();
+            if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Record)
+            {
+                ProgressController.SetProgressColor(ProgressController.AnimationColor);
+                ProgressController.ToggleSliderState(true);
+            }
             while (GameStateManager.CurrentGameState == GameStateManager.GameState.Animating)
             {
-                progress.value = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                GetSlider().normalizedValue = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 yield return null;
             }
         }
@@ -88,9 +93,9 @@ namespace _Scripts.SharedOverall.Animating
             }
             if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Record) return;
             CashColorPresetStates = new List<Color>();
-            foreach (var preset in ColorPresetSpawner.colorPresets)
+            foreach (var preset in ColorPresetSpawner.ColorPresets)
             {
-                CashColorPresetStates.Add(preset.image.color);
+                CashColorPresetStates.Add(preset.GetImageColor());
             }
         }
 
@@ -104,9 +109,9 @@ namespace _Scripts.SharedOverall.Animating
             }
             if (GameModeManager.CurrentGameMode != GameModeManager.GameMode.Record) return;
             i = 0;
-            foreach (var preset in ColorPresetSpawner.colorPresets)
+            foreach (var preset in ColorPresetSpawner.ColorPresets)
             {
-                preset.image.color = CashColorPresetStates[i];
+                preset.SetImageColor(CashColorPresetStates[i]);
                 i++;
             }
         }
@@ -131,6 +136,13 @@ namespace _Scripts.SharedOverall.Animating
             clipTimer = ClipTimer();
             StartCoroutine(clipTimer);
         }
+
+        protected virtual Slider GetSlider()
+        {
+            return ProgressController.Slider;
+        }
         protected abstract IEnumerator ClipTimer();
+
+        
     }
 }

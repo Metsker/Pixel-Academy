@@ -21,9 +21,3 @@ MonoBehaviour:
   previewSprite: {fileID: 21300000, guid: d72248fc5e2c51444bd5635d4e6f7f52, type: 3}
   stageScriptableObjects:
   - {fileID: 11400000, guid: e850e18fd3611db4a8d40f9da7738340, type: 2}
-  - {fileID: 11400000, guid: 3600cbb2b9dd88f40b67d5f07df38f42, type: 2}
-  - {fileID: 11400000, guid: da7522e5c07e7c64e8d1a9a33b63f21f, type: 2}
-  - {fileID: 11400000, guid: 9e1b7c7839b10d245ba7bb31477cd29f, type: 2}
-  - {fileID: 11400000, guid: ca24094f1f4c9b7469c0ed73408ba1d7, type: 2}
-  - {fileID: 11400000, guid: 35d822f04126bd04a90c4fa8d6a9f28e, type: 2}
-  - {fileID: 11400000, guid: e967283e77e0488499e3dc7ab9d8adae, type: 2}
