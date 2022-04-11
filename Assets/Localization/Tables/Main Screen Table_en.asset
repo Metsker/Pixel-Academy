@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Main Screen Table_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: df5de541a018faa4d9b33d905423d5f3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1206012309504
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1522325745664
+    m_Localized: easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2621493440512
+    m_Localized: medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2712597917696
+    m_Localized: hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2754633232384
+    m_Localized: New levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2985898766336
+    m_Localized: View all
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44273629097984
+    m_Localized: Animals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44341820092416
+    m_Localized: Crops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44457461248000
+    m_Localized: Food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44527799726080
+    m_Localized: Decor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44590466822144
+    m_Localized: Pixelcraft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44620246380544
+    m_Localized: Pokemons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3414717333729280
+    m_Localized: Categories
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

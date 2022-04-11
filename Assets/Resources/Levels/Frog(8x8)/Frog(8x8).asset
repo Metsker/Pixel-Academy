@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Frog(8x8)
+  m_EditorClassIdentifier: 
+  xLenght: 8
+  yLenght: 8
+  stars: 0
+  isLocked: 0
+  groupType: 0
+  difficulty: 0
+  previewSprite: {fileID: 21300000, guid: ecd5aa90b7a9bc44889eeb21135c4f2d, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 27ebff8d3933d5b4ba504f7ba3a85abf, type: 2}
+  - {fileID: 11400000, guid: 676920b550aa35b4ab0f0c9c0e30c830, type: 2}
+  - {fileID: 11400000, guid: 67fbe67e15c7c75489c5763d75b0c842, type: 2}
+  - {fileID: 11400000, guid: 4e6abe6a05f05364eb1b20ce235a7451, type: 2}
+  - {fileID: 11400000, guid: 7e0349c21c724a841925096da5fd6ee2, type: 2}
+  - {fileID: 11400000, guid: d7910b7ea9622f34d9e2d80b1006e657, type: 2}
+  - {fileID: 11400000, guid: 6badd92883760fa4094c83a55503b1bf, type: 2}
+  - {fileID: 11400000, guid: dfc0e2237b6ab56478c9a7e4cf630537, type: 2}
+  - {fileID: 11400000, guid: 2abdb07178937494e86dc6e3d35c996e, type: 2}
+  - {fileID: 11400000, guid: 12a1dc3dc7c97f2499ca37fd6f82df3c, type: 2}
+  - {fileID: 11400000, guid: f68fe5a81c728224a9304936b45ffec0, type: 2}

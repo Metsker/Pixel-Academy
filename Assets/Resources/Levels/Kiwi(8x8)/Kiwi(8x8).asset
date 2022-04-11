@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Kiwi(8x8)
+  m_EditorClassIdentifier: 
+  xLenght: 8
+  yLenght: 8
+  stars: 0
+  isLocked: 1
+  groupType: 1
+  difficulty: 0
+  previewSprite: {fileID: 21300000, guid: 600912fc0d150cd4d9284c5cc80d8dc5, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 2311ff094f6877c4a8c02e2184d51650, type: 2}
+  - {fileID: 11400000, guid: 8dbc89785c3a52347951642752037a65, type: 2}
+  - {fileID: 11400000, guid: 95054bae5facc294d9bf87edf3c5bff0, type: 2}
+  - {fileID: 11400000, guid: 577fd1ada695888428814924c3e6b6e4, type: 2}
+  - {fileID: 11400000, guid: e76ebc8439c757d41b59e8de78169892, type: 2}
+  - {fileID: 11400000, guid: 22d905e56fcebb449b3d09d457c91fce, type: 2}
+  - {fileID: 11400000, guid: 64723f30bd4b4cd47817ca3d8a021480, type: 2}
+  - {fileID: 11400000, guid: 38bd7e18fb513224fa0cb4aeef5c59f9, type: 2}
+  - {fileID: 11400000, guid: 028e3b6c2ec9f4841b501f3f79334631, type: 2}
+  - {fileID: 11400000, guid: b40426e6a751f7f4ca8f8bde38145bc9, type: 2}
+  - {fileID: 11400000, guid: 6126f11688fd4444f94e01c4923f8734, type: 2}
+  - {fileID: 11400000, guid: fcd11ae1c2340f84cb14668a25e9b938, type: 2}
+  - {fileID: 11400000, guid: 30c920b89378a7e44bd5183e1ffbbb65, type: 2}
+  - {fileID: 11400000, guid: 2bb479e2e7e159f4181d08ae9d583e46, type: 2}
+  - {fileID: 11400000, guid: f7828991fd21f49419ad73998e2518e9, type: 2}

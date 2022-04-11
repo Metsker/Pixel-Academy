@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Pear(12x14)
+  m_EditorClassIdentifier: 
+  xLenght: 12
+  yLenght: 14
+  stars: 0
+  isLocked: 0
+  groupType: 1
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 6151eb5355e89f945a73e5971eda51cf, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 4d0931c3c93acd141add7909b62fe7a6, type: 2}
+  - {fileID: 11400000, guid: 61af9a50009e38949a733b777c37669b, type: 2}
+  - {fileID: 11400000, guid: 2e7f88c764a891b4da5a6a1141596e76, type: 2}
+  - {fileID: 11400000, guid: 1d60f6b31c586f54babb4f49ee8befd0, type: 2}
+  - {fileID: 11400000, guid: e26d69f575fbc034dabfa5d728f69bc0, type: 2}
+  - {fileID: 11400000, guid: e984e3a778708c344a20deeebd14a703, type: 2}
+  - {fileID: 11400000, guid: f8e5dbf11abde64498eda8e5953f3f2a, type: 2}
+  - {fileID: 11400000, guid: aedb7eb3ff4d4e84e9f680902193cdb0, type: 2}
+  - {fileID: 11400000, guid: 37deb0a1514cb544a996ca19987822c9, type: 2}
+  - {fileID: 11400000, guid: b9f6cf025f89a8944987ec06fb5d4a92, type: 2}
+  - {fileID: 11400000, guid: 4e7d2f732e393fb478960c8cadfc235f, type: 2}
+  - {fileID: 11400000, guid: fb2663c9e0603f844be22534ac5c3d74, type: 2}
+  - {fileID: 11400000, guid: 5a012640592c1834db53bebd0fe6283d, type: 2}
+  - {fileID: 11400000, guid: 06692e3dd06b52845ab0086e8a8a407f, type: 2}
+  - {fileID: 11400000, guid: 63ae2e1ec5efb424ba6ec668569eeb52, type: 2}

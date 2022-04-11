@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Cherry(12x14)
+  m_EditorClassIdentifier: 
+  xLenght: 12
+  yLenght: 14
+  stars: 0
+  isLocked: 1
+  groupType: 1
+  difficulty: 2
+  previewSprite: {fileID: 21300000, guid: 4a59247f36f58924896605a1fcd07004, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: df894095968228f4eba422d7767475ea, type: 2}
+  - {fileID: 11400000, guid: eb713049ca6bf724b9e90af9140079eb, type: 2}
+  - {fileID: 11400000, guid: 1e793759b3a9a1144b8b24f6b04953f8, type: 2}
+  - {fileID: 11400000, guid: 90252cead271c1746960db35ecb665cc, type: 2}
+  - {fileID: 11400000, guid: 5a8041761215f80488fbbcdfb6ee5de3, type: 2}
+  - {fileID: 11400000, guid: 1a5682b5c42d58942ae20241a48dd908, type: 2}
+  - {fileID: 11400000, guid: a7aaa91d9d35f4d408e1e8791a0e5808, type: 2}
+  - {fileID: 11400000, guid: 65c6d4f598dd0084a9bdd24cac1845ab, type: 2}
+  - {fileID: 11400000, guid: 1c0b6668bda78db4383c2ee15703c4b1, type: 2}
+  - {fileID: 11400000, guid: 5823d560f427e7447837eb0a69a26f68, type: 2}
+  - {fileID: 11400000, guid: 27be07a108e8ea0438369611688be792, type: 2}
+  - {fileID: 11400000, guid: 12a2749c1e944fd4f8b0bfe08d3b6676, type: 2}
+  - {fileID: 11400000, guid: 16bbee9cb6e70eb47a574a1890676a78, type: 2}
+  - {fileID: 11400000, guid: d1304c2253efc29419c979ccc1c47414, type: 2}
+  - {fileID: 11400000, guid: 336541a9c21a3784097d4c80054f9263, type: 2}
+  - {fileID: 11400000, guid: 5177a5dbf41ee1844bd3d81912444cdd, type: 2}
+  - {fileID: 11400000, guid: 9551e8747c63ca448bf96a6ad3840cc2, type: 2}
+  - {fileID: 11400000, guid: 1e1446969df9400479fb140025e31ac6, type: 2}
+  - {fileID: 11400000, guid: ef3176e7a4e8f6a498b6cf964788e6b1, type: 2}
+  - {fileID: 11400000, guid: 33b6a337595fcc24188b6c60ab437872, type: 2}
+  - {fileID: 11400000, guid: fa09e1348fe0a3f4092153992ccfe496, type: 2}

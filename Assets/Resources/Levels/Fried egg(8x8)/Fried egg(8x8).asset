@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: Fried egg(8x8)
+  m_EditorClassIdentifier: 
+  xLenght: 8
+  yLenght: 8
+  stars: 0
+  isLocked: 1
+  groupType: 2
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: e2a2f011fad010d40a92f078a366d707, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 372c4ce97deb9ca47a749a0ec20c3be1, type: 2}
+  - {fileID: 11400000, guid: 87a6065d8e6d04e4ea5b005e18b8bc31, type: 2}
+  - {fileID: 11400000, guid: 614e7fcceb47db4499167d6dfab70e49, type: 2}
+  - {fileID: 11400000, guid: da17219e0e924de42b01891b942c6da6, type: 2}
+  - {fileID: 11400000, guid: 2716a2a3021f93c41acb329150559983, type: 2}
+  - {fileID: 11400000, guid: 63e1d1b3bd2f3c94e8e3e0452776b4fe, type: 2}
+  - {fileID: 11400000, guid: 70d242702dbd2da48b8343213c89fee3, type: 2}
+  - {fileID: 11400000, guid: de5ffae1f60abfe41a18caf80b280bc7, type: 2}
+  - {fileID: 11400000, guid: b3ca47407d3e10c4385fdda2a17a9ded, type: 2}
+  - {fileID: 11400000, guid: 35a754322ec57134194de8e095e18e0d, type: 2}
+  - {fileID: 11400000, guid: 3d75a5f67a43ef3449ccce984aa7f91a, type: 2}
+  - {fileID: 11400000, guid: 26cf663ee84e0f449a7977a260dc20f5, type: 2}
+  - {fileID: 11400000, guid: a7d871f5467baf14fae4ca77da1e5b73, type: 2}
+  - {fileID: 11400000, guid: 3014816e887b6a74f831f0384f3380c6, type: 2}

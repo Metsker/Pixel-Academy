@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c44a7f5b1bdc7a498fca4794731a751, type: 3}
+  m_Name: Minecraft
+  m_EditorClassIdentifier: 
+  groupType: 4
+  levels:
+  - {fileID: 11400000, guid: 4aae15192690a9244a00b74ac64ef690, type: 2}
+  - {fileID: 11400000, guid: 1d114566e964a384eada29a4f1dd8e0f, type: 2}
+  - {fileID: 11400000, guid: a10d199676af51941bb7977789a523b9, type: 2}
+  - {fileID: 11400000, guid: 4418459ab062fff46a2c81fbbf6613f8, type: 2}
+  - {fileID: 11400000, guid: 613c57af4df0b264ca0efbcb10134f4b, type: 2}
+  - {fileID: 11400000, guid: 3beb9044ff9dcd64ab113fe43eb8ce11, type: 2}
+  - {fileID: 11400000, guid: 60a0a57e773f6cf459a24cdd97873df1, type: 2}
+  - {fileID: 11400000, guid: 136259993a7a37e4697374424f36ea8a, type: 2}

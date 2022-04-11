@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c03e15bd3a403c9fc344f71707f9b6, type: 3}
+  m_Name: D_Pickaxe(13x13)
+  m_EditorClassIdentifier: 
+  xLenght: 13
+  yLenght: 13
+  stars: 0
+  isLocked: 1
+  groupType: 4
+  difficulty: 1
+  previewSprite: {fileID: 21300000, guid: 44c5334a1482b704daa81091c23457fb, type: 3}
+  stageScriptableObjects:
+  - {fileID: 11400000, guid: 6c88563a63983c047951bb65b5d3c236, type: 2}
+  - {fileID: 11400000, guid: ed2180873f0388f4a80230c93e586343, type: 2}
+  - {fileID: 11400000, guid: f8d61f952e2171146ab41c77615fabe1, type: 2}
+  - {fileID: 11400000, guid: 60c3ae36ad2e1cf478a1d35517aa143d, type: 2}
+  - {fileID: 11400000, guid: 5ad84412dbe43184dac0b907bce49295, type: 2}
+  - {fileID: 11400000, guid: 06d5b9b24c4994e4d893dcdebae2ec25, type: 2}
+  - {fileID: 11400000, guid: 68f98c1b0724a1f4cb9dc1eaacae7fbd, type: 2}
+  - {fileID: 11400000, guid: 1ce60d8367536a245bcd0e7256630d3f, type: 2}
+  - {fileID: 11400000, guid: 6488a390d6d4a0c40859fb883b21582a, type: 2}
+  - {fileID: 11400000, guid: 2053e7fba1f33fe41999fdae44c3e09f, type: 2}
+  - {fileID: 11400000, guid: f57c96ad774ead84e829102adbfb358f, type: 2}
